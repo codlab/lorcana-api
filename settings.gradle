@@ -1,0 +1,37 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        maven {
+            url("https://maven.pkg.jetbrains.space/public/p/compose/dev")
+        }
+        google()
+        mavenCentral()
+    }
+}
+
+ext.DOLBYIO_GRADLE_VERSION_USED = "92c76cc5266e799502dfe45917278e9ede4320a6"
+
+apply from: "https://raw.githubusercontent.com/voxeet/voxeet-sdk-android-gradle/${ext.DOLBYIO_GRADLE_VERSION_USED}/dolbyio.gradle"
+
+dependencyResolutionManagement {
+    repositories {
+        google()
+        mavenCentral()
+        maven { url("https://androidx.dev/storage/compose-compiler/repository/") }
+    }
+    versionCatalogs {
+        dolbyio {
+            from(files(gradle.dolbyio.files.catalog))
+        }
+    }
+}
+
+include ":lorcana-shared"
+include ":lorcana-shared-ui"
+
+["preview", "safearea"].each { include("kotlin-$it") }
+
+["androidApp", "jvmApp", "jsApp", "app-ui"].each {
+    include ":$it"
+    project(":$it").projectDir = new File(rootProject.projectDir, "lorcana-apps/$it")
+}

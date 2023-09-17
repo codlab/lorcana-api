@@ -1,0 +1,47 @@
+class TasksDefinition {
+    String name
+    ArrayList<String> args
+    String next
+
+    TasksDefinition(String name, ArrayList<String> args, String next = null) {
+        this.name = name
+        this.args = args
+        this.next = next
+    }
+}
+
+afterEvaluate {
+    def deviceToUse = "792A4588-8119-44F3-B7A7-1D17ECA89F0B"
+
+    def isMultiplatform = project.plugins.hasPlugin("org.jetbrains.kotlin.multiplatform")
+
+    TasksDefinition[] newTasks = [
+            new TasksDefinition("bootIos", ["/usr/bin/xcrun", "simctl", "boot", deviceToUse]),
+            new TasksDefinition("openSimulator", ["open", "-a", "Simulator"], "bootIos"),
+            new TasksDefinition("shutDownIos", ["/usr/bin/xcrun", "simctl", "shutdown", deviceToUse])
+    ]
+
+    if (isMultiplatform) {
+        println("Having a multiplatform project ${project}")
+        newTasks.each { triple ->
+            tasks.register(triple.name) {
+                if (null != triple.next) {
+                    dependsOn(triple.next)
+                }
+                doLast {
+                    exec {
+                        commandLine(triple.args)
+                    }
+                }
+            }
+        }
+
+        tasks.matching { it.class.getSimpleName().startsWith("KotlinNativeSimulatorTest") }
+                .configureEach {
+                    dependsOn(newTasks[1].name)
+                    finalizedBy(newTasks[2].name)
+                    device.set(deviceToUse)
+                    standalone.set(false)
+                }
+    }
+}

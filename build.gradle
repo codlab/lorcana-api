@@ -1,0 +1,60 @@
+import java.nio.file.Files
+
+buildscript {
+    apply from: "gradle/versions.gradle"
+    apply from: gradle.dolbyio.files.modules
+
+    dependencies {
+        classpath dolbyio.nexus.gradlePlugin
+        classpath dolbyio.sonarqube.gradlePlugin
+        classpath dolbyio.license.gradlePlugin
+        classpath libs.moko.resources.generator
+    }
+}
+
+plugins {
+    alias(libs.plugins.versions) apply true
+    alias(libs.plugins.android.library) apply false
+    alias(libs.plugins.android.appdistribution) apply false
+    alias(libs.plugins.android.google.services) apply false
+    alias(libs.plugins.kotlin.multiplatform) apply false
+    alias(libs.plugins.kotlin.cocoapods) apply false
+    alias(libs.plugins.kotlin.jvm) apply false
+    alias(libs.plugins.buildkonfig) apply false
+    alias(libs.plugins.jetbrains.compose) apply false
+    alias(libs.plugins.moko.resources.generator) apply false
+    alias(libs.plugins.about.libraries) apply true
+}
+
+allprojects {
+    repositories {
+        google()
+        maven { url = "https://maven.pkg.jetbrains.space/public/p/compose/dev" }
+        maven { url = "https://androidx.dev/storage/compose-compiler/repository/" }
+        mavenCentral()
+        maven { url 'https://jitpack.io' }
+    }
+}
+
+group = ext.groupId
+version = ext.version
+
+subprojects {
+    group = rootProject.ext.groupId
+    version = rootProject.ext.version
+
+    task allDeps(type: DependencyReportTask) {}
+
+    if (isSourcesModule(it)) {
+        apply from: gradle.dolbyio.files.moduleSetup
+        apply from: "${rootProject.projectDir}/gradle/moduleMultiplatform.gradle"
+    }
+}
+
+//first check that we have proper "non" duplicated source root
+def original = file("lorcana-shared-ui/src/commonMain/kotlin")
+def link = file("lorcana-apps/app-ui/src/androidMain/kotlin")
+
+if (!link.exists()) {
+    Files.createSymbolicLink(link.toPath(), original.toPath())
+}

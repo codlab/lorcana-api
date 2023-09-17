@@ -1,0 +1,16 @@
+PODS:
+  - lorcana_shared_ui (1.0.0)
+
+DEPENDENCIES:
+  - lorcana_shared_ui (from `../../lorcana-shared-ui`)
+
+EXTERNAL SOURCES:
+  lorcana_shared_ui:
+    :path: "../../lorcana-shared-ui"
+
+SPEC CHECKSUMS:
+  lorcana_shared_ui: d4a8566ac3f7774ad82442100e964920b106633f
+
+PODFILE CHECKSUM: 44cab73307caf5dceb018518f1f34ab5a5c8f853
+
+COCOAPODS: 1.12.1

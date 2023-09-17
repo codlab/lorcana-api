@@ -1,0 +1,92 @@
+package eu.codlab.lorcana.app.views.widgets
+
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.windowInsetsBottomHeight
+import androidx.compose.foundation.layout.windowInsetsEndWidth
+import androidx.compose.foundation.layout.windowInsetsStartWidth
+import androidx.compose.foundation.layout.windowInsetsTopHeight
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Immutable
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.zIndex
+
+@Immutable
+data class SafeAreaBehavior(
+    val extendToTop: Boolean = false,
+    val extendToBottom: Boolean = false,
+    val extendToStart: Boolean = false,
+    val extendToEnd: Boolean = false,
+)
+
+@Immutable
+data class SafeAreaColors(
+    val top: Color = Color.Transparent,
+    val bottom: Color = Color.Transparent,
+    val start: Color = Color.Transparent,
+    val end: Color = Color.Transparent,
+)
+
+@Composable
+fun SafeArea(
+    behavior: SafeAreaBehavior = remember { SafeAreaBehavior() },
+    color: SafeAreaColors = remember { SafeAreaColors() },
+    content: @Composable () -> Unit,
+) {
+    Row {
+        if (!behavior.extendToStart) {
+            Spacer(
+                modifier = Modifier
+                    .windowInsetsStartWidth(WindowInsets.startBar)
+                    .zIndex(999F)
+                    .fillMaxHeight()
+                    .background(color.start)
+            )
+        }
+        Column(
+            modifier = Modifier
+                .weight(1f),
+        ) {
+            if (!behavior.extendToTop) {
+                Spacer(
+                    modifier = Modifier
+                        .windowInsetsTopHeight(WindowInsets.topBar)
+                        .zIndex(999F)
+                        .fillMaxWidth()
+                        .background(color.top)
+                )
+            }
+            Box(
+                modifier = Modifier.weight(1f),
+            ) {
+                content()
+            }
+            if (!behavior.extendToBottom) {
+                Spacer(
+                    modifier = Modifier
+                        .windowInsetsBottomHeight(WindowInsets.bottomBar)
+                        .zIndex(999F)
+                        .fillMaxWidth()
+                        .background(color.bottom)
+                )
+            }
+        }
+        if (!behavior.extendToEnd) {
+            Spacer(
+                modifier = Modifier
+                    .windowInsetsEndWidth(WindowInsets.endBar)
+                    .zIndex(999F)
+                    .fillMaxHeight()
+                    .background(color.end)
+            )
+        }
+    }
+}

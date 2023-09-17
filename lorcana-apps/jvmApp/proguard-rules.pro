@@ -1,0 +1,2 @@
+-dontwarn !com.github.codlab.lorcana.app.**
+-keep class !com.github.codlab.lorcana.app.** { *; }
