@@ -98,6 +98,7 @@ dependencies {
     implementation(libs.moko.resources)
     implementation(libs.moko.resources.compose)
     implementation(libs.about.libraries)
+    implementation(libs.kamel.image)
 }
 
 // also putting the logic for the libraries here

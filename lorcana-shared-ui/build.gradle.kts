@@ -85,6 +85,7 @@ kotlin {
                 implementation(libs.moko.resources.compose)
 
                 implementation(libs.about.libraries)
+                implementation(libs.kamel.image)
             }
         }
         val commonTest by getting {
