@@ -28,6 +28,7 @@ dependencyResolutionManagement {
 
 include ":lorcana-shared"
 include ":lorcana-shared-ui"
+include ":lorcana-server"
 
 ["preview", "safearea"].each { include("kotlin-$it") }
 
