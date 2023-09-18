@@ -42,6 +42,7 @@ kotlin {
 }
 
 android {
+    compileSdk = dolbyio.versions.compileSdkVersion.get().toInt()
     namespace = "eu.codlab.lorcana.shared"
 
     buildFeatures {
