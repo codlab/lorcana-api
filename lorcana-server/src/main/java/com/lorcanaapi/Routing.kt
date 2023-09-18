@@ -1,12 +1,14 @@
 package com.lorcanaapi
 
 import com.github.codlab.lorcana.card.Card
+import io.ktor.http.HttpHeaders
 import io.ktor.serialization.kotlinx.json.json
 import io.ktor.server.application.Application
 import io.ktor.server.application.ApplicationCall
 import io.ktor.server.application.call
 import io.ktor.server.application.install
 import io.ktor.server.plugins.contentnegotiation.ContentNegotiation
+import io.ktor.server.plugins.cors.routing.CORS
 import io.ktor.server.response.respond
 import io.ktor.server.routing.get
 import io.ktor.server.routing.routing
@@ -15,6 +17,11 @@ import kotlinx.serialization.json.Json
 import me.xdrop.fuzzywuzzy.FuzzySearch
 
 fun Application.configureRouting(actualApp: JvmApp) {
+    install(CORS) {
+        anyHost()
+        allowHeader(HttpHeaders.ContentType)
+        allowHeader(HttpHeaders.Authorization)
+    }
     install(ContentNegotiation) {
         json(Json {
             prettyPrint = true

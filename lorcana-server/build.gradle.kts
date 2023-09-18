@@ -49,6 +49,7 @@ dependencies {
     api(libs.ktor.server.netty)
     api(libs.ktor.server.contentnegociation)
     api(libs.ktor.server.json)
+    api(libs.ktor.server.cors)
     testApi(libs.ktor.server.tests.jvm)
     testApi(kotlin("test"))
 
