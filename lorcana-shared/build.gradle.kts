@@ -2,7 +2,6 @@
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.android.library)
-    alias(libs.plugins.jetbrains.compose)
     alias(libs.plugins.kotlin.plugin.serialization)
     alias(libs.plugins.moko.resources.generator)
 }
@@ -36,31 +35,9 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                api(compose.runtime)
-                api(compose.foundation)
-                api(compose.material)
-                api(compose.material3)
-                @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
-                api(compose.components.resources)
-
-                api(libs.voyager.navigator)
-                api(libs.voyager.transitions)
-                api(libs.moko.viewmodel)
-                api(libs.moko.viewmodel.compose)
                 api(libs.moko.resources)
-                api(libs.moko.resources.compose)
-
-                api(libs.ktor.datetime)
-                api(libs.ktor.core)
-                api(libs.ktor.websockets)
-                api(libs.ktor.logging)
-                api(libs.ktor.serialization)
-                api(libs.ktor.content.negotiation)
-                api(libs.ktor.auth)
-
+                api(libs.kotlinx.serialization.json)
                 api(libs.kotlinx.coroutines)
-
-                api(libs.korio)
             }
         }
         val commonTest by getting {
@@ -90,10 +67,6 @@ kotlin {
         val iosArm64Main by getting
         val iosSimulatorArm64Main by getting
         val iosMain by getting {
-            dependencies {
-                implementation(libs.insetx)
-                api(libs.ktor.darwin)
-            }
             dependsOn(commonMain)
             iosX64Main.dependsOn(this)
             iosArm64Main.dependsOn(this)
@@ -107,11 +80,6 @@ kotlin {
 
         val jvmMain by getting {
             dependsOn(commonMain)
-            dependencies {
-                implementation(libs.insetx)
-                api(libs.ktor.apache5)
-                api(libs.korio.jvm)
-            }
         }
 
         val jsMain by getting {
