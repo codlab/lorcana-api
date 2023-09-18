@@ -8,7 +8,6 @@ import io.ktor.server.application.call
 import io.ktor.server.application.install
 import io.ktor.server.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.server.response.respond
-import io.ktor.server.response.respondText
 import io.ktor.server.routing.get
 import io.ktor.server.routing.routing
 import io.ktor.util.pipeline.PipelineContext
@@ -38,7 +37,7 @@ suspend fun PipelineContext<Unit, ApplicationCall>.searchUsingFuzzy(
     actualApp: JvmApp,
     search: String?
 ) {
-    var emptyArray: Array<Card> = emptyArray()
+    val emptyArray: Array<Card> = emptyArray()
 
     if (null == search) {
         call.respond(emptyArray)
@@ -48,17 +47,16 @@ suspend fun PipelineContext<Unit, ApplicationCall>.searchUsingFuzzy(
     // if we have a number
     search.toIntOrNull()?.let { number ->
         actualApp.cards.find { it.cardNumber == number }?.let { card ->
-            call.respond(arrayOf(card))
+            return call.respond(arrayOf(card))
         }
 
-        call.respond(emptyArray)
-        return
+        return call.respond(emptyArray)
     }
 
     // fallback to name
     actualApp.cards.filter { it.name.lowercase() == search.lowercase() }.let {
         if (it.isNotEmpty()) {
-            call.respond(it)
+            return call.respond(it)
         }
     }
 
