@@ -1,3 +1,5 @@
+@file:Suppress("MagicNumber")
+
 package eu.codlab.lorcana.app.views.session.opened.menu
 
 import androidx.compose.foundation.background
@@ -21,7 +23,7 @@ import eu.codlab.lorcana.app.views.widgets.TextSubtitle
 
 @Composable
 fun DrawerSeparator(
-    modifier: Modifier = Modifier,
+    modifier: Modifier = Modifier
 ) {
     Row(
         modifier = modifier

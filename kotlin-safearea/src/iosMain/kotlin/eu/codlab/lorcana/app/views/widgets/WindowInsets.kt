@@ -15,7 +15,7 @@ import platform.UIKit.UIWindow
 @Composable
 fun ProvideSafeArea(
     window: UIWindow,
-    content: @Composable () -> Unit,
+    content: @Composable () -> Unit
 ) {
     val safeArea = remember {
         window.safeAreaInsets().useContents {
@@ -23,7 +23,7 @@ fun ProvideSafeArea(
                 top = top.toFloat(),
                 bottom = bottom.toFloat(),
                 left = left.toFloat(),
-                right = right.toFloat(),
+                right = right.toFloat()
             )
         }
     }
@@ -45,7 +45,7 @@ actual val WindowInsets.Companion.topBar: WindowInsets
         left = 0.dp,
         top = LocalSafeAreaProvider.current.top.dp,
         right = 0.dp,
-        bottom = 0.dp,
+        bottom = 0.dp
     )
 actual val WindowInsets.Companion.startBar: WindowInsets
     @Composable
@@ -54,7 +54,7 @@ actual val WindowInsets.Companion.startBar: WindowInsets
         left = LocalSafeAreaProvider.current.left.dp,
         top = 0.dp,
         right = 0.dp,
-        bottom = 0.dp,
+        bottom = 0.dp
     )
 actual val WindowInsets.Companion.endBar: WindowInsets
     @Composable
@@ -63,7 +63,7 @@ actual val WindowInsets.Companion.endBar: WindowInsets
         left = 0.dp,
         top = 0.dp,
         right = LocalSafeAreaProvider.current.right.dp,
-        bottom = 0.dp,
+        bottom = 0.dp
     )
 actual val WindowInsets.Companion.bottomBar: WindowInsets
     @Composable
@@ -72,5 +72,5 @@ actual val WindowInsets.Companion.bottomBar: WindowInsets
         left = 0.dp,
         top = 0.dp,
         right = 0.dp,
-        bottom = LocalSafeAreaProvider.current.bottom.dp,
+        bottom = LocalSafeAreaProvider.current.bottom.dp
     )

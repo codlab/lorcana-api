@@ -15,6 +15,7 @@ import eu.codlab.lorcana.app.views.widgets.TextNormal
 import eu.codlab.lorcana.app.views.widgets.TextSubtitle
 import eu.codlab.lorcana.app.views.widgets.systemBackground
 
+@Suppress("MagicNumber")
 @Composable
 fun LicenseItem(license: LicenseProject) {
     val licenses = license.licenses.map { it.license }.filter {
@@ -37,6 +38,7 @@ fun LicenseItem(license: LicenseProject) {
     }
 }
 
+@Suppress("ktlint:max-line-length", "MaxLineLength")
 internal val fakeLicense = LicenseProject(
     project = "test",
     version = "10",

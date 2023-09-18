@@ -1,6 +1,5 @@
 package android.annotation
 
-
 @Retention(AnnotationRetention.BINARY)
 @Target(
     AnnotationTarget.CLASS,

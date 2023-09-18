@@ -9,7 +9,6 @@ fun main() = singleWindowApplication(
     state = WindowState(size = DpSize(500.dp, 800.dp))
 ) {
     App(
-        //windowSize = WindowSize.basedOnWidth(windowState.size.width),
         isDarkTheme = false
-    ) // isSystemInDarkTheme())
+    )
 }

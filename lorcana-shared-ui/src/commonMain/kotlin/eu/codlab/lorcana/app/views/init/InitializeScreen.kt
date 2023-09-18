@@ -18,15 +18,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.core.screen.Screen
 import eu.codlab.lorcana.app.theme.AppColor
 import eu.codlab.lorcana.app.theme.MyApplicationTheme
-import eu.codlab.lorcana.app.theme.rememberWindowInsetsController
 import eu.codlab.lorcana.app.views.home.AppModel
 import eu.codlab.lorcana.app.views.home.GlobalApp
-import eu.codlab.lorcana.app.views.home.LocalDarkTheme
 import eu.codlab.lorcana.app.views.widgets.StatusBarAndNavigation
 
 internal class InitializeScreen : Screen {
@@ -42,12 +39,8 @@ internal class InitializeScreen : Screen {
 @Composable
 fun InitializeScreenDisplay(
     globalApp: AppModel,
-    modifier: Modifier = Modifier,
-    defaultWidth: Dp = 0.dp,
+    modifier: Modifier = Modifier
 ) {
-    val windowInsetsController = rememberWindowInsetsController()
-    val darkTheme = LocalDarkTheme.current
-
     LaunchedEffect(Unit) {
         if (!globalApp.isInitialized()) {
             globalApp.initialize()
@@ -62,7 +55,6 @@ fun InitializeScreenDisplay(
             .background(AppColor.BackgroundBlue)
             .padding(16.dp)
     ) {
-
         Row(
             modifier = Modifier
                 .align(Alignment.Center)
@@ -81,7 +73,6 @@ fun InitializeScreenDisplay(
                 .heightIn(0.dp, 400.dp) // mention max height here
                 .widthIn(0.dp, 800.dp) // mention max width here
         ) {
-
             CircularProgressIndicator()
         }
     }
@@ -92,8 +83,7 @@ fun InitializeScreenDisplay(
 fun InitializeScreenPreviewDark() {
     MyApplicationTheme(darkTheme = true) {
         InitializeScreenDisplay(
-            globalApp = AppModel("", ""),
-            defaultWidth = 500.dp,
+            globalApp = AppModel(),
             modifier = Modifier
                 .width(600.dp)
                 .height(300.dp)
@@ -106,8 +96,7 @@ fun InitializeScreenPreviewDark() {
 fun InitializeScreenPreviewLight() {
     MyApplicationTheme(darkTheme = false) {
         InitializeScreenDisplay(
-            globalApp = AppModel("", ""),
-            defaultWidth = 500.dp,
+            globalApp = AppModel(),
             modifier = Modifier
                 .width(600.dp)
                 .height(300.dp)

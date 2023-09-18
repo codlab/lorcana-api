@@ -10,7 +10,6 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.ProvidableCompositionLocal
-import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.runtime.getValue
@@ -41,19 +40,16 @@ val LocalWindow = compositionLocalOf { WindowSize.COMPACT }
 val LocalDarkTheme = compositionLocalOf { false }
 val LocalCards: ProvidableCompositionLocal<List<Card>> = compositionLocalOf { emptyList() }
 
+@Suppress("LongMethod") // interestingly, detekt shows APp is 67 length long
 @Composable
-fun App(
-    isDarkTheme: Boolean,
-) {
+fun App(isDarkTheme: Boolean) {
     val localDensity = LocalDensity.current
     var window by remember { mutableStateOf(WindowSize.COMPACT) }
     val currentTheme = LocalDarkTheme.current
     var darkTheme by remember { mutableStateOf(currentTheme) }
     var cards by remember { mutableStateOf(emptyList<Card>()) }
 
-    val model = rememberViewModel {
-        AppModel("", "")
-    }
+    val model = rememberViewModel { AppModel() }
 
     DisposableEffect(isDarkTheme) {
         println("new status for $isDarkTheme")
@@ -65,8 +61,6 @@ fun App(
     }
 
     GlobalApp_ = model
-
-    println("initialize screen $window $darkTheme")
 
     val state by model.states.collectAsState()
     println("${state.loading} ${state.loggedIn} $window")

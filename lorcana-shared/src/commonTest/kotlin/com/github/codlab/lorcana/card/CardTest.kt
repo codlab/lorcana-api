@@ -10,7 +10,6 @@ class CardTest {
 
     @Test
     fun test() = runTest {
-
         val textCards = SharedRes.files.allCards.readContent()
         val cards = Card.fromArray(textCards)
 

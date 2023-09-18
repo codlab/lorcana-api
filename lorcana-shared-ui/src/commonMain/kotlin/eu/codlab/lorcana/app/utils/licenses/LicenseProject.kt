@@ -1,12 +1,14 @@
 package eu.codlab.lorcana.app.utils.licenses
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 
 @Serializable
 data class LicenseSubLicense(
     val license: String? = "",
-    val license_url: String? = "",
+    @SerialName("license_url")
+    val licenseUrl: String? = ""
 )
 
 @Serializable
@@ -18,7 +20,7 @@ data class LicenseProject(
     val year: String? = "",
     val licenses: List<LicenseSubLicense> = emptyList(),
     val developers: List<String> = emptyList(),
-    val dependency: String = "",
+    val dependency: String = ""
 ) {
     companion object {
         fun fromContent(content: String): LicenseProject {

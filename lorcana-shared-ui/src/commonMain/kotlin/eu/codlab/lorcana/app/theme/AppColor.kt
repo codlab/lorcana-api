@@ -4,7 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.material3.Divider
+import androidx.compose.material.Divider
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -34,7 +34,6 @@ object AppColor {
     val BackgroundBlue = Color(0xff0d1a2e)
 }
 
-
 @Preview(widthDp = 250)
 @Composable
 fun PreviewColors() {
@@ -57,8 +56,7 @@ fun PreviewColors() {
             AppColor.Black10,
             AppColor.Black05,
             AppColor.Red,
-
-            AppColor.BackgroundBlue,
+            AppColor.BackgroundBlue
         ).map {
             Divider(
                 modifier = Modifier.fillMaxWidth().height(2.dp).background(

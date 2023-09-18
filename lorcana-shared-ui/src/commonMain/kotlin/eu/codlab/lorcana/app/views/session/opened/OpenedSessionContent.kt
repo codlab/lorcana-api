@@ -25,18 +25,17 @@ import cafe.adriel.voyager.navigator.Navigator
 import eu.codlab.lorcana.app.theme.MyApplicationTheme
 import eu.codlab.lorcana.app.theme.WindowSize
 import eu.codlab.lorcana.app.utils.FontIcon
-import eu.codlab.lorcana.app.views.home.AppModel
 import eu.codlab.lorcana.app.views.home.LocalWindow
 import eu.codlab.lorcana.app.views.session.opened.menu.DrawerContent
 import eu.codlab.lorcana.app.views.session.opened.menu.DrawerSizeShape
 import eu.codlab.lorcana.app.views.session.opened.page.licenses.LicensesScreen
 import eu.codlab.lorcana.app.views.widgets.TransparentIconButton
-import korlibs.io.async.launch
+import kotlinx.coroutines.launch
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Suppress("TooGenericExceptionCaught")
 @Composable
-fun OpenedSessionContent(appModel: AppModel) {
+fun OpenedSessionContent() {
     val isScreenExpanded = LocalWindow.current == WindowSize.EXPANDED
 
     val scaffoldState = rememberSizeAwareScaffoldState()
@@ -72,7 +71,6 @@ fun OpenedSessionContent(appModel: AppModel) {
         }
     }
 }
-
 
 @Composable
 private fun rememberSizeAwareScaffoldState(): ScaffoldState {
@@ -126,9 +124,7 @@ fun OpenedSessionContentDisplayLight() {
     MyApplicationTheme(
         darkTheme = false
     ) {
-        OpenedSessionContent(
-            appModel = AppModel.fake()
-        )
+        OpenedSessionContent()
     }
 }
 
@@ -138,12 +134,9 @@ fun OpenedSessionContentDisplayCompactDark() {
     MyApplicationTheme(
         darkTheme = true
     ) {
-        OpenedSessionContent(
-            appModel = AppModel.fake()
-        )
+        OpenedSessionContent()
     }
 }
-
 
 @Preview
 @Composable
@@ -151,9 +144,7 @@ fun OpenedSessionContentDisplayCompactLight() {
     MyApplicationTheme(
         darkTheme = false
     ) {
-        OpenedSessionContent(
-            appModel = AppModel.fake()
-        )
+        OpenedSessionContent()
     }
 }
 
@@ -163,8 +154,6 @@ fun OpenedSessionContentDisplayDark() {
     MyApplicationTheme(
         darkTheme = true
     ) {
-        OpenedSessionContent(
-            appModel = AppModel.fake()
-        )
+        OpenedSessionContent()
     }
 }

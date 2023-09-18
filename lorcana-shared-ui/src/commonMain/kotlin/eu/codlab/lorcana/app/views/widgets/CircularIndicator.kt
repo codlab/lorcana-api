@@ -23,16 +23,17 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
+@Suppress("MagicNumber")
 @Composable
 fun Indicator(
     size: Dp = 32.dp, // indicator size
     sweepAngle: Float = 90f, // angle (lenght) of indicator arc
     color: Color = MaterialTheme.colors.primary, // color of indicator arc line
-    strokeWidth: Dp = ProgressIndicatorDefaults.StrokeWidth //width of cicle and ar lines
+    strokeWidth: Dp = ProgressIndicatorDefaults.StrokeWidth // width of cicle and ar lines
 ) {
-    ////// animation //////
+    // animation //
 
-    // docs recomend use transition animation for infinite loops
+    // docs recommend use transition animation for infinite loops
     // https://developer.android.com/jetpack/compose/animation
     val transition = rememberInfiniteTransition()
 
@@ -49,10 +50,11 @@ fun Indicator(
                 durationMillis = 1100,
                 easing = LinearEasing
             )
-        ), label = ""
+        ),
+        label = ""
     )
 
-    ////// draw /////
+    // draw //
 
     // define stroke with given width and arc ends type considering device DPI
     val stroke = with(LocalDensity.current) {
@@ -64,7 +66,7 @@ fun Indicator(
         Modifier
             .progressSemantics() // (optional) for Accessibility services
             .size(size) // canvas size
-            .padding(strokeWidth / 2) //padding. otherwise, not the whole circle will fit in the canvas
+            .padding(strokeWidth / 2) // padding. otherwise, not the whole circle will fit in the canvas
     ) {
         // draw "background" (gray) circle with defined stroke.
         // without explicit center and radius it fit canvas bounds
@@ -82,7 +84,6 @@ fun Indicator(
         )
     }
 }
-
 
 @Preview
 @Composable

@@ -6,15 +6,14 @@ import com.github.codlab.lorcana.resources.SharedRes
 import dev.icerock.moko.resources.compose.fontFamilyResource
 
 object FontIcon {
-
-    val menu = "m"
-    val bug = "b"
-    val linkedin = "l"
-    val slack = "s"
-    val github = "g"
-    val web = "n"
-    val close = "c"
-    val back = "b"
+    const val menu = "m"
+    const val bug = "b"
+    const val linkedin = "l"
+    const val slack = "s"
+    const val github = "g"
+    const val web = "n"
+    const val close = "c"
+    const val back = "b"
 
     @Composable
     fun fontFamily(): FontFamily {

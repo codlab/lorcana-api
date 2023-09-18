@@ -16,6 +16,8 @@ import io.ktor.util.pipeline.PipelineContext
 import kotlinx.serialization.json.Json
 import me.xdrop.fuzzywuzzy.FuzzySearch
 
+const val TresholdScore = 66
+
 fun Application.configureRouting(actualApp: JvmApp) {
     install(CORS) {
         anyHost()
@@ -23,10 +25,12 @@ fun Application.configureRouting(actualApp: JvmApp) {
         allowHeader(HttpHeaders.Authorization)
     }
     install(ContentNegotiation) {
-        json(Json {
-            prettyPrint = true
-            isLenient = true
-        })
+        json(
+            Json {
+                prettyPrint = true
+                isLenient = true
+            }
+        )
     }
     routing {
         // for the future, it'll be better to use ?number= ?name=
@@ -40,6 +44,7 @@ fun Application.configureRouting(actualApp: JvmApp) {
     }
 }
 
+@Suppress("ReturnCount")
 suspend fun PipelineContext<Unit, ApplicationCall>.searchUsingFuzzy(
     actualApp: JvmApp,
     search: String?
@@ -73,6 +78,7 @@ suspend fun PipelineContext<Unit, ApplicationCall>.searchUsingFuzzy(
         actualApp.map.keys
     )
 
-    call.respond(result.filter { it.score > 66 }.map { actualApp.map[it.string] }.filterNotNull())
+    call.respond(
+        result.filter { it.score > TresholdScore }.map { actualApp.map[it.string] }.filterNotNull()
+    )
 }
-

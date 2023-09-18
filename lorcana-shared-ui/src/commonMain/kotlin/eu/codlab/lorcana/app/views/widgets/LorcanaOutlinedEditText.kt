@@ -1,10 +1,8 @@
 package eu.codlab.lorcana.app.views.widgets
 
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.TextFieldColors
@@ -18,16 +16,13 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import eu.codlab.lorcana.app.theme.MyApplicationTheme
 
+@Suppress("LongParameterList")
 @Composable
 fun LorcanaOutlinedEditText(
     modifier: Modifier = Modifier,
     value: String,
     onValueChanged: (value: String) -> Unit,
     shape: Shape = MaterialTheme.shapes.small,
-    border: BorderStroke? = BorderStroke(
-        ButtonDefaults.OutlinedBorderSize,
-        MaterialTheme.colors.primary
-    ),
     enabled: Boolean = true,
     readOnly: Boolean = false,
     textStyle: TextStyle = TextStyle.Default,
@@ -49,9 +44,8 @@ fun LorcanaOutlinedEditText(
 ) = LorcanaOutlinedEditText(
     modifier = modifier,
     value = TextFieldValue(value),
-    onValueChanged = { value -> onValueChanged(value.text) },
+    onValueChanged = { newValue -> onValueChanged(newValue.text) },
     shape = shape,
-    border = border,
     enabled = enabled,
     readOnly = readOnly,
     textStyle = textStyle,
@@ -70,16 +64,13 @@ fun LorcanaOutlinedEditText(
     colors = colors
 )
 
+@Suppress("LongParameterList")
 @Composable
 fun LorcanaOutlinedEditText(
     modifier: Modifier = Modifier,
     value: TextFieldValue,
     onValueChanged: (value: TextFieldValue) -> Unit,
     shape: Shape = MaterialTheme.shapes.small,
-    border: BorderStroke? = BorderStroke(
-        ButtonDefaults.OutlinedBorderSize,
-        MaterialTheme.colors.primary
-    ),
     enabled: Boolean = true,
     readOnly: Boolean = false,
     textStyle: TextStyle = TextStyle.Default,
@@ -140,4 +131,3 @@ private fun LorcanaOutLinedButtonPreviewLight() =
             onValueChanged = { value -> println(value) }
         )
     }
-

@@ -9,8 +9,8 @@ import io.ktor.server.netty.Netty
 import kotlinx.coroutines.runBlocking
 
 var cards: List<Card> = emptyList()
-fun main() {
 
+fun main() {
     cards = runBlocking {
         val textCards = SharedRes.files.allCards.readContent()
         return@runBlocking Card.fromArray(textCards)

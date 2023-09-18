@@ -1,7 +1,7 @@
 package eu.codlab.lorcana.app.views.widgets
 
 import androidx.compose.foundation.layout.Column
-import androidx.compose.material3.Text
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -55,8 +55,13 @@ fun TextSubtitle(
     fontSize: TextUnit = subtitle,
     color: Color? = null
 ) = CreateText(
-    text, textAlign, fontSize, FontWeight.Bold,
-    LocalDarkTheme.current, subtitleColor, color
+    text,
+    textAlign,
+    fontSize,
+    FontWeight.Bold,
+    LocalDarkTheme.current,
+    subtitleColor,
+    color
 )
 
 @Composable

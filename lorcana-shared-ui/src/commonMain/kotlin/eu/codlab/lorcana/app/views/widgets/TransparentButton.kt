@@ -25,7 +25,7 @@ fun TransparentIconButton(
     color: Color? = null,
     fontSize: TextUnit = TextUnit.Unspecified
 ) {
-    val color_ = color
+    val newColor = color
         ?: if (LocalDarkTheme.current) {
             Color.White
         } else {
@@ -39,7 +39,7 @@ fun TransparentIconButton(
     ) {
         Text(
             fontSize = fontSize,
-            color = color_,
+            color = newColor,
             text = text,
             fontFamily = fontFamily
         )

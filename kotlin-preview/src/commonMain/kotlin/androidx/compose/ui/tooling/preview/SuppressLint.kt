@@ -1,6 +1,5 @@
 package androidx.compose.ui.tooling.preview
 
-
 @Retention(AnnotationRetention.BINARY)
 @Target(
     AnnotationTarget.CLASS,

@@ -19,12 +19,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.zIndex
 
+const val DEPTH = 999F
+
 @Immutable
 data class SafeAreaBehavior(
     val extendToTop: Boolean = false,
     val extendToBottom: Boolean = false,
     val extendToStart: Boolean = false,
-    val extendToEnd: Boolean = false,
+    val extendToEnd: Boolean = false
 )
 
 @Immutable
@@ -32,40 +34,40 @@ data class SafeAreaColors(
     val top: Color = Color.Transparent,
     val bottom: Color = Color.Transparent,
     val start: Color = Color.Transparent,
-    val end: Color = Color.Transparent,
+    val end: Color = Color.Transparent
 )
 
 @Composable
 fun SafeArea(
     behavior: SafeAreaBehavior = remember { SafeAreaBehavior() },
     color: SafeAreaColors = remember { SafeAreaColors() },
-    content: @Composable () -> Unit,
+    content: @Composable () -> Unit
 ) {
     Row {
         if (!behavior.extendToStart) {
             Spacer(
                 modifier = Modifier
                     .windowInsetsStartWidth(WindowInsets.startBar)
-                    .zIndex(999F)
+                    .zIndex(DEPTH)
                     .fillMaxHeight()
                     .background(color.start)
             )
         }
         Column(
             modifier = Modifier
-                .weight(1f),
+                .weight(1f)
         ) {
             if (!behavior.extendToTop) {
                 Spacer(
                     modifier = Modifier
                         .windowInsetsTopHeight(WindowInsets.topBar)
-                        .zIndex(999F)
+                        .zIndex(DEPTH)
                         .fillMaxWidth()
                         .background(color.top)
                 )
             }
             Box(
-                modifier = Modifier.weight(1f),
+                modifier = Modifier.weight(1f)
             ) {
                 content()
             }
@@ -73,7 +75,7 @@ fun SafeArea(
                 Spacer(
                     modifier = Modifier
                         .windowInsetsBottomHeight(WindowInsets.bottomBar)
-                        .zIndex(999F)
+                        .zIndex(DEPTH)
                         .fillMaxWidth()
                         .background(color.bottom)
                 )
@@ -83,7 +85,7 @@ fun SafeArea(
             Spacer(
                 modifier = Modifier
                     .windowInsetsEndWidth(WindowInsets.endBar)
-                    .zIndex(999F)
+                    .zIndex(DEPTH)
                     .fillMaxHeight()
                     .background(color.end)
             )
