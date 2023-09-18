@@ -4,6 +4,8 @@ plugins {
     alias(libs.plugins.kotlin.jvm)
 }
 
+val mainClassInManifest = "com.lorcanaapi.ApplicationKt"
+
 group = "com.github.codlab.lorcana.server"
 version = "1.0"
 
@@ -16,7 +18,7 @@ group = "com.lorcanaapi"
 version = "0.0.1"
 
 application {
-    mainClass.set("com.lorcanaapi.ApplicationKt")
+    mainClass.set(mainClassInManifest)
 
     val isDevelopment: Boolean = project.ext.has("development")
     applicationDefaultJvmArgs = listOf("-Dio.ktor.development=$isDevelopment")
@@ -30,6 +32,12 @@ java {
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
     kotlinOptions {
         jvmTarget = libs.versions.java.get()
+    }
+}
+
+tasks.withType<Jar> {
+    manifest {
+        attributes["Main-Class"] = mainClassInManifest
     }
 }
 
