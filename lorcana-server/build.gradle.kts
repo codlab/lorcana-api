@@ -1,5 +1,6 @@
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
+    application
     alias(libs.plugins.kotlin.jvm)
 }
 
@@ -9,6 +10,16 @@ version = "1.0"
 repositories {
     mavenCentral()
     google()
+}
+
+group = "com.lorcanaapi"
+version = "0.0.1"
+
+application {
+    mainClass.set("com.lorcanaapi.ApplicationKt")
+
+    val isDevelopment: Boolean = project.ext.has("development")
+    applicationDefaultJvmArgs = listOf("-Dio.ktor.development=$isDevelopment")
 }
 
 java {
@@ -23,7 +34,14 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach 
 }
 
 dependencies {
-    api(project(":lorcana-shared-ui"))
+    api(project(":lorcana-shared"))
     api(libs.kotlinx.coroutines.jvm)
     api(libs.fuzzywuzzy)
+    api(libs.ktor.server.core)
+    api(libs.ktor.server.netty)
+    api(libs.ktor.server.contentnegociation)
+    api(libs.ktor.server.json)
+    testApi(libs.ktor.server.tests.jvm)
+    testApi(kotlin("test"))
+
 }
