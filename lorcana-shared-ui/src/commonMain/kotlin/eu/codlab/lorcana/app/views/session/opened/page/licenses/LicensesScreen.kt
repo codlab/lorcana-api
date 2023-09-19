@@ -9,7 +9,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.core.screen.Screen
-import eu.codlab.lorcana.app.views.home.GlobalApp
 import eu.codlab.lorcana.app.views.widgets.StatusBarAndNavigation
 
 internal class LicensesScreen : Screen {
@@ -22,7 +21,7 @@ internal class LicensesScreen : Screen {
                 .background(Color.Transparent),
             Arrangement.spacedBy(5.dp)
         ) {
-            LicensesContent(GlobalApp)
+            LicensesContent()
         }
     }
 }

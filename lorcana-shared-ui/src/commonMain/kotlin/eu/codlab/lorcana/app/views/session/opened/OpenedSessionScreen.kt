@@ -25,7 +25,7 @@ internal class OpenedSessionScreen : Screen {
                     .background(Color.Transparent),
                 Arrangement.spacedBy(5.dp)
             ) {
-                OpenedSessionContent(GlobalApp)
+                OpenedSessionContent()
             }
         }
     }

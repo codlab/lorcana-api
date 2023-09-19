@@ -38,3 +38,7 @@ It will be refactored but the apps exists alongside "app-ui" which exists solely
 - upgrade backend code
 - add actual UI content
 - update documentation
+
+# Resources
+
+Some svg assets are from https://github.com/glimmerdb/lorcana-icons credits to @GlimmerDB and specifically nateofthecards (https://www.behance.net/89c6305f)

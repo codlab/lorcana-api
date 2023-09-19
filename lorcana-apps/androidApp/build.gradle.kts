@@ -5,7 +5,7 @@ plugins {
     id("com.android.application")
     kotlin("android")
     alias(libs.plugins.jetbrains.compose)
-    alias(libs.plugins.android.google.services)
+    // alias(libs.plugins.android.google.services)
 }
 
 
