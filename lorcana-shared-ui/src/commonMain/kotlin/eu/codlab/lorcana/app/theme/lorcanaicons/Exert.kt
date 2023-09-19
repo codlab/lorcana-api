@@ -1,3 +1,4 @@
+/* ktlint-disable wrapping indent argument-list-wrapping no-unused-imports */
 package eu.codlab.lorcana.app.theme.lorcanaicons
 
 import androidx.compose.ui.graphics.Color

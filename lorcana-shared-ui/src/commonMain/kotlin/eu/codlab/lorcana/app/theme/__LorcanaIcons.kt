@@ -1,3 +1,6 @@
+/* ktlint-disable filename indent op-spacing */
+@file:SuppressWarnings("MatchingDeclarationName", "TopLevelPropertyNaming")
+
 package eu.codlab.lorcana.app.theme
 
 import androidx.compose.ui.graphics.vector.ImageVector

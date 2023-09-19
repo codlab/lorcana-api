@@ -14,7 +14,7 @@ kotlinx = "1.3.2"
 ktor-datetime = "0.3.3"
 ktor = "2.3.4"
 
-jetbrains-compose = "1.5.1"
+jetbrains-compose = "1.5.10-beta01"
 
 buildkonfig = "0.13.3"
 
@@ -73,6 +73,7 @@ ktor-server-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version
 ktor-server-cors = { module = "io.ktor:ktor-server-cors", version.ref = "ktor"}
 
 voyager-navigator = { module = "cafe.adriel.voyager:voyager-navigator", version.ref = "voyager" }
+voyager-tab-navigator = { module = "cafe.adriel.voyager:voyager-tab-navigator", version.ref = "voyager" }
 voyager-transitions = { module = "cafe.adriel.voyager:voyager-transitions", version.ref = "voyager" }
 
 moko-permissions = { module = "dev.icerock.moko:permissions", version.ref = "moko-permissions" }

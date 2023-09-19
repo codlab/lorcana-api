@@ -1,6 +1,7 @@
 package eu.codlab.lorcana.app.views.session.opened
 
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -11,13 +12,14 @@ import androidx.compose.material.DrawerValue
 import androidx.compose.material.Scaffold
 import androidx.compose.material.ScaffoldState
 import androidx.compose.material.SnackbarHostState
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.rememberDrawerState
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.SuppressLint
 import androidx.compose.ui.unit.dp
@@ -25,11 +27,10 @@ import cafe.adriel.voyager.navigator.CurrentScreen
 import cafe.adriel.voyager.navigator.Navigator
 import eu.codlab.lorcana.app.theme.MyApplicationTheme
 import eu.codlab.lorcana.app.theme.WindowSize
-import eu.codlab.lorcana.app.utils.FontIcon
 import eu.codlab.lorcana.app.views.home.LocalWindow
 import eu.codlab.lorcana.app.views.session.opened.menu.DrawerContent
 import eu.codlab.lorcana.app.views.session.opened.menu.DrawerSizeShape
-import eu.codlab.lorcana.app.views.session.opened.page.licenses.LicensesScreen
+import eu.codlab.lorcana.app.views.session.opened.page.principal.MainPageScreen
 import eu.codlab.lorcana.app.views.widgets.TransparentIconButton
 import kotlinx.coroutines.launch
 
@@ -45,7 +46,9 @@ fun OpenedSessionContent() {
         drawerContent = {
             if (!isScreenExpanded) {
                 DrawerContent(
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .fillMaxHeight()
                 )
             }
         },
@@ -58,16 +61,19 @@ fun OpenedSessionContent() {
         }
     ) {
         Row(
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier
+                .fillMaxSize()
                 .padding(it)
         ) {
             println("having drawer content to display ? $isScreenExpanded ${LocalWindow.current}")
             if (isScreenExpanded) {
                 DrawerContent(
-                    modifier = Modifier.width(250.dp)
+                    modifier = Modifier
+                        .width(250.dp)
+                        .fillMaxHeight()
                 )
             } // Show permanent drawer only for large screens
-            Navigator(LicensesScreen()) {
+            Navigator(MainPageScreen()) {
                 CurrentScreen()
             }
         }
@@ -101,11 +107,7 @@ fun ToggleDrawerButton(drawerState: DrawerState) {
         modifier = Modifier
             .width(32.dp)
             .height(32.dp),
-        fontFamily = FontIcon.fontFamily(),
-        fontSize = with(LocalDensity.current) {
-            32.dp.toSp()
-        },
-        text = FontIcon.menu,
+        imageVector = Icons.Default.Menu,
         onClick = {
             coroutineScope.launch {
                 if (drawerState.isOpen) {

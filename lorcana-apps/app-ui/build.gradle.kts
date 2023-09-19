@@ -93,6 +93,7 @@ dependencies {
     implementation(compose.components.resources)
 
     api(libs.voyager.navigator)
+    api(libs.voyager.tab.navigator)
     api(libs.voyager.transitions)
     implementation(libs.moko.viewmodel)
     implementation(libs.moko.viewmodel.compose)

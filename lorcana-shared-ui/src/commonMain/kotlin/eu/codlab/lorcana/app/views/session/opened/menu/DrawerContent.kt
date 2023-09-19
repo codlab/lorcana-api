@@ -1,6 +1,7 @@
 package eu.codlab.lorcana.app.views.session.opened.menu
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -14,8 +15,7 @@ fun DrawerContent(
     modifier: Modifier = Modifier.width(250.dp)
 ) {
     Column(
-        modifier = modifier
-            .systemBackground()
+        modifier = modifier.systemBackground()
     ) {
         DrawerTitle(text = "Titre 1")
         DrawerItem(text = "Item 1")
@@ -31,7 +31,7 @@ fun DrawerContent(
         DrawerSeparator()
         DrawerTitle(text = "Titre 1")
         DrawerItem(text = "Item 1")
-        DrawerItem(text = "Item 2")
+        DrawerItem(text = "Item 22")
         DrawerItem(text = "Item 3")
         DrawerSeparator()
         DrawerTitle(text = "Titre 1")
@@ -45,22 +45,26 @@ fun DrawerContent(
     }
 }
 
-@Preview
+@Preview(widthDp = 250, heightDp = 300)
 @Composable
 fun PreviewDrawerContentLight() {
     MyApplicationTheme(
         darkTheme = false
     ) {
-        DrawerContent()
+        DrawerContent(
+            modifier = Modifier.fillMaxSize()
+        )
     }
 }
 
-@Preview
+@Preview(widthDp = 250, heightDp = 300)
 @Composable
 fun PreviewDrawerContentDark() {
     MyApplicationTheme(
         darkTheme = true
     ) {
-        DrawerContent()
+        DrawerContent(
+            modifier = Modifier.fillMaxSize()
+        )
     }
 }

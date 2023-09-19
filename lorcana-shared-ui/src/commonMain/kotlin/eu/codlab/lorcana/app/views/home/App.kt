@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.ProvidableCompositionLocal
 import androidx.compose.runtime.collectAsState
@@ -37,7 +36,6 @@ internal val Screen.GlobalApp: AppModel
     get() = GlobalApp_
 
 val LocalWindow = compositionLocalOf { WindowSize.COMPACT }
-val LocalDarkTheme = compositionLocalOf { false }
 val LocalCards: ProvidableCompositionLocal<List<Card>> = compositionLocalOf { emptyList() }
 
 @Suppress("LongMethod") // interestingly, detekt shows APp is 67 length long
@@ -45,20 +43,9 @@ val LocalCards: ProvidableCompositionLocal<List<Card>> = compositionLocalOf { em
 fun App(isDarkTheme: Boolean) {
     val localDensity = LocalDensity.current
     var window by remember { mutableStateOf(WindowSize.COMPACT) }
-    val currentTheme = LocalDarkTheme.current
-    var darkTheme by remember { mutableStateOf(currentTheme) }
     var cards by remember { mutableStateOf(emptyList<Card>()) }
 
     val model = rememberViewModel { AppModel() }
-
-    DisposableEffect(isDarkTheme) {
-        println("new status for $isDarkTheme")
-        darkTheme = isDarkTheme
-
-        onDispose {
-            // nothing
-        }
-    }
 
     GlobalApp_ = model
 
@@ -69,7 +56,6 @@ fun App(isDarkTheme: Boolean) {
 
     CompositionLocalProvider(
         LocalWindow provides window,
-        LocalDarkTheme provides darkTheme,
         LocalCards provides cards
     ) {
         Box(

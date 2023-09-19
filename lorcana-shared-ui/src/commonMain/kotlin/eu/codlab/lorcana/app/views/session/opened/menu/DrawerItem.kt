@@ -16,8 +16,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import eu.codlab.lorcana.app.theme.LocalDarkTheme
 import eu.codlab.lorcana.app.theme.MyApplicationTheme
-import eu.codlab.lorcana.app.views.home.LocalDarkTheme
 import eu.codlab.lorcana.app.views.widgets.TextNormal
 import eu.codlab.lorcana.app.views.widgets.TextSubtitle
 
@@ -33,7 +33,8 @@ fun DrawerSeparator(
         verticalAlignment = Alignment.CenterVertically
     ) {
         Divider(
-            modifier = Modifier.height(1.dp)
+            modifier = Modifier
+                .height(1.dp)
                 .systemBackground(),
             color = colorDimmed() ?: Color.Black
         )
@@ -101,7 +102,7 @@ fun color(selected: Boolean = false): Color? {
 }
 
 @Composable
-fun colorDimmed(): Color? {
+fun colorDimmed(): Color {
     return if (LocalDarkTheme.current) {
         Color(0x33FFFFFF)
     } else {

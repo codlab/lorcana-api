@@ -74,10 +74,12 @@ kotlin {
                 implementation(compose.foundation)
                 implementation(compose.ui)
                 implementation(compose.material)
+                implementation(compose.material3)
                 @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
                 implementation(compose.components.resources)
 
                 implementation(libs.voyager.navigator)
+                implementation(libs.voyager.tab.navigator)
                 implementation(libs.voyager.transitions)
                 implementation(libs.moko.viewmodel)
                 implementation(libs.moko.viewmodel.compose)
@@ -86,6 +88,8 @@ kotlin {
 
                 implementation(libs.about.libraries)
                 implementation(libs.kamel.image)
+
+                implementation(libs.ktor.core)
             }
         }
         val commonTest by getting {
@@ -101,6 +105,8 @@ kotlin {
                 api(libs.androidx.appcompat)
                 api(libs.androidx.activity.compose)
                 api(libs.insetx)
+
+                implementation(libs.ktor.okhttp)
             }
         }
         val iosX64Main by getting
@@ -109,6 +115,7 @@ kotlin {
         val iosMain by getting {
             dependencies {
                 implementation(libs.insetx)
+                implementation(libs.ktor.darwin)
             }
             dependsOn(commonMain)
             iosX64Main.dependsOn(this)
@@ -120,6 +127,7 @@ kotlin {
             dependsOn(commonMain)
             dependencies {
                 implementation(libs.insetx)
+                implementation(libs.ktor.apache5)
             }
         }
     }
