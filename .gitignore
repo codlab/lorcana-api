@@ -12,8 +12,8 @@ app/iosApp/vendor/
 app/iosApp/fastlane/report.xml
 
 # to fix duplicated root
-app-ui/src/androidMain/kotlin
-app-ui/src/commonMain/resources
+lorcana-apps/app-ui/src/androidMain/kotlin
+lorcana-apps/app-ui/src/commonMain/resources
 
 .env
 .env.default
@@ -71,4 +71,5 @@ app/shared_logic/src/commonMain/resources/MR/files/licenseReleaseReport.json
 
 src/data/allCards.txt
 
-lorcana-apps/app-ui/src/androidMain/kotlin
+karma.config.d/
+webpack.config.d/

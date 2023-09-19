@@ -52,9 +52,20 @@ subprojects {
 }
 
 //first check that we have proper "non" duplicated source root
-def original = file("lorcana-shared-ui/src/commonMain/kotlin")
-def link = file("lorcana-apps/app-ui/src/androidMain/kotlin")
+[
+        [
+                "lorcana-shared-ui/src/commonMain/kotlin",
+                "lorcana-apps/app-ui/src/androidMain/kotlin"
+        ],
+        [
+                "lorcana-shared-ui/src/commonMain/resources",
+                "lorcana-apps/app-ui/src/commonMain/resources"
+        ]
+].each {
+    def original = file(it[0])
+    def link = file(it[1])
 
-if (!link.exists()) {
-    Files.createSymbolicLink(link.toPath(), original.toPath())
+    if (!link.exists()) {
+        Files.createSymbolicLink(link.toPath(), original.toPath())
+    }
 }

@@ -69,7 +69,7 @@ kotlin {
             dependencies {
                 implementation(project(":lorcana-shared"))
                 implementation(project(":kotlin-preview"))
-                implementation(project(":kotlin-safearea"))
+                api(project(":kotlin-safearea"))
                 implementation(compose.runtime)
                 implementation(compose.foundation)
                 implementation(compose.ui)

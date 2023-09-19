@@ -2,7 +2,7 @@ package eu.codlab.lorcana.app.utils
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.text.font.FontFamily
-import com.github.codlab.lorcana.resources.SharedRes
+import com.github.codlab.lorcana.sharedui.Resources
 import dev.icerock.moko.resources.compose.fontFamilyResource
 
 object FontIcon {
@@ -17,6 +17,6 @@ object FontIcon {
 
     @Composable
     fun fontFamily(): FontFamily {
-        return fontFamilyResource(fontResource = SharedRes.fonts.Lorcana.regular)
+        return fontFamilyResource(fontResource = Resources.fonts.Lorcana.regular)
     }
 }

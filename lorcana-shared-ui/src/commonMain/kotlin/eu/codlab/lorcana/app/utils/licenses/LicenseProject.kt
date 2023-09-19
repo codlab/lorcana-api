@@ -2,6 +2,7 @@ package eu.codlab.lorcana.app.utils.licenses
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 
 @Serializable
