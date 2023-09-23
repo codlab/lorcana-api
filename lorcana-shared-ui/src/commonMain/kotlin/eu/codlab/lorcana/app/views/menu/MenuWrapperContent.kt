@@ -1,4 +1,4 @@
-package eu.codlab.lorcana.app.views.session.opened
+package eu.codlab.lorcana.app.views.menu
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -23,58 +23,62 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.SuppressLint
 import androidx.compose.ui.unit.dp
-import cafe.adriel.voyager.navigator.CurrentScreen
-import cafe.adriel.voyager.navigator.Navigator
 import eu.codlab.lorcana.app.theme.MyApplicationTheme
 import eu.codlab.lorcana.app.theme.WindowSize
 import eu.codlab.lorcana.app.views.home.LocalWindow
-import eu.codlab.lorcana.app.views.session.opened.menu.DrawerContent
-import eu.codlab.lorcana.app.views.session.opened.menu.DrawerSizeShape
-import eu.codlab.lorcana.app.views.session.opened.page.principal.MainPageScreen
+import eu.codlab.lorcana.app.views.widgets.SafeArea
+import eu.codlab.lorcana.app.views.widgets.SafeAreaBehavior
 import eu.codlab.lorcana.app.views.widgets.TransparentIconButton
 import kotlinx.coroutines.launch
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Suppress("TooGenericExceptionCaught")
 @Composable
-fun OpenedSessionContent() {
+fun MenuWrapperContent(content: @Composable () -> Unit) {
     val isScreenExpanded = LocalWindow.current == WindowSize.EXPANDED
 
     val scaffoldState = rememberSizeAwareScaffoldState()
-    Scaffold(
-        scaffoldState = scaffoldState,
-        drawerContent = {
-            if (!isScreenExpanded) {
-                DrawerContent(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .fillMaxHeight()
-                )
-            }
-        },
-        drawerGesturesEnabled = !isScreenExpanded, // Gestures are enabled only on smaller and medium screens
-        drawerShape = DrawerSizeShape(),
-        topBar = {
-            if (!isScreenExpanded) {
-                ToggleDrawerButton(scaffoldState.drawerState)
-            }
+
+    SafeArea(
+        behavior = remember {
+            SafeAreaBehavior(
+                extendToBottom = true
+            )
         }
     ) {
-        Row(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(it)
+        Scaffold(
+            scaffoldState = scaffoldState,
+            drawerContent = {
+                if (!isScreenExpanded) {
+                    DrawerContent(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .fillMaxHeight()
+                    )
+                }
+            },
+            drawerGesturesEnabled = !isScreenExpanded, // Gestures are enabled only on smaller and medium screens
+            drawerShape = DrawerSizeShape(),
+            topBar = {
+                if (!isScreenExpanded) {
+                    ToggleDrawerButton(scaffoldState.drawerState)
+                }
+            }
         ) {
-            println("having drawer content to display ? $isScreenExpanded ${LocalWindow.current}")
-            if (isScreenExpanded) {
-                DrawerContent(
-                    modifier = Modifier
-                        .width(250.dp)
-                        .fillMaxHeight()
-                )
-            } // Show permanent drawer only for large screens
-            Navigator(MainPageScreen()) {
-                CurrentScreen()
+            Row(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(it)
+            ) {
+                println("having drawer content to display ? $isScreenExpanded ${LocalWindow.current}")
+                if (isScreenExpanded) {
+                    DrawerContent(
+                        modifier = Modifier
+                            .width(250.dp)
+                            .fillMaxHeight()
+                    )
+                } // Show permanent drawer only for large screens
+                content()
             }
         }
     }
@@ -122,42 +126,26 @@ fun ToggleDrawerButton(drawerState: DrawerState) {
     )
 }
 
-@Preview(widthDp = 720)
+@Preview
 @Composable
-fun OpenedSessionContentDisplayLight() {
+fun MenuWrapperContentDisplayCompactDark() {
     MyApplicationTheme(
-        darkTheme = false
+        darkTheme = true
     ) {
-        OpenedSessionContent()
+        MenuWrapperContent {
+
+        }
     }
 }
 
 @Preview
 @Composable
-fun OpenedSessionContentDisplayCompactDark() {
-    MyApplicationTheme(
-        darkTheme = true
-    ) {
-        OpenedSessionContent()
-    }
-}
-
-@Preview
-@Composable
-fun OpenedSessionContentDisplayCompactLight() {
+fun MenuWrapperContentDisplayCompactLight() {
     MyApplicationTheme(
         darkTheme = false
     ) {
-        OpenedSessionContent()
-    }
-}
+        MenuWrapperContent {
 
-@Preview(widthDp = 720)
-@Composable
-fun OpenedSessionContentDisplayDark() {
-    MyApplicationTheme(
-        darkTheme = true
-    ) {
-        OpenedSessionContent()
+        }
     }
 }

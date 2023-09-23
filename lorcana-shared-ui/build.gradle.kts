@@ -53,8 +53,9 @@ kotlin {
         podfile = project.file("../lorcana-apps/iosApp/Podfile")
         framework {
             baseName = "lorcana_shared_ui"
-            isStatic = true
+            isStatic = false
             embedBitcode("disable")
+            linkerOpts.add("-lsqlite3")
         }
         extraSpecAttributes["resources"] =
             "['src/commonMain/resources/**', 'src/iosMain/resources/**']"
@@ -81,6 +82,7 @@ kotlin {
                 implementation(libs.voyager.navigator)
                 implementation(libs.voyager.tab.navigator)
                 implementation(libs.voyager.transitions)
+                api(libs.look.and.feel)
                 implementation(libs.moko.viewmodel)
                 implementation(libs.moko.viewmodel.compose)
                 implementation(libs.moko.resources)
@@ -90,6 +92,7 @@ kotlin {
                 implementation(libs.kamel.image)
 
                 implementation(libs.ktor.core)
+                implementation(libs.fuzzywuzzy.multiplatform)
             }
         }
         val commonTest by getting {
@@ -131,6 +134,12 @@ kotlin {
             }
         }
     }
+
+    targets.withType<org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget> {
+        binaries.withType<org.jetbrains.kotlin.gradle.plugin.mpp.Framework> {
+            linkerOpts.add("-lsqlite3")
+        }
+    }
 }
 
 android {
@@ -157,6 +166,28 @@ aboutLibraries {
     prettyPrint = true
 }
 
+tasks.register("concatenateMR") {
+    group = "moko-resources"
+    val parent = file("${rootProject.projectDir}/src/data/images")
+    var resources = file("${project.projectDir}/src/commonMain/resources/MR/images/")
+    if (!resources.exists()) resources.mkdirs()
+
+    parent.list()?.forEach {
+        val original = File(parent, it)
+        val newFile = File(resources, it)
+        try {
+            println("copy from ${original.absolutePath} to ${newFile.absolutePath}")
+            original.copyTo(newFile, overwrite = false)
+        } catch(e: FileAlreadyExistsException) {
+            // nothing
+        }
+    }
+
+    tasks.findByName("generateMR")?.dependsOn(this)
+    tasks.matching { it.name.startsWith("generateMR") && it.name.endsWith("Main") }
+        .forEach { this.dependsOn(it) }
+}
+
 val licenseCopy by tasks.registering(Copy::class) {
     dependsOn("licenseReleaseReport")
     from(layout.buildDirectory.file("reports/licenses/licenseReleaseReport.json"))
@@ -178,6 +209,7 @@ multiplatformResources {
 }
 
 tasks.register("generateMR") {
+    group = "moko-resources"
     dependsOn("licenseCopy")
 }
 

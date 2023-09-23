@@ -30,6 +30,7 @@ kotlin {
             dependencies {
                 implementation(libs.moko.resources)
                 implementation(libs.moko.resources.compose)
+                api(libs.fuzzywuzzy.multiplatform)
             }
         }
         val androidMain by getting {
@@ -95,6 +96,7 @@ dependencies {
     api(libs.voyager.navigator)
     api(libs.voyager.tab.navigator)
     api(libs.voyager.transitions)
+    api(libs.look.and.feel)
     implementation(libs.moko.viewmodel)
     implementation(libs.moko.viewmodel.compose)
     implementation(libs.moko.resources)

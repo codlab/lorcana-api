@@ -2,8 +2,10 @@ package eu.codlab.lorcana.app.utils
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
 import com.github.codlab.lorcana.sharedui.Resources
-import dev.icerock.moko.resources.compose.fontFamilyResource
+import dev.icerock.moko.resources.compose.asFont
 
 object FontIcon {
     const val menu = "m"
@@ -17,6 +19,11 @@ object FontIcon {
 
     @Composable
     fun fontFamily(): FontFamily {
-        return fontFamilyResource(fontResource = Resources.fonts.Lorcana.regular)
+        return FontFamily(
+            Resources.fonts.Lorcana.regular.asFont(
+                weight = FontWeight.Normal,
+                style = FontStyle.Normal
+            ) ?: error("Invalid font")
+        )
     }
 }

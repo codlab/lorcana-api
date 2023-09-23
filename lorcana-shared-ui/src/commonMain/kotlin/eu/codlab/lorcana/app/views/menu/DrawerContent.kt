@@ -1,4 +1,4 @@
-package eu.codlab.lorcana.app.views.session.opened.menu
+package eu.codlab.lorcana.app.views.menu
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize

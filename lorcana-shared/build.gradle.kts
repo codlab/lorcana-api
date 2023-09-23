@@ -38,6 +38,7 @@ kotlin {
                 api(libs.moko.resources)
                 api(libs.kotlinx.serialization.json)
                 api(libs.kotlinx.coroutines)
+                api(project(":models"))
             }
         }
         val commonTest by getting {

@@ -1,9 +1,13 @@
+
+kotlin-js-store/
+
 /bin/
 /target/
 
-app/jvmApp/entitlements.plist
-app/jvmApp/*.provisionprofile
-app/jvmApp/*.plist
+lorcana-apps/jvmApp/entitlements.plist
+lorcana-apps/jvmApp/*.provisionprofile
+lorcana-apps/jvmApp/*.plist
+lorcana-apps/jvmApp/*.db
 
 google-service-account.json
 release.jks
@@ -73,3 +77,7 @@ src/data/allCards.txt
 
 karma.config.d/
 webpack.config.d/
+
+src/data/foils/
+src/data/images/tfc_*
+lorcana-shared-ui/src/commonMain/resources/MR/images/tfc_*

@@ -1,3 +1,5 @@
+@file:Suppress("OPT_IN_USAGE_FUTURE_ERROR")
+
 package eu.codlab.lorcana.app.views.home
 
 import androidx.compose.foundation.background
@@ -7,7 +9,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.ProvidableCompositionLocal
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.compositionLocalOf
@@ -19,24 +20,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalDensity
-import cafe.adriel.voyager.core.screen.Screen
-import cafe.adriel.voyager.navigator.CurrentScreen
-import cafe.adriel.voyager.navigator.Navigator
 import com.github.codlab.lorcana.card.Card
 import eu.codlab.lorcana.app.theme.AppColor
 import eu.codlab.lorcana.app.theme.MyApplicationTheme
 import eu.codlab.lorcana.app.theme.WindowSize
 import eu.codlab.lorcana.app.utils.rememberViewModel
-import eu.codlab.lorcana.app.views.init.InitializeScreen
-import eu.codlab.lorcana.app.views.session.opened.OpenedSessionScreen
-
-private lateinit var GlobalApp_: AppModel
-
-internal val Screen.GlobalApp: AppModel
-    get() = GlobalApp_
 
 val LocalWindow = compositionLocalOf { WindowSize.COMPACT }
 val LocalCards: ProvidableCompositionLocal<List<Card>> = compositionLocalOf { emptyList() }
+val LocalApp = compositionLocalOf { AppModel() }
 
 @Suppress("LongMethod") // interestingly, detekt shows APp is 67 length long
 @Composable
@@ -44,10 +36,8 @@ fun App(isDarkTheme: Boolean) {
     val localDensity = LocalDensity.current
     var window by remember { mutableStateOf(WindowSize.COMPACT) }
     var cards by remember { mutableStateOf(emptyList<Card>()) }
-
     val model = rememberViewModel { AppModel() }
 
-    GlobalApp_ = model
 
     val state by model.states.collectAsState()
     println("${state.loading} ${state.loggedIn} $window")
@@ -56,7 +46,8 @@ fun App(isDarkTheme: Boolean) {
 
     CompositionLocalProvider(
         LocalWindow provides window,
-        LocalCards provides cards
+        LocalCards provides cards,
+        LocalApp provides model
     ) {
         Box(
             modifier = Modifier
@@ -87,19 +78,7 @@ fun App(isDarkTheme: Boolean) {
                             }
                         )
                 ) {
-                    Navigator(InitializeScreen()) { navigator ->
-                        LaunchedEffect(state) {
-                            println("having $state")
-                            if (!state.initialized) {
-                                navigator.popUntilRoot()
-                                navigator.replace(InitializeScreen())
-                            } else {
-                                navigator.popUntilRoot()
-                                navigator.replace(OpenedSessionScreen())
-                            }
-                        }
-                        CurrentScreen()
-                    }
+                    AppContent()
                 }
             }
         }

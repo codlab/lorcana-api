@@ -29,9 +29,9 @@ jobs:
           distribution: 'temurin'
           cache: maven
       - name: Build
-        run: ./gradlew :lorcana-server:installDist
+        run: ./gradlew :lorcana-backend:installDist
       - name: Artifacts
         uses: actions/upload-artifact@v3
         with:
           name: backend
-          path: lorcana-server/build/install
+          path: lorcana-server/backend/build/install

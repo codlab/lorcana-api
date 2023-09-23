@@ -15,7 +15,7 @@ import eu.codlab.lorcana.app.theme.MyApplicationTheme
 
 private val title = 32.sp
 private val subtitle = 24.sp
-private val normal = 12.sp
+private val normal = 16.sp
 
 private data class PairColor(
     val dark: Color,
@@ -69,12 +69,13 @@ fun TextNormal(
     text: String,
     textAlign: TextAlign = TextAlign.Start,
     fontSize: TextUnit = normal,
-    color: Color? = null
+    color: Color? = null,
+    fontWeight: FontWeight = FontWeight.Normal
 ) = CreateText(
     text,
     textAlign,
     fontSize,
-    FontWeight.Normal,
+    fontWeight,
     LocalDarkTheme.current,
     titleColor,
     color

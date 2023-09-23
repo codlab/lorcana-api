@@ -1,0 +1,17 @@
+CREATE TABLE IF NOT EXISTS OwnCard (
+  setCode TEXT NOT NULL,
+  cardNumber INTEGER NOT NULL,
+  foil INTEGER NOT NULL,
+  normal INTEGER NOT NULL
+);
+
+selectAll:
+SELECT *
+FROM OwnCard;
+
+insert:
+INSERT INTO OwnCard(setCode, cardNumber, foil, normal)
+VALUES (?, ?, ?, ?);
+
+update:
+UPDATE OwnCard SET foil = ?, normal = ? WHERE setCode = ? AND cardNumber = ?;

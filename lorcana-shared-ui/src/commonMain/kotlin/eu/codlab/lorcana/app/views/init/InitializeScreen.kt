@@ -19,25 +19,13 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import cafe.adriel.voyager.core.screen.Screen
 import eu.codlab.lorcana.app.theme.AppColor
 import eu.codlab.lorcana.app.theme.MyApplicationTheme
 import eu.codlab.lorcana.app.views.home.AppModel
-import eu.codlab.lorcana.app.views.home.GlobalApp
 import eu.codlab.lorcana.app.views.widgets.StatusBarAndNavigation
 
-internal class InitializeScreen : Screen {
-    @Composable
-    override fun Content() {
-        InitializeScreenDisplay(
-            GlobalApp,
-            Modifier.fillMaxSize()
-        )
-    }
-}
-
 @Composable
-fun InitializeScreenDisplay(
+fun InitializeScreen(
     globalApp: AppModel,
     modifier: Modifier = Modifier
 ) {
@@ -82,7 +70,7 @@ fun InitializeScreenDisplay(
 @Composable
 fun InitializeScreenPreviewDark() {
     MyApplicationTheme(darkTheme = true) {
-        InitializeScreenDisplay(
+        InitializeScreen(
             globalApp = AppModel(),
             modifier = Modifier
                 .width(600.dp)
@@ -95,7 +83,7 @@ fun InitializeScreenPreviewDark() {
 @Composable
 fun InitializeScreenPreviewLight() {
     MyApplicationTheme(darkTheme = false) {
-        InitializeScreenDisplay(
+        InitializeScreen(
             globalApp = AppModel(),
             modifier = Modifier
                 .width(600.dp)

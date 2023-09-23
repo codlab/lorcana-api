@@ -1,6 +1,7 @@
 package eu.codlab.lorcana.app
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -10,6 +11,10 @@ import androidx.compose.ui.interop.LocalUIViewController
 import com.moriatsushi.insetsx.WindowInsetsUIViewController
 import eu.codlab.lorcana.app.views.home.App
 import eu.codlab.lorcana.app.views.widgets.ProvideSafeArea
+import moe.tlaster.precompose.PreComposeWindowHolder
+import moe.tlaster.precompose.lifecycle.LocalLifecycleOwner
+import moe.tlaster.precompose.stateholder.LocalStateHolder
+import moe.tlaster.precompose.ui.LocalBackDispatcherOwner
 import platform.UIKit.UIApplication
 import platform.UIKit.UIScene
 import platform.UIKit.UITraitCollection
@@ -41,6 +46,40 @@ fun isSystemInDarkTheme(): Boolean {
     return style == UIUserInterfaceStyle.UIUserInterfaceStyleDark
 }
 
+/*@Suppress("FunctionName")
+fun PreComposeApplication(
+    configure: ComposeUIViewControllerConfiguration.() -> Unit = {},
+    content: @Composable () -> Unit,
+): UIViewController {
+    return ComposeUIViewController(configure) {
+        val holder = remember {
+            PreComposeWindowHolder()
+        }
+        ProvidePreComposeCompositionLocals(
+            holder,
+        ) {
+            content.invoke()
+        }
+    }
+}*/
+
+@Composable
+fun ProvidePreComposeCompositionLocals(
+    holder: PreComposeWindowHolder = remember {
+        PreComposeWindowHolder()
+    },
+    content: @Composable () -> Unit,
+) {
+    CompositionLocalProvider(
+        LocalLifecycleOwner provides holder,
+        LocalStateHolder provides holder.stateHolder,
+        LocalBackDispatcherOwner provides holder,
+    ) {
+        content.invoke()
+    }
+}
+
+
 @Suppress("FunctionNaming")
 fun MainViewController() = WindowInsetsUIViewController {
     val isSystemDarkTheme = isSystemInDarkTheme()
@@ -54,9 +93,16 @@ fun MainViewController() = WindowInsetsUIViewController {
         ProvideSafeArea(
             window = windowSceneDelegate.window!!
         ) {
-            App(
-                isDarkTheme = isSystemDarkTheme
-            )
+            val holder = remember {
+                PreComposeWindowHolder()
+            }
+            ProvidePreComposeCompositionLocals(
+                holder,
+            ) {
+                App(
+                    isDarkTheme = isSystemDarkTheme
+                )
+            }
         }
     }
 }

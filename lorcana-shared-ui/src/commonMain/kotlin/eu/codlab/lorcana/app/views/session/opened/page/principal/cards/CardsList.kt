@@ -1,33 +1,63 @@
 package eu.codlab.lorcana.app.views.session.opened.page.principal.cards
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.TextFieldDefaults
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Search
+import androidx.compose.material3.Switch
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.TextFieldValue
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.navigator.tab.Tab
 import cafe.adriel.voyager.navigator.tab.TabOptions
-import com.github.codlab.lorcana.sharedui.Resources
-import dev.icerock.moko.resources.compose.painterResource
+import com.github.codlab.lorcana.card.Card
+import com.willowtreeapps.fuzzywuzzy.diffutils.FuzzySearch
+import eu.codlab.lorcana.app.theme.LocalDarkTheme
+import eu.codlab.lorcana.app.theme.LocalThemeEnvironment
 import eu.codlab.lorcana.app.theme.LorcanaIcons
+import eu.codlab.lorcana.app.theme.MyApplicationTheme
+import eu.codlab.lorcana.app.theme.WindowSize
 import eu.codlab.lorcana.app.theme.lorcanaicons.Inkpot
-import eu.codlab.lorcana.app.views.home.GlobalApp
+import eu.codlab.lorcana.app.views.home.LocalApp
+import eu.codlab.lorcana.app.views.home.LocalWindow
 import eu.codlab.lorcana.app.views.session.opened.page.principal.cards.views.CardItem
+import eu.codlab.lorcana.app.views.widgets.LorcanaOutlinedEditText
 import eu.codlab.lorcana.app.views.widgets.StatusBarAndNavigation
+import eu.codlab.lorcana.app.views.widgets.TextNormal
+import eu.codlab.lorcana.app.views.widgets.TextTitle
 
-internal class CardsList : Tab {
+internal class CardsList(val onCard: (Card) -> Unit) : Tab {
 
     private val minGridCellSize = 128.dp
-    private val gridCellPadding = 10.dp
-    private val ratio = 0.75f
 
     override val options: TabOptions
         @Composable
@@ -44,27 +74,185 @@ internal class CardsList : Tab {
             }
         }
 
+    @OptIn(ExperimentalComposeUiApi::class)
     @Composable
     override fun Content() {
         StatusBarAndNavigation()
 
-        val states by GlobalApp.states.collectAsState()
+        val states by LocalApp.current.states.collectAsState()
+        var search by remember { mutableStateOf(TextFieldValue("")) }
+        var cards by remember { mutableStateOf(states.cards) }
+        var showCollection by remember { mutableStateOf(false) }
 
-        val default = painterResource(Resources.images.cardBackx300)
+        LaunchedEffect(search) {
+            println("search $search")
+            cards = searchCards(states.cardMaps, search.text) ?: states.cards
+        }
 
-        LazyVerticalGrid(
-            columns = GridCells.Adaptive(minSize = minGridCellSize)
+        val themeEnvironment = LocalThemeEnvironment.current
+
+
+        Column(
+            verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            items(states.cards.size) { photo ->
-                Box(
-                    modifier = Modifier
-                        .aspectRatio(ratio)
-                        .fillMaxWidth()
-                        .padding(gridCellPadding)
-                ) {
-                    CardItem(states.cards[photo], default)
+            Column(
+                modifier = Modifier.padding(
+                    PaddingValues(
+                        start = themeEnvironment.defaultPadding,
+                        end = themeEnvironment.defaultPadding,
+                    )
+                ),
+                verticalArrangement = Arrangement.spacedBy(16.dp)
+            ) {
+                TextTitle(text = "Cards")
+
+                if (LocalWindow.current == WindowSize.EXPANDED) {
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.spacedBy(16.dp)
+                    ) {
+                        ShowSearch { search = it }
+                        ShowSwitchCollection { showCollection = it }
+                    }
+                } else {
+                    ShowSearch { search = it }
+                    ShowSwitchCollection { showCollection = it }
                 }
             }
+
+            LazyVerticalGrid(
+                columns = GridCells.Adaptive(minSize = minGridCellSize)
+            ) {
+                items(count = cards.size,
+                    key = { id -> cards[id].cardNumber }
+                ) { photo ->
+                    CardItem(cards[photo], onCard, showCollection)
+                }
+            }
+        }
+    }
+}
+
+const val ThresholdScore = 80
+
+fun searchCards(cards: Map<String, Card>, search: String): List<Card>? {
+    if (search.isEmpty()) return null
+
+    val found = mutableListOf<Card>()
+
+    found += cards.values.filter {
+        "${it.name} ${it.subTitle}"
+            .lowercase().contains(search.lowercase())
+    }
+
+    val result = FuzzySearch.extractAll(
+        search.lowercase(),
+        cards.keys
+    )
+
+    val treshold = result.filter { it.score > ThresholdScore }
+    println(treshold)
+
+    found += treshold.map { cards[it.string] }.filter { card ->
+        null == found.find { null != card && it.cardNumber == card.cardNumber }
+    }.filterNotNull()
+
+    return found
+}
+
+@OptIn(ExperimentalComposeUiApi::class)
+@Composable
+fun ShowSearch(onSearch: (search: TextFieldValue) -> Unit) {
+    var search by remember { mutableStateOf(TextFieldValue("")) }
+
+    val newColor = if (LocalDarkTheme.current) {
+        Color.White
+    } else {
+        Color.Black
+    }
+
+    val keyboardController = LocalSoftwareKeyboardController.current
+
+    LorcanaOutlinedEditText(
+        colors = TextFieldDefaults.outlinedTextFieldColors(
+            textColor = newColor
+        ),
+        label = {
+            TextNormal(text = "Search", color = newColor)
+        },
+        leadingIcon = {
+            Image(
+                imageVector = Icons.Default.Search,
+                contentDescription = null,
+                colorFilter = ColorFilter.tint(color = newColor)
+            )
+        },
+        value = search,
+        onValueChanged = {
+            search = it
+            onSearch(it)
+        },
+        keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
+        keyboardActions = KeyboardActions(onDone = { keyboardController?.hide() }),
+    )
+
+}
+
+@Composable
+fun ShowSwitchCollection(showCollection: (Boolean) -> Unit) {
+    val defaultPadding = LocalThemeEnvironment.current.defaultPadding
+
+    var selected by remember { mutableStateOf(false) }
+
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.End
+    ) {
+        TextNormal(
+            text = "All",
+            fontWeight = if (selected) {
+                FontWeight.Normal
+            } else {
+                FontWeight.Bold
+            }
+        )
+        Spacer(modifier = Modifier.width(defaultPadding))
+        Switch(
+            checked = selected,
+            onCheckedChange = {
+                selected = it
+                showCollection(it)
+            }
+        )
+        Spacer(modifier = Modifier.width(defaultPadding))
+        TextNormal(
+            text = "My collection",
+            fontWeight = if (selected) {
+                FontWeight.Bold
+            } else {
+                FontWeight.Normal
+            }
+        )
+    }
+}
+
+@Preview(widthDp = 400, heightDp = 500)
+@Composable
+fun CardsListPreview() {
+    MyApplicationTheme(darkTheme = false) {
+        Column(Modifier.background(Color.White)) {
+            CardsList {}.Content()
+        }
+    }
+}
+
+@Preview(widthDp = 600, heightDp = 500)
+@Composable
+fun CardsListPreviewExpanded() {
+    MyApplicationTheme(darkTheme = false) {
+        Column(Modifier.background(Color.White)) {
+            CardsList {}.Content()
         }
     }
 }

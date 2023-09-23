@@ -1,6 +1,6 @@
 @file:Suppress("MagicNumber")
 
-package eu.codlab.lorcana.app.views.session.opened.menu
+package eu.codlab.lorcana.app.views.menu
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column

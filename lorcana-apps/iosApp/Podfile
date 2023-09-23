@@ -1,6 +1,7 @@
 target 'iosApp' do
   use_frameworks!
   platform :ios, '14.1'
+  pod 'models', :path => '../../models'
   pod 'lorcana_shared_ui', :path => '../../lorcana-shared-ui'
 
   post_install do |installer|

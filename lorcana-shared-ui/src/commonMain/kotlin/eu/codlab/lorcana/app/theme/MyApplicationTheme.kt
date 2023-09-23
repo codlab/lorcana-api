@@ -35,7 +35,11 @@ val navigationDark = ColorBottomNavigations(
 )
 
 val LocalDarkTheme = compositionLocalOf { false }
-val LocalNavigationColors = compositionLocalOf { navigationDark }
+val LocalThemeEnvironment = compositionLocalOf {
+    ThemeEnvironment(
+        navigationColors = navigationLight
+    )
+}
 
 @Suppress("MagicNumber")
 @Composable
@@ -44,15 +48,17 @@ fun MyApplicationTheme(
     content: @Composable () -> Unit
 ) {
     val currentTheme = LocalDarkTheme.current
-    val currentNavigationColors = LocalNavigationColors.current
+    val currentLocalThemeEnvironment = LocalThemeEnvironment.current
 
     var isDarkTheme by remember { mutableStateOf(currentTheme) }
-    var selectedNavigationColors by remember { mutableStateOf(currentNavigationColors) }
+    var selectedLocalThemeEnvironment by remember { mutableStateOf(currentLocalThemeEnvironment) }
 
     DisposableEffect(darkTheme) {
         println("new status for $darkTheme")
         isDarkTheme = darkTheme
-        selectedNavigationColors = if (isDarkTheme) navigationDark else navigationLight
+        selectedLocalThemeEnvironment = selectedLocalThemeEnvironment.copy(
+            navigationColors = if (isDarkTheme) navigationDark else navigationLight
+        )
 
         onDispose {
             // nothing
@@ -87,7 +93,7 @@ fun MyApplicationTheme(
 
     CompositionLocalProvider(
         LocalDarkTheme provides isDarkTheme,
-        LocalNavigationColors provides currentNavigationColors
+        LocalThemeEnvironment provides currentLocalThemeEnvironment
     ) {
         MaterialTheme(
             colors = colors,

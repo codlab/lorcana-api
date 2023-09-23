@@ -70,5 +70,12 @@ data class Card(
         fun fromArray(content: String): List<Card> {
             return Json.decodeFromString(content)
         }
+
+        fun fake(): Card {
+            return Card(
+                setCode = "tfc",
+                cardNumber = 1
+            )
+        }
     }
 }

@@ -26,13 +26,18 @@ dependencyResolutionManagement {
     }
 }
 
-include ":lorcana-shared"
-include ":lorcana-shared-ui"
-include ":lorcana-server"
+def setProject = { String folder ->
+    return { name ->
+        include ":$name"
+        project(":$name").projectDir = new File(rootProject.projectDir, "$folder/$name")
+    }
+}
+
+include(":lorcana-shared-ui")
+include(":models")
+include(":lorcana-shared")
+
+["backend", "downloader"].each(setProject("lorcana-server"))
+["androidApp", "jvmApp", "jsApp", "app-ui"].each(setProject("lorcana-apps"))
 
 ["preview", "safearea"].each { include("kotlin-$it") }
-
-["androidApp", "jvmApp", "jsApp", "app-ui"].each {
-    include ":$it"
-    project(":$it").projectDir = new File(rootProject.projectDir, "lorcana-apps/$it")
-}

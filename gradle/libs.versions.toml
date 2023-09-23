@@ -1,9 +1,9 @@
 [versions]
 java = "11"
 android = "8.1.0"
-kotlin = "1.9.0"
+kotlin = "1.9.10"
 kotlinx-coroutines = "1.7.1"
-kotlin-compiler-extension-version = "1.5.2"
+kotlin-compiler-extension-version = "1.5.3"
 
 android-google-services = "4.3.15"
 android-appdistribution = "4.0.0"
@@ -37,6 +37,11 @@ safearea = "0.1.3"
 kamel-image = "0.7.3"
 
 fuzzywuzzy = "1.4.0"
+fuzzywuzzy-multiplatform = "0.1.1"
+look-and-feel = "1.5.1"
+thumbnails = "0.4.11"
+
+jcabi-manifest-reader = "2.1.0"
 
 [libraries]
 androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "androidx-appcompat" }
@@ -68,9 +73,9 @@ ktor-auth = { module = "io.ktor:ktor-client-auth", version.ref = "ktor" }
 ktor-server-core = { module = "io.ktor:ktor-server-core-jvm", version.ref = "ktor" }
 ktor-server-netty = { module = "io.ktor:ktor-server-netty-jvm", version.ref = "ktor" }
 ktor-server-tests-jvm = { module = "io.ktor:ktor-server-tests-jvm", version.ref = "ktor" }
-ktor-server-contentnegociation = { module = "io.ktor:ktor-server-content-negotiation", version.ref = "ktor"}
-ktor-server-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor"}
-ktor-server-cors = { module = "io.ktor:ktor-server-cors", version.ref = "ktor"}
+ktor-server-contentnegociation = { module = "io.ktor:ktor-server-content-negotiation", version.ref = "ktor" }
+ktor-server-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
+ktor-server-cors = { module = "io.ktor:ktor-server-cors", version.ref = "ktor" }
 
 voyager-navigator = { module = "cafe.adriel.voyager:voyager-navigator", version.ref = "voyager" }
 voyager-tab-navigator = { module = "cafe.adriel.voyager:voyager-tab-navigator", version.ref = "voyager" }
@@ -102,11 +107,16 @@ androidx-window = { group = "androidx.window", name = "window", version = "1.1.0
 
 about-libraries = { group = "com.mikepenz", name = "aboutlibraries-core", version.ref = "about-libraries" }
 
-safearea = { group = "moe.tlaster", name = "safearea", version.ref = "safearea"}
+safearea = { group = "moe.tlaster", name = "safearea", version.ref = "safearea" }
 
 kamel-image = { group = "media.kamel", name = "kamel-image", version.ref = "kamel-image" }
 
 fuzzywuzzy = { group = "me.xdrop", name = "fuzzywuzzy", version.ref = "fuzzywuzzy" }
+fuzzywuzzy-multiplatform = { module = "eu.codlab:fuzzywuzzy-kotlin", version.ref = "fuzzywuzzy-multiplatform" }
+look-and-feel = { module = "moe.tlaster:precompose", version.ref = "look-and-feel" }
+thumbnails = { module = "net.coobird:thumbnailator", version.ref = "thumbnails" }
+
+jcabi-manifest-reader = { module = "com.jcabi:jcabi-manifests", version.ref = "jcabi-manifest-reader" }
 
 [plugins]
 about-libraries = { id = "com.mikepenz.aboutlibraries.plugin", version.ref = "about-libraries" }

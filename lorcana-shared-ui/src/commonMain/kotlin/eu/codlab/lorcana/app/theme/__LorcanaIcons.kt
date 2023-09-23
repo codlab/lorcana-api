@@ -1,5 +1,5 @@
 /* ktlint-disable filename indent op-spacing */
-@file:SuppressWarnings("MatchingDeclarationName", "TopLevelPropertyNaming")
+@file:Suppress("MatchingDeclarationName", "TopLevelPropertyNaming")
 
 package eu.codlab.lorcana.app.theme
 

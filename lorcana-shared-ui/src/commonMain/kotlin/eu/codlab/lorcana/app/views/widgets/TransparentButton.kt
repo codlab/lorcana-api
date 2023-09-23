@@ -42,6 +42,7 @@ fun TransparentIconButton(
         contentPadding = PaddingValues(0.dp)
     ) {
         Image(
+            modifier = modifier,
             imageVector = imageVector,
             contentDescription = null,
             colorFilter = ColorFilter.tint(
