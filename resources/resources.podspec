@@ -1,24 +1,24 @@
 Pod::Spec.new do |spec|
-    spec.name                     = 'lorcana_shared_ui'
+    spec.name                     = 'resources'
     spec.version                  = '1.0.0'
-    spec.homepage                 = 'Link to the Shared Module homepage'
+    spec.homepage                 = 'Link to the models'
     spec.source                   = { :http=> ''}
     spec.authors                  = ''
     spec.license                  = ''
-    spec.summary                  = 'Some description for the Shared Module'
-    spec.vendored_frameworks      = 'build/cocoapods/framework/lorcana_shared_ui.framework'
+    spec.summary                  = 'Some description for the Resources'
+    spec.vendored_frameworks      = 'build/cocoapods/framework/resources.framework'
     spec.libraries                = 'c++'
     spec.ios.deployment_target = '14.1'
                 
                 
     spec.pod_target_xcconfig = {
-        'KOTLIN_PROJECT_PATH' => ':lorcana-shared-ui',
-        'PRODUCT_MODULE_NAME' => 'lorcana_shared_ui',
+        'KOTLIN_PROJECT_PATH' => ':resources',
+        'PRODUCT_MODULE_NAME' => 'resources',
     }
                 
     spec.script_phases = [
         {
-            :name => 'Build lorcana_shared_ui',
+            :name => 'Build resources',
             :execution_position => :before_compile,
             :shell_path => '/bin/sh',
             :script => <<-SCRIPT
@@ -35,5 +35,5 @@ Pod::Spec.new do |spec|
             SCRIPT
         }
     ]
-    spec.resources = ['build/compose/ios/lorcana_shared_ui/compose-resources']
+                
 end

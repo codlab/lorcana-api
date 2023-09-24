@@ -1,10 +1,10 @@
 package eu.codlab.lorcana.app.views.home
 
 import com.github.codlab.lorcana.card.Card
-import com.github.codlab.lorcana.files.readContent
-import com.github.codlab.lorcana.resources.SharedRes
+import com.github.codlab.lorcana.shared.SharedRes
 import eu.codlab.lorcana.app.utils.StateViewModel
 import eu.codlab.lorcana.app.utils.launch
+import eu.codlab.lorcana.app.utils.safelyReadContent
 import eu.codlab.lorcana.models.FoilNormal
 import eu.codlab.lorcana.models.LorcanaController
 import kotlin.time.ExperimentalTime
@@ -39,25 +39,31 @@ class AppModel : StateViewModel<AppModelState>(AppModelState()) {
     fun isInitialized() = states.value.initialized
 
     fun initialize() = launch {
-        databaseController.selectAll()
+        @Suppress("TooGenericExceptionCaught")
+        try {
+            databaseController.selectAll()
 
-        val textCards = SharedRes.files.allCards.readContent()
-        val cards = Card.fromArray(textCards).sortedBy {
-            it.cardNumber
-        }
+            val textCards = SharedRes.files.allCards.safelyReadContent()
+            val cards = Card.fromArray(textCards).sortedBy {
+                it.cardNumber
+            }
 
-        val cardMaps: MutableMap<String, Card> = HashMap()
+            val cardMaps: MutableMap<String, Card> = HashMap()
 
-        cards.forEach {
-            cardMaps["${it.name} ${it.subTitle}"] = it
-        }
+            cards.forEach {
+                cardMaps["${it.name} ${it.subTitle}"] = it
+            }
 
-        updateState {
-            copy(
-                initialized = true,
-                cards = cards,
-                cardMaps = cardMaps
-            )
+            updateState {
+                copy(
+                    initialized = true,
+                    cards = cards,
+                    cardMaps = cardMaps
+                )
+            }
+        } catch (e: Throwable) {
+            println("having exception $e")
+            e.printStackTrace()
         }
     }
 }

@@ -2,7 +2,7 @@ package com.lorcanaapi
 
 import com.github.codlab.lorcana.card.Card
 import com.github.codlab.lorcana.files.readContent
-import com.github.codlab.lorcana.resources.SharedRes
+import com.github.codlab.lorcana.shared.SharedRes
 import io.ktor.server.application.Application
 import io.ktor.server.engine.embeddedServer
 import io.ktor.server.netty.Netty

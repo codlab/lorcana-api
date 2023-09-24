@@ -1,21 +1,26 @@
 PODS:
   - lorcana_shared_ui (1.0.0)
   - models (1.0.0)
+  - resources (1.0.0)
 
 DEPENDENCIES:
   - lorcana_shared_ui (from `../../lorcana-shared-ui`)
   - models (from `../../models`)
+  - resources (from `../../resources`)
 
 EXTERNAL SOURCES:
   lorcana_shared_ui:
     :path: "../../lorcana-shared-ui"
   models:
     :path: "../../models"
+  resources:
+    :path: "../../resources"
 
 SPEC CHECKSUMS:
-  lorcana_shared_ui: d4a8566ac3f7774ad82442100e964920b106633f
+  lorcana_shared_ui: 544d35c9899ef01d674e9b4e37231455d340706c
   models: 15af02144357e23e4def327c9bc26b86b75df256
+  resources: 4359999ad59a19172577f5faf6077e28fd945375
 
-PODFILE CHECKSUM: f005bae0b11e7d8daeaf05a8818362a810bc71fc
+PODFILE CHECKSUM: 3fee3ecda9c65f8cc8182d04618965f5863c00d1
 
 COCOAPODS: 1.12.1

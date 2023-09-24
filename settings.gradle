@@ -34,6 +34,7 @@ def setProject = { String folder ->
 }
 
 include(":lorcana-shared-ui")
+include(":resources")
 include(":models")
 include(":lorcana-shared")
 

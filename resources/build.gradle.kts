@@ -2,6 +2,7 @@
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.android.library)
+    alias(libs.plugins.kotlin.cocoapods)
     alias(libs.plugins.kotlin.plugin.serialization)
     alias(libs.plugins.moko.resources.generator)
 }
@@ -10,7 +11,7 @@ plugins {
 kotlin {
     targetHierarchy.default()
 
-    androidTarget {
+    android {
         compilations.all {
             kotlinOptions {
                 jvmTarget = libs.versions.java.get()
@@ -32,37 +33,31 @@ kotlin {
     iosArm64()
     iosSimulatorArm64()
 
+    cocoapods {
+        version = "1.0.0"
+        summary = "Some description for the Resources"
+        homepage = "Link to the models"
+        ios.deploymentTarget = "14.1"
+        podfile = project.file("../lorcana-apps/iosApp/Podfile")
+        framework {
+            baseName = "resources"
+            isStatic = false
+            embedBitcode("disable")
+        }
+    }
+
     sourceSets {
         val commonMain by getting {
             dependencies {
-                api(libs.moko.resources)
-                api(libs.kotlinx.serialization.json)
                 api(libs.kotlinx.coroutines)
-                api(project(":models"))
+                api(libs.moko.resources)
             }
         }
         val commonTest by getting {
-            dependencies {
-                implementation(kotlin("test"))
-                api(libs.kotlinx.coroutines.test)
-            }
         }
 
         val androidMain by getting {
-            dependencies {
-                dependsOn(commonMain)
-
-                api("androidx.core:core-ktx:1.9.0")
-                api(libs.androidx.ui.tooling)
-                api(libs.androidx.appcompat)
-                api(libs.androidx.activity.compose)
-                api(libs.insetx)
-
-                api(libs.ktor.okhttp)
-                api(libs.kotlinx.coroutines.android)
-
-                api(libs.korio.android)
-            }
+            dependsOn(commonMain)
         }
         val iosX64Main by getting
         val iosArm64Main by getting
@@ -72,10 +67,6 @@ kotlin {
             iosX64Main.dependsOn(this)
             iosArm64Main.dependsOn(this)
             iosSimulatorArm64Main.dependsOn(this)
-
-            dependencies {
-                implementation(libs.korio)
-            }
         }
 
         // part for macos
@@ -89,35 +80,21 @@ kotlin {
 
         val jsMain by getting {
             dependsOn(commonMain)
-            dependencies {
-                api(libs.korio.js)
-            }
         }
     }
 }
 
 android {
-    namespace = "com.github.codlab.lorcana"
+    namespace = "eu.codlab.lorcana.resources"
     compileSdk = 33
     defaultConfig {
         minSdk = 23
     }
-    buildFeatures {
-        compose = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "${rootProject.ext.get("kotlinCompilerExtensionVersion")}"
-    }
-    sourceSets["main"].kotlin.srcDirs(
-        "src/androidMain/kotlin",
-        "build/generated/moko/androidMain/src"
-    )
-    sourceSets["main"].resources.srcDirs("src/commonMain/resources")
 }
 
 multiplatformResources {
-    multiplatformResourcesPackage = "com.github.codlab.lorcana.shared"
-    multiplatformResourcesClassName = "SharedRes" // optional, default MR
+    multiplatformResourcesPackage = "eu.codlab.lorcana.resources"
+    multiplatformResourcesClassName = "Resources" // optional, default MR
     multiplatformResourcesVisibility =
         dev.icerock.gradle.MRVisibility.Public
     iosBaseLocalizationRegion = "en"
@@ -125,11 +102,31 @@ multiplatformResources {
 
 tasks.register("generateMR") {
     group = "moko-resources"
+    dependsOn("licenseCopy")
     tasks.matching { it.name.startsWith("generateMR") && it.name.endsWith("Main") }
         .forEach { this.dependsOn(it) }
 }
 
+tasks.register("generateImages") {
+    group = "moko-resources"
+    val parent = file("${rootProject.projectDir}/src/data/images")
+    var resources = file("${project.projectDir}/src/commonMain/resources/MR/images/")
+    if (!resources.exists()) resources.mkdirs()
+
+    parent.list()?.forEach {
+        val original = File(parent, it)
+        val newFile = File(resources, it)
+        try {
+            println("copy from ${original.absolutePath} to ${newFile.absolutePath}")
+            original.copyTo(newFile, overwrite = false)
+        } catch (e: FileAlreadyExistsException) {
+            // nothing
+        }
+    }
+}
+
 tasks.register("concatenateMR") {
+    dependsOn("generateImages")
     group = "moko-resources"
     val parent = file("${rootProject.projectDir}/src/data/cards")
     val array = parent.list()?.map{
@@ -144,4 +141,21 @@ tasks.register("concatenateMR") {
     tasks.findByName("generateMR")?.dependsOn(this)
     tasks.matching { it.name.startsWith("generateMR") && it.name.endsWith("Main") }
         .forEach { this.dependsOn(it) }
+}
+
+val licenseCopy by tasks.registering(Copy::class) {
+    dependsOn(":lorcana-shared-ui:licenseReleaseReport")
+    from(layout.projectDirectory.file("../lorcana-shared-ui/build/reports/licenses/licenseReleaseReport.json"))
+    into(layout.projectDirectory.file("src/commonMain/resources/MR/files/"))
+
+    tasks.matching { it.name.startsWith("generateMR") && it.name.endsWith("Main") }
+        .forEach { it.dependsOn(this) }
+
+    tasks.matching { it.name.startsWith("process") && it.name.endsWith("JavaRes") }
+        .forEach { it.dependsOn(this) }
+}
+
+afterEvaluate {
+    tasks.matching { it.name.startsWith("generateMR") && it.name.endsWith("Main") }
+        .forEach { it.dependsOn(licenseCopy) }
 }

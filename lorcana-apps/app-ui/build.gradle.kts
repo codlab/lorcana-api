@@ -3,8 +3,6 @@ plugins {
     alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.compose)
-    alias(libs.plugins.about.libraries)
-    alias(libs.plugins.moko.resources.generator)
 }
 
 @OptIn(org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi::class)
@@ -73,6 +71,7 @@ dependencies {
     implementation(project(":lorcana-shared"))
     implementation(project(":kotlin-preview"))
     implementation(project(":kotlin-safearea"))
+    implementation(project(":resources"))
 
     implementation(libs.androidx.appcompat)
     implementation(platform("androidx.compose:compose-bom:2023.01.00"))
@@ -103,58 +102,4 @@ dependencies {
     implementation(libs.moko.resources.compose)
     implementation(libs.about.libraries)
     implementation(libs.kamel.image)
-}
-
-// also putting the logic for the libraries here
-
-aboutLibraries {
-    registerAndroidTasks = false
-    prettyPrint = true
-}
-
-multiplatformResources {
-    multiplatformResourcesPackage = "com.github.codlab.lorcana.sharedui" // required
-    multiplatformResourcesClassName = "Resources" // optional, default MR
-    multiplatformResourcesVisibility =
-        dev.icerock.gradle.MRVisibility.Public // optional, default Public
-    iosBaseLocalizationRegion = "en" // optional, default "en"
-}
-
-val licenseCopy by tasks.registering(Copy::class) {
-    dependsOn("licenseReleaseReport")
-    from(layout.buildDirectory.file("reports/licenses/licenseReleaseReport.json"))
-    into(layout.projectDirectory.file("src/commonMain/resources/MR/files/"))
-
-    listOf(
-        Pair("generateMore", "Main"),
-        Pair("process", "JavaRes"),
-        Pair("compile", "KotlinAndroid")
-    ).forEach { pair ->
-        tasks.matching { it.name.startsWith(pair.first) && it.name.endsWith(pair.second) }
-            .forEach { it.dependsOn(this) }
-    }
-}
-
-tasks.register("generateMR") {
-    dependsOn(licenseCopy)
-    tasks.matching { it.name.startsWith("generateMR") && it.name.endsWith("Main") }
-        .forEach { this.dependsOn(it) }
-
-    listOf(
-        Pair("generateMore", "Main"),
-        Pair("process", "JavaRes"),
-        Pair("compile", "KotlinAndroid")
-    ).forEach { pair ->
-        println("having to deal with $pair")
-        tasks.matching { it.name.startsWith(pair.first) && it.name.endsWith(pair.second) }
-            .forEach {
-                println("task is ${it.name}")
-                it.dependsOn(this)
-            }
-    }
-}
-
-afterEvaluate {
-    tasks.matching { it.name.startsWith("generateMR") && it.name.endsWith("Main") }
-        .forEach { it.dependsOn(licenseCopy) }
 }

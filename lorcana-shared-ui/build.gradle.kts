@@ -5,7 +5,6 @@ plugins {
     alias(libs.plugins.kotlin.cocoapods)
     alias(libs.plugins.jetbrains.compose)
     alias(libs.plugins.kotlin.plugin.serialization)
-    alias(libs.plugins.moko.resources.generator)
     alias(libs.plugins.about.libraries)
 }
 
@@ -57,8 +56,6 @@ kotlin {
             embedBitcode("disable")
             linkerOpts.add("-lsqlite3")
         }
-        extraSpecAttributes["resources"] =
-            "['src/commonMain/resources/**', 'src/iosMain/resources/**']"
     }
 
     configurations.configureEach {
@@ -70,6 +67,7 @@ kotlin {
             dependencies {
                 implementation(project(":lorcana-shared"))
                 implementation(project(":kotlin-preview"))
+                implementation(project(":resources"))
                 api(project(":kotlin-safearea"))
                 implementation(compose.runtime)
                 implementation(compose.foundation)
@@ -85,7 +83,6 @@ kotlin {
                 api(libs.look.and.feel)
                 implementation(libs.moko.viewmodel)
                 implementation(libs.moko.viewmodel.compose)
-                implementation(libs.moko.resources)
                 implementation(libs.moko.resources.compose)
 
                 implementation(libs.about.libraries)
@@ -144,10 +141,6 @@ kotlin {
 
 android {
     namespace = "com.github.codlab.lorcana.sharedui"
-    //compileSdk = 33
-    //defaultConfig {
-    //    minSdk = 23
-    //}
     buildFeatures {
         compose = true
     }
@@ -166,54 +159,11 @@ aboutLibraries {
     prettyPrint = true
 }
 
-tasks.register("concatenateMR") {
-    group = "moko-resources"
-    val parent = file("${rootProject.projectDir}/src/data/images")
-    var resources = file("${project.projectDir}/src/commonMain/resources/MR/images/")
-    if (!resources.exists()) resources.mkdirs()
-
-    parent.list()?.forEach {
-        val original = File(parent, it)
-        val newFile = File(resources, it)
-        try {
-            println("copy from ${original.absolutePath} to ${newFile.absolutePath}")
-            original.copyTo(newFile, overwrite = false)
-        } catch(e: FileAlreadyExistsException) {
-            // nothing
-        }
-    }
-
-    tasks.findByName("generateMR")?.dependsOn(this)
-    tasks.matching { it.name.startsWith("generateMR") && it.name.endsWith("Main") }
-        .forEach { this.dependsOn(it) }
-}
-
 val licenseCopy by tasks.registering(Copy::class) {
     dependsOn("licenseReleaseReport")
     from(layout.buildDirectory.file("reports/licenses/licenseReleaseReport.json"))
     into(layout.projectDirectory.file("src/commonMain/resources/MR/files/"))
 
-    tasks.matching { it.name.startsWith("generateMR") && it.name.endsWith("Main") }
-        .forEach { it.dependsOn(this) }
-
-    tasks.matching { it.name.startsWith("process") && it.name.endsWith("JavaRes") }
-        .forEach { it.dependsOn(this) }
-}
-
-multiplatformResources {
-    multiplatformResourcesPackage = "com.github.codlab.lorcana.sharedui" // required
-    multiplatformResourcesClassName = "Resources" // optional, default MR
-    multiplatformResourcesVisibility =
-        dev.icerock.gradle.MRVisibility.Public // optional, default Public
-    iosBaseLocalizationRegion = "en" // optional, default "en"
-}
-
-tasks.register("generateMR") {
-    group = "moko-resources"
-    dependsOn("licenseCopy")
-}
-
-afterEvaluate {
-    tasks.matching { it.name.startsWith("generateMR") && it.name.endsWith("Main") }
-        .forEach { it.dependsOn(licenseCopy) }
+    tasks.matching { it.name.startsWith("syncPod") && it.name.endsWith("ForIos") }
+        .forEach { it.mustRunAfter(this) }
 }

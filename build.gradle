@@ -57,10 +57,6 @@ subprojects {
         [
                 "lorcana-shared-ui/src/commonMain/kotlin",
                 "lorcana-apps/app-ui/src/androidMain/kotlin"
-        ],
-        [
-                "lorcana-shared-ui/src/commonMain/resources",
-                "lorcana-apps/app-ui/src/commonMain/resources"
         ]
 ].each {
     def original = file(it[0])

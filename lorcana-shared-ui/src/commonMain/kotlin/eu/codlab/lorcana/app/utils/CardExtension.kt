@@ -1,9 +1,9 @@
 package eu.codlab.lorcana.app.utils
 
 import com.github.codlab.lorcana.card.Card
-import com.github.codlab.lorcana.sharedui.Resources
 import dev.icerock.moko.resources.ImageResource
 import dev.icerock.moko.resources.getImageByFileName
+import eu.codlab.lorcana.resources.Resources
 
 fun Card.getImage(mode: String, size: String): ImageResource {
     @Suppress("TooGenericExceptionCaught", "SwallowedException")

@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="iosApp" type="KmmRunConfiguration" factoryName="iOS Application" CONFIG_VERSION="1" EXEC_TARGET_ID="00008120-001118582208201E" XCODE_PROJECT="$PROJECT_DIR$/lorcana-apps/iosApp/iosApp.xcworkspace" XCODE_CONFIGURATION="Debug" XCODE_SCHEME="iosApp">
+  <configuration default="false" name="iosApp" type="KmmRunConfiguration" factoryName="iOS Application" CONFIG_VERSION="1" EXEC_TARGET_ID="3648ACB3-5D45-4C6E-9F34-AAC9F4E5F467" XCODE_PROJECT="$PROJECT_DIR$/lorcana-apps/iosApp/iosApp.xcworkspace" XCODE_CONFIGURATION="Debug" XCODE_SCHEME="iosApp">
     <method v="2">
       <option name="com.jetbrains.kmm.ios.BuildIOSAppTask" enabled="true" />
     </method>

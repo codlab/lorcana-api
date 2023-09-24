@@ -1,7 +1,7 @@
 package com.github.codlab.lorcana.card
 
 import com.github.codlab.lorcana.files.readContent
-import com.github.codlab.lorcana.resources.SharedRes
+import com.github.codlab.lorcana.shared.SharedRes
 import kotlinx.coroutines.test.runTest
 import kotlin.test.Test
 import kotlin.test.assertEquals

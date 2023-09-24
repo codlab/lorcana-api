@@ -13,7 +13,7 @@ class LorcanaController {
             val driver = ownCardController.createDriver(Database.Schema, "database.db")
             database = Database(driver)
         } catch (e: NullPointerException) {
-            // nothing
+            println("exception while loading the database")
         }
     }
 

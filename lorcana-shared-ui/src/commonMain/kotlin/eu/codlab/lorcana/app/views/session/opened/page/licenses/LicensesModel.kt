@@ -1,10 +1,10 @@
 package eu.codlab.lorcana.app.views.session.opened.page.licenses
 
-import com.github.codlab.lorcana.files.readContent
-import com.github.codlab.lorcana.sharedui.Resources
 import eu.codlab.lorcana.app.utils.StateViewModel
 import eu.codlab.lorcana.app.utils.launch
 import eu.codlab.lorcana.app.utils.licenses.LicenseProject
+import eu.codlab.lorcana.app.utils.safelyReadContent
+import eu.codlab.lorcana.resources.Resources
 
 data class LicenseState(
     var loaded: Boolean = false,
@@ -26,7 +26,7 @@ class LicensesModel(
     }
 
     fun load() = launch {
-        val content = Resources.files.licenseReleaseReport.readContent()
+        val content = Resources.files.licenseReleaseReport.safelyReadContent()
         println(content)
         val result = LicenseProject.fromArray(content)
 

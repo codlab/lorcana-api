@@ -80,4 +80,5 @@ webpack.config.d/
 
 src/data/foils/
 src/data/images/tfc_*
+resources/src/commonMain/resources/MR/images/tfc_*
 lorcana-shared-ui/src/commonMain/resources/MR/images/tfc_*
