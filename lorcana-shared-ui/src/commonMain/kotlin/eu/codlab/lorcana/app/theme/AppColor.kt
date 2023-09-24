@@ -19,6 +19,7 @@ object AppColor {
     val PrimaryLightLighter = Color(0xFFba96fa)
     val Blue = Color(0xFF3E44FE)
     val BlueLight = Color(0xFF35C8FF)
+    val BlueLighter = Color(0xFFA5E6FF)
     val Pink = Color(0xFFFF2E7E)
     val PinkLight = Color(0xFFFF7AAD)
     val Black = Color(0xFF13141C)

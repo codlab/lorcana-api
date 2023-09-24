@@ -33,10 +33,12 @@ val LocalApp = compositionLocalOf { AppModel() }
 @Suppress("LongMethod") // interestingly, detekt shows APp is 67 length long
 @Composable
 fun App(isDarkTheme: Boolean) {
+    val currentAppModel = LocalApp.current
     val localDensity = LocalDensity.current
+
     var window by remember { mutableStateOf(WindowSize.COMPACT) }
     var cards by remember { mutableStateOf(emptyList<Card>()) }
-    val model = rememberViewModel { AppModel() }
+    val model = rememberViewModel { currentAppModel }
 
     val state by model.states.collectAsState()
     println("${state.loading} ${state.loggedIn} $window")

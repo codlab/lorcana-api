@@ -4,9 +4,11 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.rememberScrollState
@@ -26,12 +28,15 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.github.codlab.lorcana.card.Card
 import dev.icerock.moko.resources.compose.painterResource
+import eu.codlab.lorcana.app.theme.LocalThemeEnvironment
 import eu.codlab.lorcana.app.theme.MyApplicationTheme
+import eu.codlab.lorcana.app.theme.gradient
 import eu.codlab.lorcana.app.utils.getImage
 import eu.codlab.lorcana.app.views.home.LocalApp
 import eu.codlab.lorcana.app.views.widgets.LorcanaOutlinedButton
 import eu.codlab.lorcana.app.views.widgets.LorcanaOutlinedEditText
 import eu.codlab.lorcana.app.views.widgets.TextNormal
+import eu.codlab.lorcana.app.views.widgets.TextTitle
 import eu.codlab.lorcana.app.views.widgets.systemBackground
 import eu.codlab.lorcana.models.FoilNormal
 import io.kamel.image.KamelImage
@@ -39,10 +44,16 @@ import io.kamel.image.asyncPainterResource
 
 @Composable
 fun SingleCard(card: Card) {
+    val env = LocalThemeEnvironment.current
+
+    println("having color ${env.gradientStart}")
     Column(
         Modifier
             .fillMaxSize()
-            .systemBackground(),
+            .gradient(
+                env.gradientStart,
+                env.gradientEnd
+            ),
         Arrangement.spacedBy(5.dp)
     ) {
         CardItem(card)
@@ -79,8 +90,15 @@ fun CardItem(card: Card) {
         modifier = Modifier
             .fillMaxWidth()
             .verticalScroll(state),
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
+        Spacer(
+            Modifier.height(16.dp)
+        )
+
+        TextTitle(text = card.name)
+
         val painterResource = asyncPainterResource(data = card.imageUrls.large)
 
         val modifier = Modifier
@@ -200,9 +218,7 @@ fun CardPreviewLight() {
 @Composable
 fun CardPreviewDarkTablet() {
     MyApplicationTheme(darkTheme = false) {
-        Column(modifier = Modifier.systemBackground()) {
-            CardItem(card = Card.fake())
-        }
+        SingleCard(card = Card.fake())
     }
 }
 
@@ -210,8 +226,6 @@ fun CardPreviewDarkTablet() {
 @Composable
 fun CardPreviewLightTablet() {
     MyApplicationTheme(darkTheme = true) {
-        Column(modifier = Modifier.systemBackground()) {
-            CardItem(card = Card.fake())
-        }
+        SingleCard(card = Card.fake())
     }
 }

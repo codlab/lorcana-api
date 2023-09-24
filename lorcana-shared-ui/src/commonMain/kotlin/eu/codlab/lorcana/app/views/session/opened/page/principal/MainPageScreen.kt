@@ -34,8 +34,7 @@ import eu.codlab.lorcana.app.views.widgets.TextNormal
 fun MainPageScreen(onCard: (Card) -> Unit) {
     Column(
         Modifier
-            .fillMaxSize()
-            .background(Color.Transparent),
+            .fillMaxSize(),
         Arrangement.spacedBy(5.dp)
     ) {
         TabNavigator(CardsList(onCard)) {

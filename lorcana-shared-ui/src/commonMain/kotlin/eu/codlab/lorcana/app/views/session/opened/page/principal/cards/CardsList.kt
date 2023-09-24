@@ -7,7 +7,9 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.grid.GridCells
@@ -28,6 +30,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
@@ -46,6 +49,7 @@ import eu.codlab.lorcana.app.theme.LocalThemeEnvironment
 import eu.codlab.lorcana.app.theme.LorcanaIcons
 import eu.codlab.lorcana.app.theme.MyApplicationTheme
 import eu.codlab.lorcana.app.theme.WindowSize
+import eu.codlab.lorcana.app.theme.gradient
 import eu.codlab.lorcana.app.theme.lorcanaicons.Inkpot
 import eu.codlab.lorcana.app.views.home.LocalApp
 import eu.codlab.lorcana.app.views.home.LocalWindow
@@ -84,6 +88,8 @@ internal class CardsList(val onCard: (Card) -> Unit) : Tab {
         var cards by remember { mutableStateOf(states.cards) }
         var showCollection by remember { mutableStateOf(false) }
 
+        println("having cards ? ${cards.size}")
+
         LaunchedEffect(search) {
             println("search $search")
             cards = searchCards(states.cardMaps, search.text) ?: states.cards
@@ -92,6 +98,12 @@ internal class CardsList(val onCard: (Card) -> Unit) : Tab {
         val themeEnvironment = LocalThemeEnvironment.current
 
         Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .gradient(
+                    themeEnvironment.gradientStart,
+                    themeEnvironment.gradientEnd
+                ),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             Column(
@@ -103,6 +115,10 @@ internal class CardsList(val onCard: (Card) -> Unit) : Tab {
                 ),
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
+                Spacer(
+                    Modifier.height(16.dp)
+                )
+
                 TextTitle(text = "Cards")
 
                 if (LocalWindow.current == WindowSize.EXPANDED) {
@@ -199,6 +215,9 @@ fun ShowSearch(onSearch: (search: TextFieldValue) -> Unit) {
     )
 }
 
+const val Opaque = 1f
+const val SemiTransparent = 0.6f
+
 @Composable
 fun ShowSwitchCollection(showCollection: (Boolean) -> Unit) {
     val defaultPadding = LocalThemeEnvironment.current.defaultPadding
@@ -210,14 +229,20 @@ fun ShowSwitchCollection(showCollection: (Boolean) -> Unit) {
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.End
     ) {
-        TextNormal(
-            text = "All",
-            fontWeight = if (selected) {
-                FontWeight.Normal
-            } else {
-                FontWeight.Bold
-            }
-        )
+        Column(
+            modifier = Modifier.alpha(
+                if (selected) {
+                    SemiTransparent
+                } else {
+                    Opaque
+                }
+            )
+        ) {
+            TextNormal(
+                text = "All",
+                fontWeight = FontWeight.Bold
+            )
+        }
         Spacer(modifier = Modifier.width(defaultPadding))
         Switch(
             checked = selected,
@@ -227,14 +252,20 @@ fun ShowSwitchCollection(showCollection: (Boolean) -> Unit) {
             }
         )
         Spacer(modifier = Modifier.width(defaultPadding))
-        TextNormal(
-            text = "My collection",
-            fontWeight = if (selected) {
-                FontWeight.Bold
-            } else {
-                FontWeight.Normal
-            }
-        )
+        Column(
+            modifier = Modifier.alpha(
+                if (selected) {
+                    Opaque
+                } else {
+                    SemiTransparent
+                }
+            )
+        ) {
+            TextNormal(
+                text = "My collection",
+                fontWeight = FontWeight.Bold
+            )
+        }
     }
 }
 

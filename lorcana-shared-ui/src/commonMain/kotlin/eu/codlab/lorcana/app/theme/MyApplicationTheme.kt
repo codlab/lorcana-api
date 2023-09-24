@@ -22,32 +22,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
-val navigationLight = ColorBottomNavigations(
-    background = Color(0xff000000),
-    unselected = Color(0xff7a6b63),
-    selected = Color(0xffeec788)
-)
-
-val colorLight = ColorTheme(
-    graySemiTransparent = AppColor.GraySemiTransparentDark
-)
-
-val colorDark = ColorTheme(
-    graySemiTransparent = AppColor.GraySemiTransparentDark
-)
-
-val navigationDark = ColorBottomNavigations(
-    background = Color(0xff000000),
-    unselected = Color(0xff7a6b63),
-    selected = Color(0xffeec788)
-)
-
 val LocalDarkTheme = compositionLocalOf { false }
 val LocalThemeEnvironment = compositionLocalOf {
-    ThemeEnvironment(
-        navigationColors = navigationLight,
-        colors = colorLight
-    )
+    ThemeEnvironment()
 }
 
 @Suppress("MagicNumber")
@@ -65,10 +42,11 @@ fun MyApplicationTheme(
     DisposableEffect(darkTheme) {
         println("new status for $darkTheme")
         isDarkTheme = darkTheme
-        selectedLocalThemeEnvironment = selectedLocalThemeEnvironment.copy(
-            navigationColors = if (isDarkTheme) navigationDark else navigationLight,
-            colors = if (isDarkTheme) colorDark else colorLight
-        )
+        selectedLocalThemeEnvironment = if (isDarkTheme) {
+            createEnvironmentDark(selectedLocalThemeEnvironment)
+        } else {
+            createEnvironmentLight(selectedLocalThemeEnvironment)
+        }
 
         onDispose {
             // nothing
@@ -103,7 +81,7 @@ fun MyApplicationTheme(
 
     CompositionLocalProvider(
         LocalDarkTheme provides isDarkTheme,
-        LocalThemeEnvironment provides currentLocalThemeEnvironment
+        LocalThemeEnvironment provides selectedLocalThemeEnvironment
     ) {
         MaterialTheme(
             colors = colors,

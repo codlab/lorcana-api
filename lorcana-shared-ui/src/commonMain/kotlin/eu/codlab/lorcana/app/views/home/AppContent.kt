@@ -2,6 +2,7 @@
 
 package eu.codlab.lorcana.app.views.home
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
@@ -13,6 +14,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import eu.codlab.lorcana.app.views.init.InitializeScreen
 import eu.codlab.lorcana.app.views.session.opened.page.principal.MainPageScreen
 import eu.codlab.lorcana.app.views.session.opened.page.single.SingleCard
@@ -35,6 +37,7 @@ fun AppContent() {
     val state by model.states.collectAsState()
 
     val navigator = rememberNavigator()
+
     NavHost(
         // Assign the navigator to the NavHost
         navigator = navigator,
@@ -119,7 +122,11 @@ fun AppContent() {
             value?.let { cardId ->
                 val cards = state.cards
                 val card = cards.find { it.cardNumber == cardId.toInt() }
-                Column {
+
+                Column(
+                    modifier = Modifier.fillMaxSize(),
+                    Arrangement.spacedBy(5.dp)
+                ) {
                     TopSpacer()
                     SingleCard(card!!)
                     BottomSpacer()
