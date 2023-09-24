@@ -28,6 +28,14 @@ val navigationLight = ColorBottomNavigations(
     selected = Color(0xffeec788)
 )
 
+val colorLight = ColorTheme(
+    graySemiTransparent = AppColor.GraySemiTransparentDark
+)
+
+val colorDark = ColorTheme(
+    graySemiTransparent = AppColor.GraySemiTransparentDark
+)
+
 val navigationDark = ColorBottomNavigations(
     background = Color(0xff000000),
     unselected = Color(0xff7a6b63),
@@ -37,7 +45,8 @@ val navigationDark = ColorBottomNavigations(
 val LocalDarkTheme = compositionLocalOf { false }
 val LocalThemeEnvironment = compositionLocalOf {
     ThemeEnvironment(
-        navigationColors = navigationLight
+        navigationColors = navigationLight,
+        colors = colorLight
     )
 }
 
@@ -57,7 +66,8 @@ fun MyApplicationTheme(
         println("new status for $darkTheme")
         isDarkTheme = darkTheme
         selectedLocalThemeEnvironment = selectedLocalThemeEnvironment.copy(
-            navigationColors = if (isDarkTheme) navigationDark else navigationLight
+            navigationColors = if (isDarkTheme) navigationDark else navigationLight,
+            colors = if (isDarkTheme) colorDark else colorLight
         )
 
         onDispose {

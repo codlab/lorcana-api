@@ -132,9 +132,7 @@ fun MenuWrapperContentDisplayCompactDark() {
     MyApplicationTheme(
         darkTheme = true
     ) {
-        MenuWrapperContent {
-
-        }
+        MenuWrapperContent {}
     }
 }
 
@@ -144,8 +142,6 @@ fun MenuWrapperContentDisplayCompactLight() {
     MyApplicationTheme(
         darkTheme = false
     ) {
-        MenuWrapperContent {
-
-        }
+        MenuWrapperContent {}
     }
 }

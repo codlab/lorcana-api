@@ -2,7 +2,6 @@
 
 package eu.codlab.lorcana.app.views.home
 
-import androidx.compose.animation.EnterTransition
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
@@ -28,13 +27,8 @@ import moe.tlaster.precompose.navigation.SwipeProperties
 import moe.tlaster.precompose.navigation.rememberNavigator
 import moe.tlaster.precompose.navigation.transition.NavTransition
 
-enum class Pages {
-    Initialize,
-    Main,
-    SingleCards
-}
-
 @Composable
+@Suppress("LongMethod")
 fun AppContent() {
     var currentPage by remember { mutableStateOf(Pages.Initialize) }
     val model = LocalApp.current
@@ -47,14 +41,14 @@ fun AppContent() {
         // Navigation transition for the scenes in this NavHost, this is optional
         navTransition = NavTransition(),
         // The start destination
-        initialRoute = "/home",
+        initialRoute = "/home"
     ) {
         // Define a scene to the navigation graph
         scene(
             // Scene's route path
             route = "/home",
             // Navigation transition for this scene, this is optional
-            navTransition = NavTransition(),
+            navTransition = NavTransition()
         ) {
             SideEffect {
                 println("switch to initialize")
@@ -82,7 +76,7 @@ fun AppContent() {
             // Scene's route path
             route = "/main",
             // Navigation transition for this scene, this is optional
-            navTransition = NavTransition(),
+            navTransition = NavTransition()
         ) {
             SideEffect {
                 println("switch to main")

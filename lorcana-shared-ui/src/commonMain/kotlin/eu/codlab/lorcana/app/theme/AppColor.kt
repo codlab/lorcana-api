@@ -24,6 +24,8 @@ object AppColor {
     val Black = Color(0xFF13141C)
     val GrayExtraDark = Color(0xFF2E2E31)
     val GrayDark = Color(0xFF717276)
+    val GraySemiTransparentLight = Color(0x66FFFFFF)
+    val GraySemiTransparentDark = Color(0x66000000)
     val Gray = Color(0xFFA0A1A4)
     val GrayLight = Color(0xFFA0A1A4)
     val GrayExtraLight = Color(0xFFE7E7E8)

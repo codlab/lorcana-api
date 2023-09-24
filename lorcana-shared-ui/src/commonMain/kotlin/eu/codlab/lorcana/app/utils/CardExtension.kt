@@ -5,8 +5,8 @@ import com.github.codlab.lorcana.sharedui.Resources
 import dev.icerock.moko.resources.ImageResource
 import dev.icerock.moko.resources.getImageByFileName
 
-
 fun Card.getImage(mode: String, size: String): ImageResource {
+    @Suppress("TooGenericExceptionCaught", "SwallowedException")
     return try {
         Resources.images.getImageByFileName(
             "${this.setCode}_${mode}_${size}_${this.cardNumber}".lowercase()

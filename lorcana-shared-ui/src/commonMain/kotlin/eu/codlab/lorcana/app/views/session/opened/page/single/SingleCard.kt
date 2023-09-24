@@ -53,6 +53,7 @@ private const val CornerRadiusPercent = 8
 private val shape = RoundedCornerShape(CornerRadiusPercent)
 
 @Composable
+@Suppress("LongMethod")
 fun CardItem(card: Card) {
     var image by remember { mutableStateOf(card.getImage("normal", "small")) }
     val painter = painterResource(image)
@@ -96,7 +97,7 @@ fun CardItem(card: Card) {
                 Image(
                     modifier = modifier,
                     painter = painter,
-                    contentDescription = "",
+                    contentDescription = ""
                 )
             },
             onFailure = { _ ->
@@ -164,7 +165,8 @@ fun MutableIntegerBox(
             value = TextFieldValue("$actualValue"),
             onValueChanged = {},
             readOnly = true,
-            label = { TextNormal(text = title) })
+            label = { TextNormal(text = title) }
+        )
 
         LorcanaOutlinedButton(onClick = {
             onNewValue(actualValue + 1)

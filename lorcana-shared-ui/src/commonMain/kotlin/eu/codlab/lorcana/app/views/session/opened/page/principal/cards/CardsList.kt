@@ -91,7 +91,6 @@ internal class CardsList(val onCard: (Card) -> Unit) : Tab {
 
         val themeEnvironment = LocalThemeEnvironment.current
 
-
         Column(
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
@@ -99,7 +98,7 @@ internal class CardsList(val onCard: (Card) -> Unit) : Tab {
                 modifier = Modifier.padding(
                     PaddingValues(
                         start = themeEnvironment.defaultPadding,
-                        end = themeEnvironment.defaultPadding,
+                        end = themeEnvironment.defaultPadding
                     )
                 ),
                 verticalArrangement = Arrangement.spacedBy(16.dp)
@@ -123,8 +122,11 @@ internal class CardsList(val onCard: (Card) -> Unit) : Tab {
             LazyVerticalGrid(
                 columns = GridCells.Adaptive(minSize = minGridCellSize)
             ) {
-                items(count = cards.size,
-                    key = { id -> cards[id].cardNumber }
+                items(
+                    count = cards.size,
+                    key = { id ->
+                        cards[id].cardNumber
+                    }
                 ) { photo ->
                     CardItem(cards[photo], onCard, showCollection)
                 }
@@ -193,9 +195,8 @@ fun ShowSearch(onSearch: (search: TextFieldValue) -> Unit) {
             onSearch(it)
         },
         keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
-        keyboardActions = KeyboardActions(onDone = { keyboardController?.hide() }),
+        keyboardActions = KeyboardActions(onDone = { keyboardController?.hide() })
     )
-
 }
 
 @Composable

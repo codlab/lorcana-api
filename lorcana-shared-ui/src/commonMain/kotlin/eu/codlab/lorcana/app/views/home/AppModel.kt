@@ -39,7 +39,6 @@ class AppModel : StateViewModel<AppModelState>(AppModelState()) {
     fun isInitialized() = states.value.initialized
 
     fun initialize() = launch {
-
         databaseController.selectAll()
 
         val textCards = SharedRes.files.allCards.readContent()

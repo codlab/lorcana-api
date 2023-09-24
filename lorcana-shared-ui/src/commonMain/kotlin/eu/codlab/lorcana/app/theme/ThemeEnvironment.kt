@@ -5,5 +5,6 @@ import androidx.compose.ui.unit.dp
 
 data class ThemeEnvironment(
     val defaultPadding: Dp = 16.dp,
-    val navigationColors: ColorBottomNavigations
+    val navigationColors: ColorBottomNavigations,
+    val colors: ColorTheme
 )

@@ -68,17 +68,16 @@ fun ProvidePreComposeCompositionLocals(
     holder: PreComposeWindowHolder = remember {
         PreComposeWindowHolder()
     },
-    content: @Composable () -> Unit,
+    content: @Composable () -> Unit
 ) {
     CompositionLocalProvider(
         LocalLifecycleOwner provides holder,
         LocalStateHolder provides holder.stateHolder,
-        LocalBackDispatcherOwner provides holder,
+        LocalBackDispatcherOwner provides holder
     ) {
         content.invoke()
     }
 }
-
 
 @Suppress("FunctionNaming")
 fun MainViewController() = WindowInsetsUIViewController {
@@ -97,7 +96,7 @@ fun MainViewController() = WindowInsetsUIViewController {
                 PreComposeWindowHolder()
             }
             ProvidePreComposeCompositionLocals(
-                holder,
+                holder
             ) {
                 App(
                     isDarkTheme = isSystemDarkTheme

@@ -38,7 +38,6 @@ fun App(isDarkTheme: Boolean) {
     var cards by remember { mutableStateOf(emptyList<Card>()) }
     val model = rememberViewModel { AppModel() }
 
-
     val state by model.states.collectAsState()
     println("${state.loading} ${state.loggedIn} $window")
 

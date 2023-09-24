@@ -1,6 +1,5 @@
 package eu.codlab.lorcana.models
 
-
 class LorcanaController {
     private val ownCardController = OwnCardController()
 
@@ -9,6 +8,7 @@ class LorcanaController {
     private var cardMap: MutableMap<Pair<String, Number>, OwnCard>? = null
 
     init {
+        @Suppress("TooGenericExceptionCaught", "SwallowedException")
         try {
             val driver = ownCardController.createDriver(Database.Schema, "database.db")
             database = Database(driver)

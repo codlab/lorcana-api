@@ -110,8 +110,6 @@ private fun RowScope.TabNavigationItem(tab: Tab) {
 @Composable
 fun CardsListLightPreview() {
     MyApplicationTheme(darkTheme = false) {
-        MainPageScreen {
-
-        }
+        MainPageScreen {}
     }
 }

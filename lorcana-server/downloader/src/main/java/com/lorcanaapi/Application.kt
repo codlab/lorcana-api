@@ -22,12 +22,15 @@ var cards: List<Card> = emptyList()
 val client = HttpClient(CIO) {
 }
 
+private val ExpectedSizeImage = Pair(186, 260)
+
 fun main(arg: Array<String>) {
     cards = runBlocking {
         val textCards = SharedRes.files.allCards.readContent()
         return@runBlocking Card.fromArray(textCards)
     }
 
+    @Suppress("TooGenericExceptionCaught", "SwallowedException")
     val rootDir = try {
         Manifests.read("RootPath")
     } catch (e: Throwable) {
@@ -63,12 +66,16 @@ fun main(arg: Array<String>) {
                 "src/data/foils"
             )
 
+            @Suppress("SpreadOperator")
             Thumbnails.of(*File(rootDir, "src/data/foils").listFiles())
-                .size(186, 260)
+                .size(ExpectedSizeImage.first, ExpectedSizeImage.second)
                 .outputFormat("png")
-                .toFiles(imagesFolder, ChangeName {
-                    it?.replace("foil_large", "foil_small") ?: ""
-                });
+                .toFiles(
+                    imagesFolder,
+                    ChangeName {
+                        it?.replace("foil_large", "foil_small") ?: ""
+                    }
+                )
         }
     }
 }
@@ -89,5 +96,4 @@ class ChangeName(val newName: (name: String?) -> String) : Rename() {
     override fun apply(name: String?, param: ThumbnailParameter?): String {
         return newName(name)
     }
-
 }
