@@ -129,9 +129,7 @@ internal class CardsList(val onCard: (Card) -> Unit) : Tab {
                         modifier = Modifier
                             .width(180.dp)
                     ) { search = it }
-                    ShowSwitchCollection(
-
-                    ) { showCollection = it }
+                    ShowSwitchCollection { showCollection = it }
                 }
             }
 

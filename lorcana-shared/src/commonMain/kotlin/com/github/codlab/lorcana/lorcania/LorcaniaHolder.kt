@@ -47,7 +47,7 @@ data class LorcaniaCard(
     val cardSetId: Int = 1,
     val language: String = "",
     val number: Int = 12,
-    val pack: String = "204", //204?
+    val pack: String = "204", // 204?
     val rarity: String = "",
     private val image: String = "",
     @SerialName("blurhash")
@@ -103,6 +103,6 @@ data class LorcaniaCardTranslation(
 @Serializable
 data class LorcaniaCardEdition(
     val id: Int,
-    val name: String, //Regular or foil
-    val code: String //regular or foil
+    val name: String, // Regular or foil
+    val code: String // regular or foil
 )

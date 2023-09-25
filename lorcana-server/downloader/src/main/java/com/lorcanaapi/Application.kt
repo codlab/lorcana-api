@@ -14,18 +14,18 @@ import io.ktor.util.cio.writeChannel
 import io.ktor.utils.io.copyAndClose
 import kotlinx.coroutines.runBlocking
 import net.coobird.thumbnailator.ThumbnailParameter
-import net.coobird.thumbnailator.Thumbnails
 import net.coobird.thumbnailator.name.Rename
 import java.io.File
-import kotlin.system.exitProcess
 
 var cards: List<Card> = emptyList()
 
 val client = HttpClient(CIO) {
 }
 
-private val ExpectedSizeImage = Pair(186, 260)
+// for foiled cards
+// private val ExpectedSizeImage = Pair(186, 260)
 
+@Suppress("LongMethod")
 fun main(arg: Array<String>) {
     cards = runBlocking {
         val textCards = SharedRes.files.allCards.readContent()
@@ -38,8 +38,6 @@ fun main(arg: Array<String>) {
     } catch (e: Throwable) {
         System.getProperty("rootPath")
     }
-
-    println("args ? $rootDir")
 
     // manage lorcania cards !
     listOf(
@@ -69,8 +67,8 @@ fun main(arg: Array<String>) {
                     val lang = langUrl.first
 
                     val folder = "src/data/lorcania_images"
-                    val filenameLarge = "${setCode}_normal_large_${card.number}_${lang}@1x.webp"
-                    val filenameSmall = "${setCode}_normal_small_${card.number}_${lang}@1x.webp"
+                    val filenameLarge = "${setCode}_normal_large_${card.number}_$lang@1x.webp"
+                    val filenameSmall = "${setCode}_normal_small_${card.number}_$lang@1x.webp"
                     val expectedFolder = File(rootDir, folder)
                     val expectedLargeFile = File(expectedFolder, filenameLarge)
                     val expectedFile = File(expectedFolder, filenameSmall)
@@ -98,8 +96,8 @@ fun main(arg: Array<String>) {
         }
     }
 
-    if (true) exitProcess(0)
-
+    // when reinstating the foil cards, if necessary :
+    /*
     runBlocking {
         cards.forEach { card ->
             println("doing ${card.setCode}/${card.cardNumber}")
@@ -110,16 +108,16 @@ fun main(arg: Array<String>) {
             }
 
             val urls = card.imageUrls
-            /*
-            listOf(
-                // not downloading the foil, large & medium due to oversize
-                // Pair(urls.foil, "foil"),
-                // Pair(urls.large, "large"),
-                // Pair(urls.medium, "medium"),
-                Pair(urls.small, "${card.setCode}_normal_small_${card.cardNumber}@1x.png")
-            ).forEach {
-                downloadImage(it.first, rootDir, it.second)
-            }*/
+
+            //listOf(
+            //    // not downloading the foil, large & medium due to oversize
+            //    // Pair(urls.foil, "foil"),
+            //    // Pair(urls.large, "large"),
+            //    // Pair(urls.medium, "medium"),
+            //    Pair(urls.small, "${card.setCode}_normal_small_${card.cardNumber}@1x.png")
+            //).forEach {
+            //    downloadImage(it.first, rootDir, it.second)
+            //}
 
             val folder = "src/data/images"
             val filename = "${card.setCode}_foil_large_${card.cardNumber}_en@1x.png".lowercase()
@@ -149,8 +147,10 @@ fun main(arg: Array<String>) {
             }
         }
     }
+    */
 }
 
+@Suppress("TooGenericExceptionCaught", "SwallowedException")
 suspend fun downloadImage(
     url: String,
     root: String,

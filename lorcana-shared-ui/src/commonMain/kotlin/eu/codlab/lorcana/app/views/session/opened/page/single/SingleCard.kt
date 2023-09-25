@@ -107,7 +107,7 @@ fun CardItem(card: Card) {
             Locale.current.language.split("_")[0].lowercase()
         )
         println("loading $url")
-        val painterResource = asyncPainterResource(data = url)//card.imageUrls.large)
+        val painterResource = asyncPainterResource(data = url) // before :card.imageUrls.large)
 
         val modifier = Modifier
             .widthIn(0.dp, 400.dp)
