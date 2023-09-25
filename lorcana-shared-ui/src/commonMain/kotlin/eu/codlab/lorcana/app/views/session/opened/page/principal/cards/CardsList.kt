@@ -9,11 +9,11 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.TextFieldDefaults
@@ -22,6 +22,7 @@ import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Switch
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -34,6 +35,8 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
+import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
@@ -43,6 +46,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import cafe.adriel.voyager.navigator.tab.Tab
 import cafe.adriel.voyager.navigator.tab.TabOptions
+import com.germainkevin.collapsingtopbar.CollapsingTopBar
+import com.germainkevin.collapsingtopbar.rememberCollapsingTopBarScrollBehavior
 import com.github.codlab.lorcana.card.Card
 import com.willowtreeapps.fuzzywuzzy.diffutils.FuzzySearch
 import eu.codlab.lorcana.app.theme.LocalDarkTheme
@@ -83,18 +88,25 @@ internal class CardsList(val onCard: (Card) -> Unit) : Tab {
         StatusBarAndNavigation()
 
         val states by LocalApp.current.states.collectAsState()
-        var search by remember { mutableStateOf(TextFieldValue("")) }
+        val search = remember { mutableStateOf(TextFieldValue("")) }
         var cards by remember { mutableStateOf(states.cards) }
-        var showCollection by remember { mutableStateOf(false) }
+        val showCollection = remember { mutableStateOf(false) }
 
-        println("having cards ? ${cards.size}")
-
-        LaunchedEffect(search) {
-            println("search $search")
-            cards = searchCards(states.cardMaps, search.text) ?: states.cards
+        LaunchedEffect(search.value) {
+            cards = searchCards(states.cardMaps, search.value.text) ?: states.cards
         }
 
+        val minHeight = 112.dp
+        val maxHeight = 200.dp
+
+        val lazyGridState = rememberLazyGridState()
         val themeEnvironment = LocalThemeEnvironment.current
+        val scrollBehavior = rememberCollapsingTopBarScrollBehavior(
+            isAlwaysCollapsed = false,
+            availableYScaleFactor = 5,
+            collapsedTopBarHeight = minHeight,
+            expandedTopBarMaxHeight = maxHeight
+        )
 
         Column(
             modifier = Modifier
@@ -102,38 +114,21 @@ internal class CardsList(val onCard: (Card) -> Unit) : Tab {
                 .gradient(
                     themeEnvironment.gradientStart,
                     themeEnvironment.gradientEnd
-                ),
-            verticalArrangement = Arrangement.spacedBy(16.dp)
-        ) {
-            Column(
-                modifier = Modifier.padding(
-                    PaddingValues(
-                        start = themeEnvironment.defaultPadding,
-                        end = themeEnvironment.defaultPadding
-                    )
-                ),
-                verticalArrangement = Arrangement.spacedBy(16.dp)
-            ) {
-                Spacer(
-                    Modifier.height(16.dp)
                 )
-
-                TextTitle(text = "Cards")
-
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.spacedBy(16.dp),
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    ShowSearch(
-                        modifier = Modifier
-                            .width(180.dp)
-                    ) { search = it }
-                    ShowSwitchCollection { showCollection = it }
-                }
+                .nestedScroll(scrollBehavior.nestedScrollConnection)
+        ) {
+            CollapsingTopBar(
+                scrollBehavior = scrollBehavior
+            ) { _, progress ->
+                ShowHeader(
+                    search = search,
+                    showCollection = showCollection,
+                    progress = progress
+                )
             }
 
             LazyVerticalGrid(
+                state = lazyGridState,
                 columns = GridCells.Adaptive(minSize = minGridCellSize)
             ) {
                 items(
@@ -142,8 +137,63 @@ internal class CardsList(val onCard: (Card) -> Unit) : Tab {
                         cards[id].cardNumber
                     }
                 ) { photo ->
-                    CardItem(cards[photo], onCard, showCollection)
+                    CardItem(cards[photo], onCard, showCollection.value)
                 }
+            }
+        }
+    }
+}
+
+@Composable
+fun ShowHeader(
+    search: MutableState<TextFieldValue>,
+    showCollection: MutableState<Boolean>,
+    progress: Float
+) {
+    val themeEnvironment = LocalThemeEnvironment.current
+    val paddingDp = with(LocalDensity.current) {
+        (12.dp.value * progress).dp
+    }
+
+    val expectedPadding = paddingDp + 4.dp
+
+    Column(
+        modifier = Modifier.padding(
+            PaddingValues(
+                start = themeEnvironment.defaultPadding,
+                end = themeEnvironment.defaultPadding
+            )
+        ),
+        verticalArrangement = Arrangement.spacedBy(expectedPadding)
+    ) {
+        Column(
+            modifier = Modifier
+                .padding(
+                    start = expectedPadding,
+                    top = expectedPadding,
+                    end = expectedPadding
+                )
+        ) {
+            @Suppress("MagicNumber")
+            TextTitle(
+                text = "Cards",
+                fontSize = (12 + (30 - 12) * progress).sp
+            )
+        }
+
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.spacedBy(16.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            ShowSearch(
+                modifier = Modifier.width(180.dp)
+            ) {
+                search.value = it
+            }
+
+            ShowSwitchCollection {
+                showCollection.value = it
             }
         }
     }
@@ -167,7 +217,6 @@ fun searchCards(cards: Map<String, Card>, search: String): List<Card>? {
     )
 
     val treshold = result.filter { it.score > ThresholdScore }
-    println(treshold)
 
     found += treshold.map { cards[it.string] }.filter { card ->
         null == found.find { null != card && it.cardNumber == card.cardNumber }

@@ -85,6 +85,7 @@ dependencies {
     implementation("androidx.compose.material:material-icons-extended")
     implementation(libs.androidx.activity.compose)
 
+    implementation(project(":kotlin-collapsing-toolbar"))
 
     implementation(compose.runtime)
     implementation(compose.foundation)

@@ -4,8 +4,6 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.cocoapods)
     alias(libs.plugins.jetbrains.compose)
-    alias(libs.plugins.kotlin.plugin.serialization)
-    alias(libs.plugins.about.libraries)
 }
 
 @OptIn(org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi::class)
@@ -44,53 +42,17 @@ kotlin {
         }
     )
 
-    cocoapods {
-        version = "1.0.0"
-        summary = "Some description for the Shared Module"
-        homepage = "Link to the Shared Module homepage"
-        ios.deploymentTarget = "14.1"
-        podfile = project.file("../lorcana-apps/iosApp/Podfile")
-        framework {
-            baseName = "lorcana_shared_ui"
-            isStatic = false
-            embedBitcode("disable")
-            linkerOpts.add("-lsqlite3")
-        }
-    }
-
-    configurations.configureEach {
-        this.attributes.attribute(name, this.name)
-    }
-
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(project(":lorcana-shared"))
-                implementation(project(":kotlin-preview"))
-                implementation(project(":resources"))
-                implementation(project(":kotlin-safearea"))
-                implementation(project(":kotlin-collapsing-toolbar"))
                 implementation(compose.runtime)
                 implementation(compose.foundation)
                 implementation(compose.ui)
                 implementation(compose.material)
-                implementation(compose.material3)
                 @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
                 implementation(compose.components.resources)
-
-                implementation(libs.voyager.navigator)
-                implementation(libs.voyager.tab.navigator)
-                implementation(libs.voyager.transitions)
-                api(libs.look.and.feel)
-                implementation(libs.moko.viewmodel)
-                implementation(libs.moko.viewmodel.compose)
-                implementation(libs.moko.resources.compose)
-
-                implementation(libs.about.libraries)
-                implementation(libs.kamel.image)
-
-                implementation(libs.ktor.core)
-                implementation(libs.fuzzywuzzy.multiplatform)
+                implementation(project(":kotlin-preview"))
+                implementation(libs.kotlinx.coroutines)
             }
         }
         val commonTest by getting {
@@ -106,8 +68,6 @@ kotlin {
                 api(libs.androidx.appcompat)
                 api(libs.androidx.activity.compose)
                 api(libs.insetx)
-
-                implementation(libs.ktor.okhttp)
             }
         }
         val iosX64Main by getting
@@ -116,7 +76,6 @@ kotlin {
         val iosMain by getting {
             dependencies {
                 implementation(libs.insetx)
-                implementation(libs.ktor.darwin)
             }
             dependsOn(commonMain)
             iosX64Main.dependsOn(this)
@@ -128,43 +87,21 @@ kotlin {
             dependsOn(commonMain)
             dependencies {
                 implementation(libs.insetx)
-                implementation(libs.ktor.apache5)
             }
-        }
-    }
-
-    targets.withType<org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget> {
-        binaries.withType<org.jetbrains.kotlin.gradle.plugin.mpp.Framework> {
-            linkerOpts.add("-lsqlite3")
         }
     }
 }
 
 android {
-    namespace = "com.github.codlab.lorcana.sharedui"
+    namespace = "eu.codlab.collapsing"
     buildFeatures {
         compose = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "${rootProject.ext.get("kotlinCompilerExtensionVersion")}"
     }
-    sourceSets["main"].resources.srcDirs("src/commonMain/resources")
 }
 
 dependencies {
     implementation(libs.androidx.window)
-}
-
-aboutLibraries {
-    registerAndroidTasks = false
-    prettyPrint = true
-}
-
-val licenseCopy by tasks.registering(Copy::class) {
-    dependsOn("licenseReleaseReport")
-    from(layout.buildDirectory.file("reports/licenses/licenseReleaseReport.json"))
-    into(layout.projectDirectory.file("src/commonMain/resources/MR/files/"))
-
-    tasks.matching { it.name.startsWith("syncPod") && it.name.endsWith("ForIos") }
-        .forEach { it.mustRunAfter(this) }
 }

@@ -1,0 +1,144 @@
+package com.germainkevin.collapsingtopbar
+
+import androidx.compose.foundation.gestures.ScrollableState
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.contentColorFor
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.Dp
+
+/** Contains default values used for the [CollapsingTopBar] implementation. */
+object CollapsingTopBarDefaults {
+
+    /**
+     * Specifies how the [CollapsingTopBar] should behave when a
+     * [Modifier.nestedScroll][androidx.compose.ui.input.nestedscroll.nestedScroll]
+     * is detected.
+     *
+     *  @param isAlwaysCollapsed This will make this [CollapsingTopBar] stay collapsed and stay with
+     *  the [collapsedTopBarHeight] height. It's false by default
+     * @param isExpandedWhenFirstDisplayed When true, Sets the [CollapsingTopBar] to an expanded
+     * state when first displayed on the UI by setting the [CollapsingTopBar]'s height to
+     * [expandedTopBarMaxHeight]
+     * @param centeredTitleAndSubtitle Whether the title and subtitle should be centered when
+     * Expanded
+     * @param collapsedTopBarHeight The height of the [CollapsingTopBar] when it's collapsed, the
+     * default value is [defaultMinimumTopBarHeight]
+     * @param expandedTopBarMaxHeight The height of the [CollapsingTopBar] when it's expended,
+     * the default value is [defaultMaximumTopBarHeight]
+     * @param scrollableState The [ScrollableState] that you will pass
+     * inside a LazyColumn, so that the [CollapsingTopBar] can only expand when this LazyColumn's
+     * firstVisibleItemScrollOffset is == 0. Can be a
+     * [LazyListState][androidx.compose.foundation.lazy.LazyListState] or a
+     * [LazyGridState][androidx.compose.foundation.lazy.grid.LazyGridState] for example.
+     * */
+    fun scrollBehavior(
+        collapsedTopBarHeight: Dp = defaultMinimumTopBarHeight,
+        expandedTopBarMaxHeight: Dp = defaultMaximumTopBarHeight,
+        isAlwaysCollapsed: Boolean,
+        isExpandedWhenFirstDisplayed: Boolean,
+        scrollableState: ScrollableState?,
+        availableYScaleFactor: Int
+    ): CollapsingTopBarScrollBehavior = DefaultBehaviorOnScroll(
+        isAlwaysCollapsed = isAlwaysCollapsed,
+        isExpandedWhenFirstDisplayed = isExpandedWhenFirstDisplayed,
+        collapsedTopBarHeight = collapsedTopBarHeight,
+        expandedTopBarMaxHeight = expandedTopBarMaxHeight,
+        scrollableState = scrollableState,
+        availableYScaleFactor = availableYScaleFactor
+    )
+
+    /**
+     * Default colors used in the [CollapsingTopBar]
+     * @param backgroundColor The background color of the [CollapsingTopBar] when collapsed
+     * or expanded
+     * @param backgroundColorWhenCollapsingOrExpanding The background color of
+     * the [CollapsingTopBar] when it's collapsing or expanding
+     * @param contentColor The content color inside of the [CollapsingTopBar] when collapsed
+     * or expanded
+     * @param onBackgroundColorChange This callback method has a Color parameter which emits the current
+     * background color of the [CollapsingTopBar] whenever it changes
+     * */
+    @Composable
+    fun colors(
+        backgroundColor: Color = MaterialTheme.colors.primary,
+        backgroundColorWhenCollapsingOrExpanding: Color = backgroundColor,
+        onBackgroundColorChange: @Composable (Color) -> Unit = {},
+        contentColor: Color = contentColorFor(backgroundColor)
+    ): CollapsingTopBarColors = CollapsingTopBarColors(
+        backgroundColor = backgroundColor,
+        contentColor = contentColor,
+        backgroundColorWhenCollapsingOrExpanding = backgroundColorWhenCollapsingOrExpanding,
+        onBackgroundColorChange = onBackgroundColorChange
+    )
+}
+
+/**
+ * Default colors used in the [CollapsingTopBar]
+ * @param backgroundColor The background color of the [CollapsingTopBar] when collapsed
+ * or expanded
+ * @param contentColor The content color inside of the [CollapsingTopBar] when collapsed
+ * or expanded
+ * @param backgroundColorWhenCollapsingOrExpanding The background color of
+ * the [CollapsingTopBar] when it's collapsing or expanding
+ * @param onBackgroundColorChange This callback method has a Color parameter which emits the current
+ * background color of the [CollapsingTopBar] whenever it changes
+ * */
+class CollapsingTopBarColors(
+    val backgroundColor: Color,
+    val contentColor: Color,
+    val backgroundColorWhenCollapsingOrExpanding: Color,
+    val onBackgroundColorChange: @Composable (Color) -> Unit
+)
+
+/**
+ * Specifies how the [CollapsingTopBar] should behave when a
+ * [Modifier.nestedScroll][androidx.compose.ui.input.nestedscroll.nestedScroll] is detected.
+ *
+ * @param isAlwaysCollapsed This will make this [CollapsingTopBar] stay collapsed and stay with
+ * the [collapsedTopBarHeight] height.
+ * @param isExpandedWhenFirstDisplayed When true, Sets the [CollapsingTopBar] to an expanded
+ * state when first displayed on the UI by setting the [CollapsingTopBar]'s height to
+ * [expandedTopBarMaxHeight]
+ * @param centeredTitleWhenCollapsed Should the title be centered when it's the [CollapsingTopBar]
+ * is collapsed
+ * @param centeredTitleAndSubtitle Whether the title and subtitle should be centered when Expanded
+ * @param collapsedTopBarHeight The height of the [CollapsingTopBar] when it's collapsed, the
+ * default value is [defaultMinimumTopBarHeight]
+ * @param expandedTopBarMaxHeight The height of the [CollapsingTopBar] when it's expended, the
+ * default value is [defaultMaximumTopBarHeight]
+ * @param scrollableState The [ScrollableState] that you will pass inside a LazyColumn or a
+ * LazyVerticalGrid, so that the [CollapsingTopBar] can only expand when this LazyColumn's or the
+ * LazyVerticalGrid's firstVisibleItemScrollOffset is == 0. Can be a
+ * [LazyListState][androidx.compose.foundation.lazy.LazyListState] or a
+ * [LazyGridState][androidx.compose.foundation.lazy.grid.LazyGridState] for example.
+ * */
+@Composable
+fun rememberCollapsingTopBarScrollBehavior(
+    isAlwaysCollapsed: Boolean = false,
+    isExpandedWhenFirstDisplayed: Boolean = true,
+    collapsedTopBarHeight: Dp = defaultMinimumTopBarHeight,
+    expandedTopBarMaxHeight: Dp = defaultMaximumTopBarHeight,
+    availableYScaleFactor: Int = 1,
+    scrollableState: ScrollableState? = null
+): CollapsingTopBarScrollBehavior {
+    return remember(
+        isAlwaysCollapsed,
+        isExpandedWhenFirstDisplayed,
+        collapsedTopBarHeight,
+        collapsedTopBarHeight,
+        expandedTopBarMaxHeight,
+        availableYScaleFactor,
+        scrollableState
+    ) {
+        CollapsingTopBarDefaults.scrollBehavior(
+            isAlwaysCollapsed = isAlwaysCollapsed,
+            isExpandedWhenFirstDisplayed = isExpandedWhenFirstDisplayed,
+            collapsedTopBarHeight = collapsedTopBarHeight,
+            expandedTopBarMaxHeight = expandedTopBarMaxHeight,
+            availableYScaleFactor = availableYScaleFactor,
+            scrollableState = scrollableState
+        )
+    }
+}
