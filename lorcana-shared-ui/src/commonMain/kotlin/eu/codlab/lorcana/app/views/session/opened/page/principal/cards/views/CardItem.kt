@@ -46,6 +46,8 @@ fun CardItem(card: Card, onCard: (Card) -> Unit, showCollection: Boolean = true)
         image = card.getImage("normal", "small")
     }
 
+    println("having image $image")
+
     Box(
         modifier = Modifier
             .aspectRatio(Ratio)

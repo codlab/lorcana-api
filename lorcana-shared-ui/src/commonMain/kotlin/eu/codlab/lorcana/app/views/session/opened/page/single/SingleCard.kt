@@ -24,6 +24,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.input.TextFieldValue
+import androidx.compose.ui.text.intl.Locale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.github.codlab.lorcana.card.Card
@@ -32,6 +33,7 @@ import eu.codlab.lorcana.app.theme.LocalThemeEnvironment
 import eu.codlab.lorcana.app.theme.MyApplicationTheme
 import eu.codlab.lorcana.app.theme.gradient
 import eu.codlab.lorcana.app.utils.getImage
+import eu.codlab.lorcana.app.utils.getRemoteUrl
 import eu.codlab.lorcana.app.views.home.LocalApp
 import eu.codlab.lorcana.app.views.widgets.LorcanaOutlinedButton
 import eu.codlab.lorcana.app.views.widgets.LorcanaOutlinedEditText
@@ -99,7 +101,13 @@ fun CardItem(card: Card) {
 
         TextTitle(text = card.name)
 
-        val painterResource = asyncPainterResource(data = card.imageUrls.large)
+        val url = card.getRemoteUrl(
+            "normal",
+            "large",
+            Locale.current.language.split("_")[0].lowercase()
+        )
+        println("loading $url")
+        val painterResource = asyncPainterResource(data = url)//card.imageUrls.large)
 
         val modifier = Modifier
             .widthIn(0.dp, 400.dp)
