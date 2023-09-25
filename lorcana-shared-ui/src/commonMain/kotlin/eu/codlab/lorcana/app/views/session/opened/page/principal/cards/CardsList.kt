@@ -40,6 +40,7 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import cafe.adriel.voyager.navigator.tab.Tab
 import cafe.adriel.voyager.navigator.tab.TabOptions
 import com.github.codlab.lorcana.card.Card
@@ -48,11 +49,9 @@ import eu.codlab.lorcana.app.theme.LocalDarkTheme
 import eu.codlab.lorcana.app.theme.LocalThemeEnvironment
 import eu.codlab.lorcana.app.theme.LorcanaIcons
 import eu.codlab.lorcana.app.theme.MyApplicationTheme
-import eu.codlab.lorcana.app.theme.WindowSize
 import eu.codlab.lorcana.app.theme.gradient
 import eu.codlab.lorcana.app.theme.lorcanaicons.Inkpot
 import eu.codlab.lorcana.app.views.home.LocalApp
-import eu.codlab.lorcana.app.views.home.LocalWindow
 import eu.codlab.lorcana.app.views.session.opened.page.principal.cards.views.CardItem
 import eu.codlab.lorcana.app.views.widgets.LorcanaOutlinedEditText
 import eu.codlab.lorcana.app.views.widgets.StatusBarAndNavigation
@@ -121,17 +120,18 @@ internal class CardsList(val onCard: (Card) -> Unit) : Tab {
 
                 TextTitle(text = "Cards")
 
-                if (LocalWindow.current == WindowSize.EXPANDED) {
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.spacedBy(16.dp)
-                    ) {
-                        ShowSearch { search = it }
-                        ShowSwitchCollection { showCollection = it }
-                    }
-                } else {
-                    ShowSearch { search = it }
-                    ShowSwitchCollection { showCollection = it }
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(16.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    ShowSearch(
+                        modifier = Modifier
+                            .width(180.dp)
+                    ) { search = it }
+                    ShowSwitchCollection(
+
+                    ) { showCollection = it }
                 }
             }
 
@@ -180,7 +180,10 @@ fun searchCards(cards: Map<String, Card>, search: String): List<Card>? {
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
-fun ShowSearch(onSearch: (search: TextFieldValue) -> Unit) {
+fun ShowSearch(
+    modifier: Modifier = Modifier,
+    onSearch: (search: TextFieldValue) -> Unit
+) {
     var search by remember { mutableStateOf(TextFieldValue("")) }
 
     val newColor = if (LocalDarkTheme.current) {
@@ -192,6 +195,7 @@ fun ShowSearch(onSearch: (search: TextFieldValue) -> Unit) {
     val keyboardController = LocalSoftwareKeyboardController.current
 
     LorcanaOutlinedEditText(
+        modifier = modifier,
         colors = TextFieldDefaults.outlinedTextFieldColors(
             textColor = newColor
         ),
@@ -219,13 +223,16 @@ const val Opaque = 1f
 const val SemiTransparent = 0.6f
 
 @Composable
-fun ShowSwitchCollection(showCollection: (Boolean) -> Unit) {
+fun ShowSwitchCollection(
+    modifier: Modifier = Modifier,
+    showCollection: (Boolean) -> Unit
+) {
     val defaultPadding = LocalThemeEnvironment.current.defaultPadding
 
     var selected by remember { mutableStateOf(false) }
 
     Row(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = modifier,
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.End
     ) {
@@ -239,6 +246,7 @@ fun ShowSwitchCollection(showCollection: (Boolean) -> Unit) {
             )
         ) {
             TextNormal(
+                fontSize = 12.sp,
                 text = "All",
                 fontWeight = FontWeight.Bold
             )
@@ -262,7 +270,8 @@ fun ShowSwitchCollection(showCollection: (Boolean) -> Unit) {
             )
         ) {
             TextNormal(
-                text = "My collection",
+                fontSize = 12.sp,
+                text = "Collection",
                 fontWeight = FontWeight.Bold
             )
         }
