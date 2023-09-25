@@ -6,17 +6,15 @@ import dev.icerock.moko.resources.getImageByFileName
 import eu.codlab.lorcana.resources.Resources
 
 fun Card.getImage(mode: String, size: String, lang: String = "en"): ImageResource {
+    val attempt = getLocalUrl(mode, size, lang)
+
     @Suppress("TooGenericExceptionCaught", "SwallowedException")
-    val attempt = "${this.setCode}_${mode}_${size}_${this.cardNumber}_${lang}".lowercase()
-    println("attempt for $attempt")
     return try {
         Resources.images.getImageByFileName(attempt) ?: Resources.images.cardBackx300
     } catch (err: Throwable) {
-        println("$err")
         try {
-            Resources.images.getImageByFileName(
-                "${this.setCode}_${mode}_${size}_${this.cardNumber}_en".lowercase()
-            ) ?: Resources.images.cardBackx300
+            val en = getLocalUrl(mode, size, "en")
+            Resources.images.getImageByFileName(en) ?: Resources.images.cardBackx300
         } catch (err: Throwable) {
             Resources.images.cardBackx300
         }
@@ -25,5 +23,9 @@ fun Card.getImage(mode: String, size: String, lang: String = "en"): ImageResourc
 
 fun Card.getRemoteUrl(mode: String, size: String, lang: String = "en"): String {
     val root = "https://lorcana.codlab.eu/images/"
-    return "$root/${this.setCode}_${mode}_${size}_${this.cardNumber}_${lang}@1x.webp".lowercase()
+    return "$root/${this.setCode}_${mode}_${size}_${this.cardNumber}_$lang@1x.webp".lowercase()
+}
+
+fun Card.getLocalUrl(mode: String, size: String, lang: String = "en"): String {
+    return "${this.setCode}_${mode}_${size}_${this.cardNumber}_$lang".lowercase()
 }
