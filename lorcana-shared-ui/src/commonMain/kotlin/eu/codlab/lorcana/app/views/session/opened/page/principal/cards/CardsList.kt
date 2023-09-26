@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.TextFieldDefaults
@@ -25,6 +26,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -32,6 +34,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
@@ -50,11 +53,11 @@ import com.germainkevin.collapsingtopbar.CollapsingTopBar
 import com.germainkevin.collapsingtopbar.rememberCollapsingTopBarScrollBehavior
 import com.github.codlab.lorcana.card.Card
 import com.willowtreeapps.fuzzywuzzy.diffutils.FuzzySearch
+import eu.codlab.lorcana.app.theme.AppColor
 import eu.codlab.lorcana.app.theme.LocalDarkTheme
 import eu.codlab.lorcana.app.theme.LocalThemeEnvironment
 import eu.codlab.lorcana.app.theme.LorcanaIcons
 import eu.codlab.lorcana.app.theme.MyApplicationTheme
-import eu.codlab.lorcana.app.theme.gradient
 import eu.codlab.lorcana.app.theme.lorcanaicons.Inkpot
 import eu.codlab.lorcana.app.views.home.LocalApp
 import eu.codlab.lorcana.app.views.session.opened.page.principal.cards.views.CardItem
@@ -63,9 +66,9 @@ import eu.codlab.lorcana.app.views.widgets.StatusBarAndNavigation
 import eu.codlab.lorcana.app.views.widgets.TextNormal
 import eu.codlab.lorcana.app.views.widgets.TextTitle
 
-internal class CardsList(val onCard: (Card) -> Unit) : Tab {
+private val minGridCellSize = 128.dp
 
-    private val minGridCellSize = 128.dp
+internal class CardsList(val onCard: (Card) -> Unit) : Tab {
 
     override val options: TabOptions
         @Composable
@@ -82,63 +85,100 @@ internal class CardsList(val onCard: (Card) -> Unit) : Tab {
             }
         }
 
-    @OptIn(ExperimentalComposeUiApi::class)
     @Composable
     override fun Content() {
-        StatusBarAndNavigation()
+        val useCornerTop = LocalDarkTheme.current
 
-        val states by LocalApp.current.states.collectAsState()
-        val search = remember { mutableStateOf(TextFieldValue("")) }
-        var cards by remember { mutableStateOf(states.cards) }
-        val showCollection = remember { mutableStateOf(false) }
+        MyApplicationTheme(darkTheme = true) {
+            ShowCardList(
+                onCard = onCard,
+                useCornerTop = useCornerTop
+            )
+        }
+    }
+}
 
-        LaunchedEffect(search.value) {
-            cards = searchCards(states.cardMaps, search.value.text) ?: states.cards
+@Composable
+fun ShowCardList(onCard: (Card) -> Unit, useCornerTop: Boolean) {
+    StatusBarAndNavigation()
+    val states by LocalApp.current.states.collectAsState()
+    val search = remember { mutableStateOf(TextFieldValue("")) }
+    var cards by remember { mutableStateOf(states.cards) }
+    val showCollection = remember { mutableStateOf(false) }
+
+    LaunchedEffect(search.value) {
+        cards = searchCards(states.cardMaps, search.value.text) ?: states.cards
+    }
+
+    val minHeight = 112.dp
+    val maxHeight = 200.dp
+
+    val lazyGridState = rememberLazyGridState()
+    val scrollBehavior = rememberCollapsingTopBarScrollBehavior(
+        isAlwaysCollapsed = false,
+        availableYScaleFactor = 5,
+        collapsedTopBarHeight = minHeight,
+        expandedTopBarMaxHeight = maxHeight
+    )
+    var currentProgress by remember {
+        mutableFloatStateOf(1f)
+    }
+    val cornerDp = with(LocalDensity.current) {
+        5.dp + (20.dp.value * currentProgress).dp
+    }
+
+    val modifier = if (useCornerTop) {
+        Modifier.clip(
+            shape = RoundedCornerShape(
+                topStart = cornerDp,
+                topEnd = cornerDp
+            )
+        ).fillMaxSize()
+    } else {
+        Modifier.fillMaxSize()
+    }
+
+    Column(
+        modifier = modifier
+            .background(color = AppColor.LorcanaDarkBlue)
+            .nestedScroll(scrollBehavior.nestedScrollConnection)
+    ) {
+        CollapsingTopBar(
+            scrollBehavior = scrollBehavior
+        ) { _, progress ->
+            currentProgress = progress
+            ShowHeader(
+                search = search,
+                showCollection = showCollection,
+                progress = progress
+            )
         }
 
-        val minHeight = 112.dp
-        val maxHeight = 200.dp
-
-        val lazyGridState = rememberLazyGridState()
-        val themeEnvironment = LocalThemeEnvironment.current
-        val scrollBehavior = rememberCollapsingTopBarScrollBehavior(
-            isAlwaysCollapsed = false,
-            availableYScaleFactor = 5,
-            collapsedTopBarHeight = minHeight,
-            expandedTopBarMaxHeight = maxHeight
-        )
-
-        Column(
+        LazyVerticalGrid(
             modifier = Modifier
-                .fillMaxSize()
-                .gradient(
-                    themeEnvironment.gradientStart,
-                    themeEnvironment.gradientEnd
+                .clip(
+                    shape = RoundedCornerShape(
+                        topStart = cornerDp,
+                        topEnd = cornerDp
+                    )
                 )
-                .nestedScroll(scrollBehavior.nestedScrollConnection)
-        ) {
-            CollapsingTopBar(
-                scrollBehavior = scrollBehavior
-            ) { _, progress ->
-                ShowHeader(
-                    search = search,
-                    showCollection = showCollection,
-                    progress = progress
-                )
-            }
-
-            LazyVerticalGrid(
-                state = lazyGridState,
-                columns = GridCells.Adaptive(minSize = minGridCellSize)
-            ) {
-                items(
-                    count = cards.size,
-                    key = { id ->
-                        cards[id].cardNumber
+                .background(
+                    color = if (LocalDarkTheme.current) {
+                        Color.LightGray
+                    } else {
+                        Color.White
                     }
-                ) { photo ->
-                    CardItem(cards[photo], onCard, showCollection.value)
+                ),
+            state = lazyGridState,
+            columns = GridCells.Adaptive(minSize = minGridCellSize)
+        ) {
+            items(
+                count = cards.size,
+                key = { id ->
+                    cards[id].cardNumber
                 }
+            ) { photo ->
+                CardItem(cards[photo], onCard, showCollection.value)
             }
         }
     }

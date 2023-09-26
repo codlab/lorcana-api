@@ -21,7 +21,8 @@ data class ThemeEnvironment(
         graySemiTransparent = AppColor.GraySemiTransparentDark
     ),
     val gradientStart: Color = AppColor.Primary,
-    val gradientEnd: Color = AppColor.Blue
+    val gradientEnd: Color = AppColor.Blue,
+    val lorcanaBlue: Color = AppColor.LorcanaDarkBlue
 )
 
 fun createEnvironmentDark(environment: ThemeEnvironment) = environment.copy(
@@ -30,7 +31,8 @@ fun createEnvironmentDark(environment: ThemeEnvironment) = environment.copy(
         graySemiTransparent = AppColor.GraySemiTransparentDark
     ),
     gradientStart = AppColor.Primary,
-    gradientEnd = AppColor.Blue
+    gradientEnd = AppColor.Blue,
+    lorcanaBlue = AppColor.LorcanaDarkBlue
 )
 
 fun createEnvironmentLight(environment: ThemeEnvironment) = environment.copy(
@@ -43,5 +45,6 @@ fun createEnvironmentLight(environment: ThemeEnvironment) = environment.copy(
         graySemiTransparent = AppColor.GraySemiTransparentDark
     ),
     gradientStart = Color.White,
-    gradientEnd = AppColor.BlueLighter
+    gradientEnd = AppColor.BlueLighter,
+    lorcanaBlue = AppColor.LorcanaLightBlue
 )

@@ -35,6 +35,9 @@ object AppColor {
     val Red = Color(0xFFD63838)
 
     val BackgroundBlue = Color(0xff0d1a2e)
+
+    val LorcanaDarkBlue = Color(0xff181a40)
+    val LorcanaLightBlue = Color(0xff2469c0)
 }
 
 @Preview(widthDp = 250)
@@ -62,9 +65,12 @@ fun PreviewColors() {
             AppColor.BackgroundBlue
         ).map {
             Divider(
-                modifier = Modifier.fillMaxWidth().height(2.dp).background(
-                    color = it
-                )
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(2.dp)
+                    .background(
+                        color = it
+                    )
             )
         }
     }
