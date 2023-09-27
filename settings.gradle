@@ -40,5 +40,3 @@ include(":lorcana-shared")
 
 ["backend", "downloader"].each(setProject("lorcana-server"))
 ["androidApp", "jvmApp", "jsApp", "app-ui"].each(setProject("lorcana-apps"))
-
-["preview", "safearea", "collapsing-toolbar"].each { include("kotlin-$it") }
