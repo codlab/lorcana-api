@@ -3,7 +3,7 @@ package eu.codlab.lorcana.app.views.widgets
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import eu.codlab.lorcana.app.theme.LocalDarkTheme
-import eu.codlab.lorcana.app.theme.rememberWindowInsetsController
+import eu.codlab.safearea.theme.rememberWindowInsetsController
 
 @Composable
 fun StatusBarAndNavigation() {

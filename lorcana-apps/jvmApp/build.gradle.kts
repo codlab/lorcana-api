@@ -32,6 +32,7 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach 
 
 dependencies {
     api(project(":lorcana-shared-ui"))
+    api(libs.safearea)
     api(libs.jetbrains.compose.runtime)
     api(libs.jetbrains.compose.ui)
     api(libs.jetbrains.compose.foundation.layout)

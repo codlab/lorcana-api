@@ -66,10 +66,10 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(project(":lorcana-shared"))
-                implementation(project(":kotlin-preview"))
                 implementation(project(":resources"))
-                implementation(project(":kotlin-safearea"))
-                implementation(project(":kotlin-collapsing-toolbar"))
+                api(libs.safearea)
+                api(libs.preview.stub)
+                api(libs.collapsing.toolbar)
                 implementation(compose.runtime)
                 implementation(compose.foundation)
                 implementation(compose.ui)
@@ -106,6 +106,8 @@ kotlin {
                 api(libs.androidx.appcompat)
                 api(libs.androidx.activity.compose)
                 api(libs.insetx)
+                implementation(libs.androidx.window)
+                //api(libs.androidx.ui.tooling.preview.android)
 
                 implementation(libs.ktor.okhttp)
             }
@@ -149,10 +151,6 @@ android {
         kotlinCompilerExtensionVersion = "${rootProject.ext.get("kotlinCompilerExtensionVersion")}"
     }
     sourceSets["main"].resources.srcDirs("src/commonMain/resources")
-}
-
-dependencies {
-    implementation(libs.androidx.window)
 }
 
 aboutLibraries {

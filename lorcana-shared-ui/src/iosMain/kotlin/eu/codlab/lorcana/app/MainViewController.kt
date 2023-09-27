@@ -10,7 +10,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.interop.LocalUIViewController
 import com.moriatsushi.insetsx.WindowInsetsUIViewController
 import eu.codlab.lorcana.app.views.home.App
-import eu.codlab.lorcana.app.views.widgets.ProvideSafeArea
+import eu.codlab.safearea.views.ProvideSafeArea
 import moe.tlaster.precompose.PreComposeWindowHolder
 import moe.tlaster.precompose.lifecycle.LocalLifecycleOwner
 import moe.tlaster.precompose.stateholder.LocalStateHolder

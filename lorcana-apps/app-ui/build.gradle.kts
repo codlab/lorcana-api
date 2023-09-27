@@ -69,9 +69,11 @@ android {
 
 dependencies {
     implementation(project(":lorcana-shared"))
-    implementation(project(":kotlin-preview"))
-    implementation(project(":kotlin-safearea"))
     implementation(project(":resources"))
+
+    implementation(libs.safearea)
+    implementation(libs.preview.stub)
+    implementation(libs.collapsing.toolbar)
 
     implementation(libs.androidx.appcompat)
     implementation(platform("androidx.compose:compose-bom:2023.01.00"))
@@ -84,8 +86,6 @@ dependencies {
     implementation("androidx.compose.material:material-icons-core")
     implementation("androidx.compose.material:material-icons-extended")
     implementation(libs.androidx.activity.compose)
-
-    implementation(project(":kotlin-collapsing-toolbar"))
 
     implementation(compose.runtime)
     implementation(compose.foundation)
