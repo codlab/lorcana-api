@@ -1,5 +1,6 @@
 package eu.codlab.lorcana
 
+import kotlinx.cinterop.BetaInteropApi
 import kotlinx.cinterop.ExperimentalForeignApi
 import kotlinx.cinterop.ObjCObjectVar
 import kotlinx.cinterop.alloc
@@ -38,8 +39,8 @@ class ResourceReader {
         }
     }
 
-    @OptIn(ExperimentalForeignApi::class)
-    fun readResource(bundle: NSBundle, name: String, path: String): String {
+    @OptIn(ExperimentalForeignApi::class, BetaInteropApi::class)
+    fun readResource(bundle: NSBundle, name: String, originalPath: String): String {
         readFiles(bundle, "Frameworks")
         val (filename, type) = when (val lastPeriodIndex = name.lastIndexOf('.')) {
             0 -> {
@@ -63,7 +64,7 @@ class ResourceReader {
         val path = bundle.pathForResource(
             name = filename,
             ofType = type,
-            inDirectory = "compose-resources/MR/files"
+            inDirectory = originalPath
         ) ?: error(
             "Couldn't get path of $name (parsed as: $listingWrongPathResource)"
         )

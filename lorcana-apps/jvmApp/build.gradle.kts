@@ -87,6 +87,7 @@ compose.desktop {
 
                         // optional
                         ascProvider.set(rootProject.ext.get("MacOSNotarizationTeamID") as String)
+                        //teamID.set(rootProject.ext.get("MacOSNotarizationTeamID") as String)
                     }
                 }
 

@@ -153,16 +153,13 @@ android {
     sourceSets["main"].resources.srcDirs("src/commonMain/resources")
 }
 
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
+    kotlinOptions {
+        jvmTarget = libs.versions.java.get()
+    }
+}
+
 aboutLibraries {
     registerAndroidTasks = false
     prettyPrint = true
-}
-
-val licenseCopy by tasks.registering(Copy::class) {
-    dependsOn("licenseReleaseReport")
-    from(layout.buildDirectory.file("reports/licenses/licenseReleaseReport.json"))
-    into(layout.projectDirectory.file("src/commonMain/resources/MR/files/"))
-
-    tasks.matching { it.name.startsWith("syncPod") && it.name.endsWith("ForIos") }
-        .forEach { it.mustRunAfter(this) }
 }

@@ -11,7 +11,7 @@ plugins {
 kotlin {
     targetHierarchy.default()
 
-    android {
+    androidTarget {
         compilations.all {
             kotlinOptions {
                 jvmTarget = libs.versions.java.get()
@@ -100,6 +100,12 @@ multiplatformResources {
     iosBaseLocalizationRegion = "en"
 }
 
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
+    kotlinOptions {
+        jvmTarget = libs.versions.java.get()
+    }
+}
+
 tasks.register("generateMR") {
     group = "moko-resources"
     dependsOn("licenseCopy")
@@ -116,11 +122,8 @@ tasks.register("generateImages") {
     parent.list()?.forEach {
         val original = File(parent, it)
         val newFile = File(resources, it)
-        try {
-            println("copy from ${original.absolutePath} to ${newFile.absolutePath}")
+        if (!newFile.exists()) {
             original.copyTo(newFile, overwrite = false)
-        } catch (e: FileAlreadyExistsException) {
-            // nothing
         }
     }
 }
@@ -129,12 +132,12 @@ tasks.register("concatenateMR") {
     dependsOn("generateImages")
     group = "moko-resources"
     val parent = file("${rootProject.projectDir}/src/data/cards")
-    val array = parent.list()?.map{
+    val array = parent.list()?.map {
         val current = File(parent.absolutePath, it)
         current.readText()
     } ?: mutableListOf()
 
-    val concatenateText = array.joinToString( separator = ",", prefix = "[", postfix = "]")
+    val concatenateText = array.joinToString(separator = ",", prefix = "[", postfix = "]")
     val concatenate = File(parent.absolutePath, "../allCards.txt")
     concatenate.writeText(concatenateText)
 

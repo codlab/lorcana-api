@@ -1,9 +1,8 @@
 [versions]
-java = "11"
-android = "8.1.0"
+java = "17"
+android = "8.1.1"
 kotlin = "1.9.10"
 kotlinx-coroutines = "1.7.1"
-kotlin-compiler-extension-version = "1.5.3"
 
 android-google-services = "4.3.15"
 android-appdistribution = "4.0.0"
@@ -15,6 +14,7 @@ ktor-datetime = "0.3.3"
 ktor = "2.3.4"
 
 jetbrains-compose = "1.5.10-beta01"
+kotlin-compiler-extension-version = "1.5.3"
 
 buildkonfig = "0.13.3"
 
