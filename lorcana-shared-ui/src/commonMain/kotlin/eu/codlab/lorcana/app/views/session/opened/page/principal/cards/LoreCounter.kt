@@ -15,15 +15,17 @@ import eu.codlab.lorcana.app.theme.LocalThemeEnvironment
 import eu.codlab.lorcana.app.theme.LorcanaIcons
 import eu.codlab.lorcana.app.theme.MyApplicationTheme
 import eu.codlab.lorcana.app.theme.lorcanaicons.Pip
+import eu.codlab.lorcana.app.utils.localized
 import eu.codlab.lorcana.app.views.menu.systemBackground
 import eu.codlab.lorcana.app.views.widgets.StatusBarAndNavigation
 import eu.codlab.lorcana.app.views.widgets.TextNormal
+import eu.codlab.lorcana.resources.Resources
 
 internal object LoreCounter : Tab {
     override val options: TabOptions
         @Composable
         get() {
-            val title = "Lore"
+            val title = Resources.strings.lore.localized()
             val icon = rememberVectorPainter(LorcanaIcons.Pip)
 
             return remember {
@@ -55,7 +57,7 @@ fun LoreCounterContent() {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         TextNormal(
-            text = "Coming soon",
+            text = Resources.strings.coming_soon.localized(),
             color = color
         )
     }

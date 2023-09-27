@@ -1,13 +1,16 @@
 package eu.codlab.lorcana.app.views.session.opened.page.principal.cards.views
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Card
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -16,11 +19,15 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.clipToBounds
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.ColorMatrix
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.github.codlab.lorcana.card.Card
 import dev.icerock.moko.resources.compose.painterResource
+import eu.codlab.lorcana.app.theme.MyApplicationTheme
 import eu.codlab.lorcana.app.utils.getImage
 import eu.codlab.lorcana.app.views.home.LocalApp
 import eu.codlab.lorcana.models.FoilNormal
@@ -32,7 +39,7 @@ private val GridCellPadding = 10.dp
 private const val Ratio = 0.75f
 
 @Composable
-fun CardItem(card: Card, onCard: (Card) -> Unit, showCollection: Boolean = true) {
+fun CardItem(card: Card, showCollection: Boolean = true, onCard: (Card) -> Unit) {
     val localApp = LocalApp.current
 
     var image by remember { mutableStateOf(card.getImage("normal", "small")) }
@@ -54,38 +61,41 @@ fun CardItem(card: Card, onCard: (Card) -> Unit, showCollection: Boolean = true)
             .fillMaxWidth()
             .padding(GridCellPadding)
     ) {
-        Image(
-            painter = painterResource(image),
-            contentDescription = null,
-            modifier = Modifier
-                .fillMaxSize()
-                .clip(shape)
-                .clickable { onCard(card) },
-            colorFilter = if (!showCollection || numbers.isOwned()) {
-                null
-            } else {
-                ColorFilter.colorMatrix(ColorMatrix().apply { setToSaturation(0f) })
-            }
-        )
+        Card(
+            modifier = Modifier.padding(2.dp),
+            shape = shape,
+            elevation = 12.dp
+        ) {
+            Image(
+                painter = painterResource(image),
+                contentDescription = null,
+                modifier = Modifier
+                    .background(Color.Black)
+                    .fillMaxSize()
+                    .clip(shape)
+                    .clickable { onCard(card) }
+                    .clipToBounds()
+                    .aspectRatio(0.70f),
+                //contentScale = ContentScale.None,
+                colorFilter = if (!showCollection || numbers.isOwned()) {
+                    null
+                } else {
+                    ColorFilter.colorMatrix(ColorMatrix().apply { setToSaturation(0f) })
+                }
+            )
+        }
     }
-    /*
-            val painterResource = asyncPainterResource(data = image ?: card.imageUrls.small)
-            KamelImage(
-            modifier = Modifier
-                .fillMaxSize()
-                .clip(shape = shape),
-            resource = painterResource,
-            contentDescription = card.name,
-            onLoading = { _ ->
-                Image(
-                    modifier = Modifier.clip(shape = shape),
-                    painter = default,
-                    contentDescription = ""
-                )
-            },
-            onFailure = { _ ->
-                // would be interesting to manage the state here
+}
+
+@Preview
+@Composable
+fun CardItemPreview() {
+    MyApplicationTheme {
+        Column(modifier = Modifier.background(Color.White)) {
+
+            CardItem(card = Card.fake()) {
+
             }
-        )
-     */
+        }
+    }
 }

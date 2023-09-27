@@ -15,15 +15,17 @@ import eu.codlab.lorcana.app.theme.LocalThemeEnvironment
 import eu.codlab.lorcana.app.theme.LorcanaIcons
 import eu.codlab.lorcana.app.theme.MyApplicationTheme
 import eu.codlab.lorcana.app.theme.lorcanaicons.Exert
+import eu.codlab.lorcana.app.utils.localized
 import eu.codlab.lorcana.app.views.menu.systemBackground
 import eu.codlab.lorcana.app.views.widgets.StatusBarAndNavigation
 import eu.codlab.lorcana.app.views.widgets.TextNormal
+import eu.codlab.lorcana.resources.Resources
 
 internal object Decks : Tab {
     override val options: TabOptions
         @Composable
         get() {
-            val title = "Decks"
+            val title = Resources.strings.decks.localized()
             val icon = rememberVectorPainter(LorcanaIcons.Exert)
 
             return remember {
@@ -55,7 +57,7 @@ fun DecksContent() {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         TextNormal(
-            text = "Coming soon",
+            text = Resources.strings.coming_soon.localized(),
             color = color
         )
     }

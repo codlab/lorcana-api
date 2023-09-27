@@ -1,6 +1,7 @@
 package eu.codlab.lorcana.app.views.session.opened.page.single
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -14,6 +15,7 @@ import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.Card
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -23,17 +25,20 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.intl.Locale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.github.codlab.lorcana.card.Card
 import dev.icerock.moko.resources.compose.painterResource
+import dev.icerock.moko.resources.compose.stringResource
+import eu.codlab.lorcana.app.theme.LocalDarkTheme
 import eu.codlab.lorcana.app.theme.LocalThemeEnvironment
 import eu.codlab.lorcana.app.theme.MyApplicationTheme
-import eu.codlab.lorcana.app.theme.gradient
 import eu.codlab.lorcana.app.utils.getImage
 import eu.codlab.lorcana.app.utils.getRemoteUrl
+import eu.codlab.lorcana.app.utils.localized
 import eu.codlab.lorcana.app.views.home.LocalApp
 import eu.codlab.lorcana.app.views.widgets.LorcanaOutlinedButton
 import eu.codlab.lorcana.app.views.widgets.LorcanaOutlinedEditText
@@ -41,6 +46,7 @@ import eu.codlab.lorcana.app.views.widgets.TextNormal
 import eu.codlab.lorcana.app.views.widgets.TextTitle
 import eu.codlab.lorcana.app.views.widgets.systemBackground
 import eu.codlab.lorcana.models.FoilNormal
+import eu.codlab.lorcana.resources.Resources
 import io.kamel.image.KamelImage
 import io.kamel.image.asyncPainterResource
 
@@ -49,13 +55,16 @@ fun SingleCard(card: Card) {
     val env = LocalThemeEnvironment.current
 
     println("having color ${env.gradientStart}")
+
+    val color = if (LocalDarkTheme.current) {
+        env.lorcanaBlue
+    } else {
+        Color.White
+    }
     Column(
         Modifier
             .fillMaxSize()
-            .gradient(
-                env.gradientStart,
-                env.gradientEnd
-            ),
+            .background(color),
         Arrangement.spacedBy(5.dp)
     ) {
         CardItem(card)
@@ -115,21 +124,27 @@ fun CardItem(card: Card) {
             .clip(shape = shape)
             .aspectRatio(ratio = 0.72F)
 
-        KamelImage(
-            modifier = modifier,
-            resource = painterResource,
-            contentDescription = card.name,
-            onLoading = { _ ->
-                Image(
-                    modifier = modifier,
-                    painter = painter,
-                    contentDescription = ""
-                )
-            },
-            onFailure = { _ ->
-                // would be interesting to manage the state here
-            }
-        )
+        Card(
+            modifier = Modifier,
+            shape = shape,
+            elevation = 24.dp
+        ) {
+            KamelImage(
+                modifier = modifier,
+                resource = painterResource,
+                contentDescription = card.name,
+                onLoading = { _ ->
+                    Image(
+                        modifier = modifier,
+                        painter = painter,
+                        contentDescription = ""
+                    )
+                },
+                onFailure = { _ ->
+                    // would be interesting to manage the state here
+                }
+            )
+        }
 
         val update: (FoilNormal) -> Unit = {
             localApp.save(
@@ -141,7 +156,7 @@ fun CardItem(card: Card) {
         }
 
         MutableIntegerBox(
-            title = "Normal",
+            title = Resources.strings.normal.localized(),
             value = numbers.normal
         ) {
             numbers = numbers.copy(normal = if (it > 0) it else 0)
@@ -149,7 +164,7 @@ fun CardItem(card: Card) {
         }
 
         MutableIntegerBox(
-            title = "Foil",
+            title = Resources.strings.foil.localized(),
             value = numbers.foil
         ) {
             numbers = numbers.copy(foil = it)

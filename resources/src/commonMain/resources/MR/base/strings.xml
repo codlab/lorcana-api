@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<resources>
+    <!-- main screen -->
+    <string name="decks">Decks</string>
+    <string name="cards">Cards</string>
+    <string name="lore">Lore</string>
+    <string name="search">Search</string>
+    <string name="all">All</string>
+    <string name="collection">Collection</string>
+
+    <!-- general -->
+    <string name="coming_soon">Coming Soon</string>
+
+    <!-- single card -->
+    <string name="foil">Foil</string>
+    <string name="normal">Normal</string>
+</resources>

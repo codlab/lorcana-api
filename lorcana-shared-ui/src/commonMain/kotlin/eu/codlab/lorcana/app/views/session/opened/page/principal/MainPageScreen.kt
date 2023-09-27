@@ -12,6 +12,7 @@ import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.Icon
 import androidx.compose.material.Scaffold
+import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -56,18 +57,22 @@ fun MainPageScreen(onCard: (Card) -> Unit) {
 
 @Composable
 fun BottomBar(onCard: (Card) -> Unit) {
-    Column(
-        modifier = Modifier.background(
-            color = LocalThemeEnvironment.current.navigationColors.background
-        )
+    Surface(
+        elevation = 24.dp
     ) {
-        BottomNavigation(backgroundColor = Color.Transparent) {
-            TabNavigationItem(LoreCounter)
-            TabNavigationItem(CardsList(onCard))
-            TabNavigationItem(Decks)
-        }
+        Column(
+            modifier = Modifier.background(
+                color = LocalThemeEnvironment.current.navigationColors.background
+            )
+        ) {
+            BottomNavigation(backgroundColor = Color.Transparent) {
+                TabNavigationItem(LoreCounter)
+                TabNavigationItem(CardsList(onCard))
+                TabNavigationItem(Decks)
+            }
 
-        BottomSpacer()
+            BottomSpacer()
+        }
     }
 }
 

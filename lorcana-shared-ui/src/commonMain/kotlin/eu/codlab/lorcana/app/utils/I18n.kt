@@ -2,10 +2,9 @@ package eu.codlab.lorcana.app.utils
 
 import androidx.compose.runtime.Composable
 import dev.icerock.moko.resources.StringResource
+import dev.icerock.moko.resources.compose.stringResource
 
 @Composable
-fun i18n(stringResource: StringResource) {
-    println("unused $stringResource")
-    // StringDesc.Resource(stringResource).localized()
-    // TODO implementation for js :x
+fun StringResource.localized(): String {
+    return stringResource(resource = this)
 }

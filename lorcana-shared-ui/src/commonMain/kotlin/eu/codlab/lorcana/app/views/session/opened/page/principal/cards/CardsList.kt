@@ -59,6 +59,7 @@ import eu.codlab.lorcana.app.theme.LocalThemeEnvironment
 import eu.codlab.lorcana.app.theme.LorcanaIcons
 import eu.codlab.lorcana.app.theme.MyApplicationTheme
 import eu.codlab.lorcana.app.theme.lorcanaicons.Inkpot
+import eu.codlab.lorcana.app.utils.localized
 import eu.codlab.lorcana.app.views.home.LocalApp
 import eu.codlab.lorcana.app.views.session.opened.page.principal.cards.views.CardItem
 import eu.codlab.lorcana.app.views.widgets.LorcanaOutlinedEditText
@@ -66,6 +67,7 @@ import eu.codlab.lorcana.app.views.widgets.StatusBarAndNavigation
 import eu.codlab.lorcana.app.views.widgets.TextNormal
 import eu.codlab.lorcana.app.views.widgets.TextTitle
 import eu.codlab.lorcana.app.views.widgets.TopSpacer
+import eu.codlab.lorcana.resources.Resources
 
 private val minGridCellSize = 128.dp
 
@@ -74,7 +76,7 @@ internal class CardsList(val onCard: (Card) -> Unit) : Tab {
     override val options: TabOptions
         @Composable
         get() {
-            val title = "Cards"
+            val title = Resources.strings.cards.localized()
             val icon = rememberVectorPainter(LorcanaIcons.Inkpot)
 
             return remember {
@@ -129,12 +131,14 @@ fun ShowCardList(onCard: (Card) -> Unit, useCornerTop: Boolean) {
     }
 
     val modifier = if (useCornerTop) {
-        Modifier.clip(
-            shape = RoundedCornerShape(
-                topStart = cornerDp,
-                topEnd = cornerDp
+        Modifier
+            .clip(
+                shape = RoundedCornerShape(
+                    topStart = cornerDp,
+                    topEnd = cornerDp
+                )
             )
-        ).fillMaxSize()
+            .fillMaxSize()
     } else {
         Modifier.fillMaxSize()
     }
@@ -181,7 +185,7 @@ fun ShowCardList(onCard: (Card) -> Unit, useCornerTop: Boolean) {
                     cards[id].cardNumber
                 }
             ) { photo ->
-                CardItem(cards[photo], onCard, showCollection.value)
+                CardItem(cards[photo], showCollection.value, onCard)
             }
         }
     }
@@ -219,7 +223,7 @@ fun ShowHeader(
         ) {
             @Suppress("MagicNumber")
             TextTitle(
-                text = "Cards",
+                text = Resources.strings.cards.localized(),
                 fontSize = (12 + (30 - 12) * progress).sp
             )
         }
@@ -230,7 +234,7 @@ fun ShowHeader(
             verticalAlignment = Alignment.CenterVertically
         ) {
             ShowSearch(
-                modifier = Modifier.width(180.dp)
+                modifier = Modifier.width(160.dp)
             ) {
                 search.value = it
             }
@@ -290,7 +294,10 @@ fun ShowSearch(
             textColor = newColor
         ),
         label = {
-            TextNormal(text = "Search", color = newColor)
+            TextNormal(
+                text = Resources.strings.search.localized(),
+                color = newColor,
+                fontSize = 12.sp)
         },
         leadingIcon = {
             Image(
@@ -337,7 +344,7 @@ fun ShowSwitchCollection(
         ) {
             TextNormal(
                 fontSize = 12.sp,
-                text = "All",
+                text = Resources.strings.all.localized(),
                 fontWeight = FontWeight.Bold
             )
         }
@@ -361,7 +368,7 @@ fun ShowSwitchCollection(
         ) {
             TextNormal(
                 fontSize = 12.sp,
-                text = "Collection",
+                text = Resources.strings.collection.localized(),
                 fontWeight = FontWeight.Bold
             )
         }
