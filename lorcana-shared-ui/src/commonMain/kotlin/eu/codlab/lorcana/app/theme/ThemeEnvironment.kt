@@ -28,7 +28,7 @@ data class ThemeEnvironment(
 fun createEnvironmentDark(environment: ThemeEnvironment) = environment.copy(
     navigationColors = colorNavigationsDark,
     colors = ColorTheme(
-        graySemiTransparent = AppColor.GraySemiTransparentDark
+        graySemiTransparent = AppColor.GraySemiTransparentLight
     ),
     gradientStart = AppColor.Primary,
     gradientEnd = AppColor.Blue,
