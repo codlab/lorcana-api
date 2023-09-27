@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -19,8 +18,6 @@ import eu.codlab.lorcana.app.views.init.InitializeScreen
 import eu.codlab.lorcana.app.views.session.opened.page.principal.MainPageScreen
 import eu.codlab.lorcana.app.views.session.opened.page.single.SingleCard
 import eu.codlab.lorcana.app.views.widgets.BottomSpacer
-import eu.codlab.lorcana.app.views.widgets.SafeArea
-import eu.codlab.lorcana.app.views.widgets.SafeAreaBehavior
 import eu.codlab.lorcana.app.views.widgets.TopSpacer
 import moe.tlaster.precompose.navigation.NavHost
 import moe.tlaster.precompose.navigation.NavOptions
@@ -46,59 +43,30 @@ fun AppContent() {
         // The start destination
         initialRoute = "/home"
     ) {
-        // Define a scene to the navigation graph
         scene(
             // Scene's route path
             route = "/home",
             // Navigation transition for this scene, this is optional
             navTransition = NavTransition()
         ) {
-            SideEffect {
-                println("switch to initialize")
-                currentPage = Pages.Initialize
-            }
+            val currentState by model.states.collectAsState()
 
-            LaunchedEffect(state) {
-                println("having $state")
-                if (state.initialized) {
-                    navigator.navigate(
-                        route = "/main",
-                        options = NavOptions(
-                            launchSingleTop = true
-                        )
-                    )
+            if (!currentState.initialized) {
+                InitializeScreen(
+                    LocalApp.current,
+                    Modifier.fillMaxSize()
+                )
+            } else {
+                SideEffect {
+                    println("switch to main")
+                    currentPage = Pages.Main
                 }
-            }
-            InitializeScreen(
-                LocalApp.current,
-                Modifier.fillMaxSize()
-            )
-        }
-
-        scene(
-            // Scene's route path
-            route = "/main",
-            // Navigation transition for this scene, this is optional
-            navTransition = NavTransition()
-        ) {
-            SideEffect {
-                println("switch to main")
-                currentPage = Pages.Main
-            }
-
-            SafeArea(
-                behavior = remember {
-                    SafeAreaBehavior(
-                        extendToBottom = true
-                    )
-                }
-            ) {
                 MainPageScreen {
                     navigator.navigate(
                         route = "/show/card/${it.cardNumber}",
                         options = NavOptions(
                             popUpTo = PopUpTo(
-                                route = "/main",
+                                route = "/home",
                                 inclusive = false
                             )
                         )

@@ -65,6 +65,7 @@ import eu.codlab.lorcana.app.views.widgets.LorcanaOutlinedEditText
 import eu.codlab.lorcana.app.views.widgets.StatusBarAndNavigation
 import eu.codlab.lorcana.app.views.widgets.TextNormal
 import eu.codlab.lorcana.app.views.widgets.TextTitle
+import eu.codlab.lorcana.app.views.widgets.TopSpacer
 
 private val minGridCellSize = 128.dp
 
@@ -143,6 +144,8 @@ fun ShowCardList(onCard: (Card) -> Unit, useCornerTop: Boolean) {
             .background(color = AppColor.LorcanaDarkBlue)
             .nestedScroll(scrollBehavior.nestedScrollConnection)
     ) {
+        TopSpacer()
+
         CollapsingTopBar(
             scrollBehavior = scrollBehavior
         ) { _, progress ->
