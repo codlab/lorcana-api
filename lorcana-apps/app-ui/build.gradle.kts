@@ -28,6 +28,7 @@ kotlin {
             dependencies {
                 implementation(libs.moko.resources)
                 implementation(libs.moko.resources.compose)
+                implementation(libs.moko.resources.ext)
                 api(libs.fuzzywuzzy.multiplatform)
             }
         }
@@ -69,10 +70,10 @@ android {
 
 dependencies {
     implementation(project(":lorcana-shared"))
+    implementation(project(":kotlin-preview"))
     implementation(project(":resources"))
 
     implementation(libs.safearea)
-    implementation(libs.preview.stub)
     implementation(libs.collapsing.toolbar)
 
     implementation(libs.androidx.appcompat)

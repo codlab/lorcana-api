@@ -37,6 +37,7 @@ include(":lorcana-shared-ui")
 include(":resources")
 include(":models")
 include(":lorcana-shared")
+include(":kotlin-preview")
 
 ["backend", "downloader"].each(setProject("lorcana-server"))
 ["androidApp", "jvmApp", "jsApp", "app-ui"].each(setProject("lorcana-apps"))

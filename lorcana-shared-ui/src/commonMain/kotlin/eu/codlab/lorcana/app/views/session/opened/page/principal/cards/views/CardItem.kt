@@ -37,6 +37,7 @@ private val shape = RoundedCornerShape(CornerRadiusPercent)
 
 private val GridCellPadding = 10.dp
 private const val Ratio = 0.75f
+private const val CardAspectRatio = 0.70f
 
 @Composable
 fun CardItem(card: Card, showCollection: Boolean = true, onCard: (Card) -> Unit) {
@@ -75,8 +76,7 @@ fun CardItem(card: Card, showCollection: Boolean = true, onCard: (Card) -> Unit)
                     .clip(shape)
                     .clickable { onCard(card) }
                     .clipToBounds()
-                    .aspectRatio(0.70f),
-                //contentScale = ContentScale.None,
+                    .aspectRatio(CardAspectRatio),
                 colorFilter = if (!showCollection || numbers.isOwned()) {
                     null
                 } else {
@@ -92,10 +92,7 @@ fun CardItem(card: Card, showCollection: Boolean = true, onCard: (Card) -> Unit)
 fun CardItemPreview() {
     MyApplicationTheme {
         Column(modifier = Modifier.background(Color.White)) {
-
-            CardItem(card = Card.fake()) {
-
-            }
+            CardItem(card = Card.fake()) {}
         }
     }
 }

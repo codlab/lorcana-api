@@ -15,11 +15,11 @@ import eu.codlab.lorcana.app.theme.LocalThemeEnvironment
 import eu.codlab.lorcana.app.theme.LorcanaIcons
 import eu.codlab.lorcana.app.theme.MyApplicationTheme
 import eu.codlab.lorcana.app.theme.lorcanaicons.Exert
-import eu.codlab.lorcana.app.utils.localized
 import eu.codlab.lorcana.app.views.menu.systemBackground
 import eu.codlab.lorcana.app.views.widgets.StatusBarAndNavigation
 import eu.codlab.lorcana.app.views.widgets.TextNormal
 import eu.codlab.lorcana.resources.Resources
+import eu.codlab.moko.ext.localized
 
 internal object Decks : Tab {
     override val options: TabOptions

@@ -59,7 +59,6 @@ import eu.codlab.lorcana.app.theme.LocalThemeEnvironment
 import eu.codlab.lorcana.app.theme.LorcanaIcons
 import eu.codlab.lorcana.app.theme.MyApplicationTheme
 import eu.codlab.lorcana.app.theme.lorcanaicons.Inkpot
-import eu.codlab.lorcana.app.utils.localized
 import eu.codlab.lorcana.app.views.home.LocalApp
 import eu.codlab.lorcana.app.views.session.opened.page.principal.cards.views.CardItem
 import eu.codlab.lorcana.app.views.widgets.LorcanaOutlinedEditText
@@ -68,6 +67,7 @@ import eu.codlab.lorcana.app.views.widgets.TextNormal
 import eu.codlab.lorcana.app.views.widgets.TextTitle
 import eu.codlab.lorcana.app.views.widgets.TopSpacer
 import eu.codlab.lorcana.resources.Resources
+import eu.codlab.moko.ext.localized
 
 private val minGridCellSize = 128.dp
 
@@ -101,8 +101,12 @@ internal class CardsList(val onCard: (Card) -> Unit) : Tab {
     }
 }
 
+@Suppress("LongMethod")
 @Composable
-fun ShowCardList(onCard: (Card) -> Unit, useCornerTop: Boolean) {
+fun ShowCardList(
+    onCard: (Card) -> Unit,
+    useCornerTop: Boolean
+) {
     StatusBarAndNavigation()
     val states by LocalApp.current.states.collectAsState()
     val search = remember { mutableStateOf(TextFieldValue("")) }
@@ -297,7 +301,8 @@ fun ShowSearch(
             TextNormal(
                 text = Resources.strings.search.localized(),
                 color = newColor,
-                fontSize = 12.sp)
+                fontSize = 12.sp
+            )
         },
         leadingIcon = {
             Image(

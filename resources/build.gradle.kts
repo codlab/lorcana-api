@@ -2,7 +2,6 @@
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.android.library)
-    alias(libs.plugins.kotlin.cocoapods)
     alias(libs.plugins.kotlin.plugin.serialization)
     alias(libs.plugins.moko.resources.generator)
 }
@@ -32,19 +31,6 @@ kotlin {
     iosX64()
     iosArm64()
     iosSimulatorArm64()
-
-    cocoapods {
-        version = "1.0.0"
-        summary = "Some description for the Resources"
-        homepage = "Link to the models"
-        ios.deploymentTarget = "14.1"
-        podfile = project.file("../lorcana-apps/iosApp/Podfile")
-        framework {
-            baseName = "resources"
-            isStatic = false
-            embedBitcode("disable")
-        }
-    }
 
     sourceSets {
         val commonMain by getting {
@@ -100,17 +86,24 @@ multiplatformResources {
     iosBaseLocalizationRegion = "en"
 }
 
+println("The build will use the resource generation")
+
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
     kotlinOptions {
         jvmTarget = libs.versions.java.get()
     }
 }
 
+
 tasks.register("generateMR") {
     group = "moko-resources"
     dependsOn("licenseCopy")
     tasks.matching { it.name.startsWith("generateMR") && it.name.endsWith("Main") }
         .forEach { this.dependsOn(it) }
+
+    // every compileKotlin will run it
+    tasks.matching { it.name.startsWith("compileKotlin") }
+        .forEach { it.dependsOn(this) }
 }
 
 tasks.register("generateImages") {
@@ -131,6 +124,7 @@ tasks.register("generateImages") {
 tasks.register("concatenateMR") {
     dependsOn("generateImages")
     group = "moko-resources"
+
     val parent = file("${rootProject.projectDir}/src/data/cards")
     val array = parent.list()?.map {
         val current = File(parent.absolutePath, it)
@@ -148,6 +142,7 @@ tasks.register("concatenateMR") {
 
 val licenseCopy by tasks.registering(Copy::class) {
     dependsOn(":lorcana-shared-ui:licenseReleaseReport")
+
     from(layout.projectDirectory.file("../lorcana-shared-ui/build/reports/licenses/licenseReleaseReport.json"))
     into(layout.projectDirectory.file("src/commonMain/resources/MR/files/"))
 

@@ -32,13 +32,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.github.codlab.lorcana.card.Card
 import dev.icerock.moko.resources.compose.painterResource
-import dev.icerock.moko.resources.compose.stringResource
 import eu.codlab.lorcana.app.theme.LocalDarkTheme
 import eu.codlab.lorcana.app.theme.LocalThemeEnvironment
 import eu.codlab.lorcana.app.theme.MyApplicationTheme
 import eu.codlab.lorcana.app.utils.getImage
 import eu.codlab.lorcana.app.utils.getRemoteUrl
-import eu.codlab.lorcana.app.utils.localized
 import eu.codlab.lorcana.app.views.home.LocalApp
 import eu.codlab.lorcana.app.views.widgets.LorcanaOutlinedButton
 import eu.codlab.lorcana.app.views.widgets.LorcanaOutlinedEditText
@@ -47,6 +45,7 @@ import eu.codlab.lorcana.app.views.widgets.TextTitle
 import eu.codlab.lorcana.app.views.widgets.systemBackground
 import eu.codlab.lorcana.models.FoilNormal
 import eu.codlab.lorcana.resources.Resources
+import eu.codlab.moko.ext.localized
 import io.kamel.image.KamelImage
 import io.kamel.image.asyncPainterResource
 

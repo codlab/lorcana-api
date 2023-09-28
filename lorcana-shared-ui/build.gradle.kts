@@ -67,8 +67,8 @@ kotlin {
             dependencies {
                 implementation(project(":lorcana-shared"))
                 implementation(project(":resources"))
+                implementation(project(":kotlin-preview"))
                 api(libs.safearea)
-                api(libs.preview.stub)
                 api(libs.collapsing.toolbar)
                 implementation(compose.runtime)
                 implementation(compose.foundation)
@@ -85,6 +85,7 @@ kotlin {
                 implementation(libs.moko.viewmodel)
                 implementation(libs.moko.viewmodel.compose)
                 implementation(libs.moko.resources.compose)
+                implementation(libs.moko.resources.ext)
 
                 implementation(libs.about.libraries)
                 implementation(libs.kamel.image)
@@ -107,7 +108,6 @@ kotlin {
                 api(libs.androidx.activity.compose)
                 api(libs.insetx)
                 implementation(libs.androidx.window)
-                //api(libs.androidx.ui.tooling.preview.android)
 
                 implementation(libs.ktor.okhttp)
             }
