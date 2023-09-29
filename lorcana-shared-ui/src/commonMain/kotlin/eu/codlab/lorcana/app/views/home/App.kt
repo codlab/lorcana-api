@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.ProvidableCompositionLocal
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.compositionLocalOf
@@ -25,10 +26,12 @@ import eu.codlab.lorcana.app.theme.AppColor
 import eu.codlab.lorcana.app.theme.MyApplicationTheme
 import eu.codlab.lorcana.app.theme.WindowSize
 import eu.codlab.lorcana.app.utils.rememberViewModel
+import eu.codlab.lorcana.downloader.DownloadAssets
 
 val LocalWindow = compositionLocalOf { WindowSize.COMPACT }
 val LocalCards: ProvidableCompositionLocal<List<Card>> = compositionLocalOf { emptyList() }
 val LocalApp = compositionLocalOf { AppModel() }
+val LocalDownloader = compositionLocalOf { DownloadAssets() }
 
 @Suppress("LongMethod") // interestingly, detekt shows APp is 67 length long
 @Composable
@@ -40,15 +43,23 @@ fun App(isDarkTheme: Boolean) {
     var cards by remember { mutableStateOf(emptyList<Card>()) }
     val model = rememberViewModel { currentAppModel }
 
+    val downloader by remember { mutableStateOf(DownloadAssets()) }
+
     val state by model.states.collectAsState()
     println("${state.loading} ${state.loggedIn} $window")
 
     cards = state.cards
 
+    LaunchedEffect(downloader) {
+        println("starting downloading assets...")
+        downloader.start()
+    }
+
     CompositionLocalProvider(
         LocalWindow provides window,
         LocalCards provides cards,
-        LocalApp provides model
+        LocalApp provides model,
+        LocalDownloader provides downloader
     ) {
         Box(
             modifier = Modifier

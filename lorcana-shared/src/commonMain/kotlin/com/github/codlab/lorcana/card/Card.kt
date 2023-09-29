@@ -78,4 +78,14 @@ data class Card(
             )
         }
     }
+
+    fun getRemoteUrl(mode: String, size: String, lang: String = "en"): String {
+        val root = "https://lorcana.codlab.eu/images/"
+        return "$root/${this.setCode}_${mode}_${size}_${this.cardNumber}_$lang@1x.webp".lowercase()
+    }
+
+    fun getLocalUrl(mode: String, size: String, lang: String = "en"): String {
+        return "${this.setCode}_${mode}_${size}_${this.cardNumber}_$lang".lowercase()
+    }
+
 }

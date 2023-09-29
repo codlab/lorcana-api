@@ -86,8 +86,8 @@ compose.desktop {
                         password.set(rootProject.ext.get("MacOSNotarizationPassword") as String)
 
                         // optional
-                        ascProvider.set(rootProject.ext.get("MacOSNotarizationTeamID") as String)
-                        //teamID.set(rootProject.ext.get("MacOSNotarizationTeamID") as String)
+                        // beta02 -> ascProvider.set(rootProject.ext.get("MacOSNotarizationTeamID") as String)
+                        teamID.set(rootProject.ext.get("MacOSNotarizationTeamID") as String)
                     }
                 }
 

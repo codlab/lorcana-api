@@ -39,6 +39,12 @@ kotlin {
                 api(libs.kotlinx.serialization.json)
                 api(libs.kotlinx.coroutines)
                 api(project(":models"))
+
+                api(libs.ktor.core)
+                api(libs.ktor.logging)
+                api(libs.ktor.serialization)
+                api(libs.ktor.content.negotiation)
+                api(libs.korio)
             }
         }
         val commonTest by getting {
@@ -74,7 +80,7 @@ kotlin {
             iosSimulatorArm64Main.dependsOn(this)
 
             dependencies {
-                implementation(libs.korio)
+                implementation(libs.ktor.darwin)
             }
         }
 
@@ -85,6 +91,10 @@ kotlin {
 
         val jvmMain by getting {
             dependsOn(commonMain)
+            dependencies {
+                api(libs.korio.jvm)
+                api(libs.ktor.apache5)
+            }
         }
 
         val jsMain by getting {
@@ -132,12 +142,12 @@ tasks.register("generateMR") {
 tasks.register("concatenateMR") {
     group = "moko-resources"
     val parent = file("${rootProject.projectDir}/src/data/cards")
-    val array = parent.list()?.map{
+    val array = parent.list()?.map {
         val current = File(parent.absolutePath, it)
         current.readText()
     } ?: mutableListOf()
 
-    val concatenateText = array.joinToString( separator = ",", prefix = "[", postfix = "]")
+    val concatenateText = array.joinToString(separator = ",", prefix = "[", postfix = "]")
     val concatenate = File(parent.absolutePath, "../allCards.txt")
     concatenate.writeText(concatenateText)
 

@@ -1,6 +1,5 @@
 package eu.codlab.lorcana.app.views.session.opened.page.principal.cards.views
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -10,7 +9,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Card
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -23,13 +21,16 @@ import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.ColorMatrix
+import androidx.compose.ui.text.intl.Locale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.github.codlab.lorcana.card.Card
-import dev.icerock.moko.resources.compose.painterResource
 import eu.codlab.lorcana.app.theme.MyApplicationTheme
-import eu.codlab.lorcana.app.utils.getImage
+import eu.codlab.lorcana.app.utils.Platforms
+import eu.codlab.lorcana.app.utils.currentPlatform
+import eu.codlab.lorcana.app.utils.rememberViewModel
 import eu.codlab.lorcana.app.views.home.LocalApp
+import eu.codlab.lorcana.app.views.home.LocalDownloader
 import eu.codlab.lorcana.models.FoilNormal
 
 private const val CornerRadiusPercent = 8
@@ -43,18 +44,20 @@ private const val CardAspectRatio = 0.70f
 fun CardItem(card: Card, showCollection: Boolean = true, onCard: (Card) -> Unit) {
     val localApp = LocalApp.current
 
-    var image by remember { mutableStateOf(card.getImage("normal", "small")) }
     var numbers by remember { mutableStateOf(FoilNormal(0, 0)) }
 
     LaunchedEffect(card, showCollection) {
         numbers = localApp.getCardNumbers(card.setCode, card.cardNumber.toLong())
     }
 
-    LaunchedEffect(card) {
-        image = card.getImage("normal", "small")
-    }
+    val downloader = LocalDownloader.current
 
-    println("having image $image")
+    val lang = Locale.current.language.split("_")[0].lowercase()
+    val model = rememberViewModel { CardItemModel(downloader, lang, "normal", "large") }
+
+    LaunchedEffect(card) {
+        model.load(card)
+    }
 
     Box(
         modifier = Modifier
@@ -62,28 +65,23 @@ fun CardItem(card: Card, showCollection: Boolean = true, onCard: (Card) -> Unit)
             .fillMaxWidth()
             .padding(GridCellPadding)
     ) {
-        Card(
-            modifier = Modifier.padding(2.dp),
-            shape = shape,
-            elevation = 12.dp
-        ) {
-            Image(
-                painter = painterResource(image),
-                contentDescription = null,
-                modifier = Modifier
-                    .background(Color.Black)
-                    .fillMaxSize()
-                    .clip(shape)
-                    .clickable { onCard(card) }
-                    .clipToBounds()
-                    .aspectRatio(CardAspectRatio),
-                colorFilter = if (!showCollection || numbers.isOwned()) {
-                    null
-                } else {
-                    ColorFilter.colorMatrix(ColorMatrix().apply { setToSaturation(0f) })
-                }
-            )
-        }
+        SingleCardView(
+            card = card,
+            modifier = Modifier
+                .background(Color.Black)
+                .fillMaxSize()
+                .clip(shape)
+                .clickable { onCard(card) }
+                .clipToBounds()
+                .aspectRatio(CardAspectRatio),
+            model = model,
+            colorFilter = if (showCollection && !numbers.isOwned()) {
+                ColorFilter.colorMatrix(ColorMatrix().apply { setToSaturation(0f) })
+            } else {
+                null
+            },
+            onlyLocalResource = currentPlatform() == Platforms.IOS
+        )
     }
 }
 

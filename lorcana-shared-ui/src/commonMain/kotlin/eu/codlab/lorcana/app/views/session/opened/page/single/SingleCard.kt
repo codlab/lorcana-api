@@ -1,6 +1,5 @@
 package eu.codlab.lorcana.app.views.session.opened.page.single
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -15,9 +14,9 @@ import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.Card
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -31,13 +30,14 @@ import androidx.compose.ui.text.intl.Locale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.github.codlab.lorcana.card.Card
-import dev.icerock.moko.resources.compose.painterResource
 import eu.codlab.lorcana.app.theme.LocalDarkTheme
 import eu.codlab.lorcana.app.theme.LocalThemeEnvironment
 import eu.codlab.lorcana.app.theme.MyApplicationTheme
-import eu.codlab.lorcana.app.utils.getImage
-import eu.codlab.lorcana.app.utils.getRemoteUrl
+import eu.codlab.lorcana.app.utils.rememberViewModel
 import eu.codlab.lorcana.app.views.home.LocalApp
+import eu.codlab.lorcana.app.views.home.LocalDownloader
+import eu.codlab.lorcana.app.views.session.opened.page.principal.cards.views.CardItemModel
+import eu.codlab.lorcana.app.views.session.opened.page.principal.cards.views.SingleCardView
 import eu.codlab.lorcana.app.views.widgets.LorcanaOutlinedButton
 import eu.codlab.lorcana.app.views.widgets.LorcanaOutlinedEditText
 import eu.codlab.lorcana.app.views.widgets.TextNormal
@@ -46,12 +46,26 @@ import eu.codlab.lorcana.app.views.widgets.systemBackground
 import eu.codlab.lorcana.models.FoilNormal
 import eu.codlab.lorcana.resources.Resources
 import eu.codlab.moko.ext.localized
-import io.kamel.image.KamelImage
-import io.kamel.image.asyncPainterResource
 
 @Composable
 fun SingleCard(card: Card) {
+    val downloader = LocalDownloader.current
     val env = LocalThemeEnvironment.current
+
+    val lang = Locale.current.language.split("_")[0].lowercase()
+    val model = rememberViewModel { CardItemModel(downloader, lang, "normal", "large") }
+
+    var localCard by remember { mutableStateOf(card) }
+
+    LaunchedEffect(model) {
+        // TODO manage multiple card loading ?
+        model.load(card)
+    }
+
+    LaunchedEffect(card) {
+        // TODO manage multiple cards ?
+        localCard = card
+    }
 
     println("having color ${env.gradientStart}")
 
@@ -60,13 +74,14 @@ fun SingleCard(card: Card) {
     } else {
         Color.White
     }
+
     Column(
         Modifier
             .fillMaxSize()
             .background(color),
         Arrangement.spacedBy(5.dp)
     ) {
-        CardItem(card)
+        CardItem(card, model)
     }
 }
 
@@ -75,11 +90,12 @@ private val shape = RoundedCornerShape(CornerRadiusPercent)
 
 @Composable
 @Suppress("LongMethod")
-fun CardItem(card: Card) {
-    var image by remember { mutableStateOf(card.getImage("normal", "small")) }
-    val painter = painterResource(image)
-
+fun CardItem(
+    card: Card,
+    model: CardItemModel
+) {
     val localApp = LocalApp.current
+    val state = rememberScrollState()
 
     var numbers by remember {
         mutableStateOf(
@@ -89,12 +105,6 @@ fun CardItem(card: Card) {
             )
         )
     }
-
-    LaunchedEffect(card) {
-        image = card.getImage("normal", "small")
-    }
-
-    val state = rememberScrollState()
 
     Column(
         modifier = Modifier
@@ -109,41 +119,17 @@ fun CardItem(card: Card) {
 
         TextTitle(text = card.name)
 
-        val url = card.getRemoteUrl(
-            "normal",
-            "large",
-            Locale.current.language.split("_")[0].lowercase()
-        )
-        println("loading $url")
-        val painterResource = asyncPainterResource(data = url) // before :card.imageUrls.large)
-
         val modifier = Modifier
             .widthIn(0.dp, 400.dp)
             .heightIn(0.dp, 400.dp)
             .clip(shape = shape)
             .aspectRatio(ratio = 0.72F)
 
-        Card(
-            modifier = Modifier,
-            shape = shape,
-            elevation = 24.dp
-        ) {
-            KamelImage(
-                modifier = modifier,
-                resource = painterResource,
-                contentDescription = card.name,
-                onLoading = { _ ->
-                    Image(
-                        modifier = modifier,
-                        painter = painter,
-                        contentDescription = ""
-                    )
-                },
-                onFailure = { _ ->
-                    // would be interesting to manage the state here
-                }
-            )
-        }
+        SingleCardView(
+            card = card,
+            modifier = modifier,
+            model = model
+        )
 
         val update: (FoilNormal) -> Unit = {
             localApp.save(
@@ -151,7 +137,6 @@ fun CardItem(card: Card) {
                 card.cardNumber.toLong(),
                 it
             )
-            println(it)
         }
 
         MutableIntegerBox(
@@ -221,7 +206,10 @@ fun MutableIntegerBox(
 fun CardPreviewDark() {
     MyApplicationTheme(darkTheme = false) {
         Column(modifier = Modifier.systemBackground()) {
-            CardItem(card = Card.fake())
+            CardItem(
+                card = Card.fake(),
+                model = CardItemModel.fake()
+            )
         }
     }
 }
@@ -231,7 +219,10 @@ fun CardPreviewDark() {
 fun CardPreviewLight() {
     MyApplicationTheme(darkTheme = true) {
         Column(modifier = Modifier.systemBackground()) {
-            CardItem(card = Card.fake())
+            CardItem(
+                card = Card.fake(),
+                model = CardItemModel.fake()
+            )
         }
     }
 }

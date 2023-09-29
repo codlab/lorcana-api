@@ -272,7 +272,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cd \"$SRCROOT/../..\"\n./gradlew :resources:embedAndSignAppleFrameworkForXcode --no-daemon || exit -1\n./gradlew :lorcana-shared-ui:embedAndSignAppleFrameworkForXcode --no-daemon || exit -1\n";
+			shellScript = "cd \"$SRCROOT/../..\"\n#./gradlew :resources:embedAndSignAppleFrameworkForXcode --no-daemon || exit -1\n./gradlew :lorcana-shared-ui:embedAndSignAppleFrameworkForXcode --no-daemon || exit -1\n";
 		};
 		BDBA34B42044B3CE0ED3995A /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
