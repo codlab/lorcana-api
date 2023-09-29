@@ -1,6 +1,7 @@
 package eu.codlab.lorcana.app.views.home
 
 import com.github.codlab.lorcana.card.Card
+import com.github.codlab.lorcana.lorcania.LorcanaSet
 import com.github.codlab.lorcana.shared.SharedRes
 import eu.codlab.lorcana.app.utils.StateViewModel
 import eu.codlab.lorcana.app.utils.launch
@@ -14,7 +15,9 @@ data class AppModelState(
     var cardMaps: Map<String, Card> = emptyMap(),
     var initialized: Boolean = false,
     var loading: Boolean = false,
-    var loggedIn: Boolean = false
+    var loggedIn: Boolean = false,
+
+    var sets: List<LorcanaSet> = emptyList()
 )
 
 @OptIn(ExperimentalTime::class)
@@ -43,6 +46,9 @@ class AppModel : StateViewModel<AppModelState>(AppModelState()) {
         try {
             databaseController.selectAll()
 
+            val textSets = SharedRes.files.sets.safelyReadContent()
+            val sets = LorcanaSet.fromArray(textSets)
+
             val textCards = SharedRes.files.allCards.safelyReadContent()
             val cards = Card.fromArray(textCards).sortedBy {
                 it.cardNumber
@@ -56,6 +62,7 @@ class AppModel : StateViewModel<AppModelState>(AppModelState()) {
 
             updateState {
                 copy(
+                    sets = sets,
                     initialized = true,
                     cards = cards,
                     cardMaps = cardMaps

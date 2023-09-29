@@ -2,13 +2,12 @@ package com.github.codlab.lorcana.lorcania
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 
 @Serializable
-data class LorcaniaHolder(
+data class LorcanaHolder(
     val component: String,
-    val props: LorcaniaHolderProps
+    val props: LorcanaHolderProps
 ) {
     companion object {
         private val json = Json {
@@ -16,19 +15,19 @@ data class LorcaniaHolder(
             coerceInputValues = true
         }
 
-        fun fromContent(content: String): LorcaniaHolder {
+        fun fromContent(content: String): LorcanaHolder {
             return json.decodeFromString(content)
         }
     }
 }
 
 @Serializable
-data class LorcaniaHolderProps(
-    val cards: Map<String, LorcaniaCard>
+data class LorcanaHolderProps(
+    val cards: Map<String, LorcanaCard>
 )
 
 @Serializable
-data class LorcaniaCard(
+data class LorcanaCard(
     val id: Int = 0,
     val name: String = "",
     val title: String = "",
@@ -60,24 +59,24 @@ data class LorcaniaCard(
     val createdAt: String = "",
     @SerialName("updated_at")
     val updatedAt: String = "",
-    private val languages: Map<String, LorcaniaCardTranslation> = emptyMap(),
-    val edition: List<LorcaniaCardEdition> = emptyList()
+    private val languages: Map<String, LorcanaCardTranslation> = emptyMap(),
+    val edition: List<LorcanaCardEdition> = emptyList()
 ) {
     fun image(): String {
         return image.replace("\\/", "/")
     }
 
     fun getSetId(): String {
-        return listOf("d23", "tfc", "rtf")[cardSetId - 1]
+        return listOf("d23", "tfc", "rotf")[cardSetId - 1]
     }
 
-    fun translation(language: String): LorcaniaCardTranslation? {
+    fun translation(language: String): LorcanaCardTranslation? {
         return languages[language.uppercase()]
     }
 
     companion object {
-        fun fake(): LorcaniaCard {
-            return LorcaniaCard(
+        fun fake(): LorcanaCard {
+            return LorcanaCard(
                 cardSetId = 1
             )
         }
@@ -85,7 +84,7 @@ data class LorcaniaCard(
 }
 
 @Serializable
-data class LorcaniaCardTranslation(
+data class LorcanaCardTranslation(
     @SerialName("card_id")
     val cardId: Int,
     val language: String = "",
@@ -101,7 +100,7 @@ data class LorcaniaCardTranslation(
 }
 
 @Serializable
-data class LorcaniaCardEdition(
+data class LorcanaCardEdition(
     val id: Int,
     val name: String, // Regular or foil
     val code: String // regular or foil

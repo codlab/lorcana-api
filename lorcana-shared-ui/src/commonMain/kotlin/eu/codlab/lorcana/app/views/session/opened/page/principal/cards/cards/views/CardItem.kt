@@ -1,4 +1,4 @@
-package eu.codlab.lorcana.app.views.session.opened.page.principal.cards.views
+package eu.codlab.lorcana.app.views.session.opened.page.principal.cards.cards.views
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -24,10 +24,10 @@ import androidx.compose.ui.graphics.ColorMatrix
 import androidx.compose.ui.text.intl.Locale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.github.codlab.lorcana.Platforms
 import com.github.codlab.lorcana.card.Card
+import com.github.codlab.lorcana.currentPlatform
 import eu.codlab.lorcana.app.theme.MyApplicationTheme
-import eu.codlab.lorcana.app.utils.Platforms
-import eu.codlab.lorcana.app.utils.currentPlatform
 import eu.codlab.lorcana.app.utils.rememberViewModel
 import eu.codlab.lorcana.app.views.home.LocalApp
 import eu.codlab.lorcana.app.views.home.LocalDownloader

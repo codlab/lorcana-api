@@ -1,4 +1,4 @@
-package eu.codlab.lorcana.app.views.session.opened.page.principal.cards.views
+package eu.codlab.lorcana.app.views.session.opened.page.principal.cards.cards.views
 
 import com.github.codlab.lorcana.card.Card
 import eu.codlab.lorcana.downloader.DownloadAssets

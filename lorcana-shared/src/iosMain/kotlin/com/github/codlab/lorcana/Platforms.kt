@@ -1,3 +1,3 @@
-package eu.codlab.lorcana.app.utils
+package com.github.codlab.lorcana
 
 actual fun currentPlatform() = Platforms.IOS

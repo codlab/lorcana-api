@@ -1,4 +1,4 @@
-package eu.codlab.lorcana.app.utils
+package com.github.codlab.lorcana
 
 enum class Platforms {
     Android,

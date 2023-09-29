@@ -1,4 +1,4 @@
-package eu.codlab.lorcana.app.views.session.opened.page.principal.cards.views
+package eu.codlab.lorcana.app.views.session.opened.page.principal.cards.cards.views
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.shape.RoundedCornerShape

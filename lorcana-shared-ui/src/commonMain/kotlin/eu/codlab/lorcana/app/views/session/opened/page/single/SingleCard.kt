@@ -36,8 +36,8 @@ import eu.codlab.lorcana.app.theme.MyApplicationTheme
 import eu.codlab.lorcana.app.utils.rememberViewModel
 import eu.codlab.lorcana.app.views.home.LocalApp
 import eu.codlab.lorcana.app.views.home.LocalDownloader
-import eu.codlab.lorcana.app.views.session.opened.page.principal.cards.views.CardItemModel
-import eu.codlab.lorcana.app.views.session.opened.page.principal.cards.views.SingleCardView
+import eu.codlab.lorcana.app.views.session.opened.page.principal.cards.cards.views.CardItemModel
+import eu.codlab.lorcana.app.views.session.opened.page.principal.cards.cards.views.SingleCardView
 import eu.codlab.lorcana.app.views.widgets.LorcanaOutlinedButton
 import eu.codlab.lorcana.app.views.widgets.LorcanaOutlinedEditText
 import eu.codlab.lorcana.app.views.widgets.TextNormal

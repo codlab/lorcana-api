@@ -3,6 +3,7 @@ package eu.codlab.lorcana.app.views.session.opened.page.principal.cards
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -60,7 +61,8 @@ import eu.codlab.lorcana.app.theme.LorcanaIcons
 import eu.codlab.lorcana.app.theme.MyApplicationTheme
 import eu.codlab.lorcana.app.theme.lorcanaicons.Inkpot
 import eu.codlab.lorcana.app.views.home.LocalApp
-import eu.codlab.lorcana.app.views.session.opened.page.principal.cards.views.CardItem
+import eu.codlab.lorcana.app.views.session.opened.page.principal.cards.cards.menu.MenuSets
+import eu.codlab.lorcana.app.views.session.opened.page.principal.cards.cards.views.CardItem
 import eu.codlab.lorcana.app.views.widgets.LorcanaOutlinedEditText
 import eu.codlab.lorcana.app.views.widgets.StatusBarAndNavigation
 import eu.codlab.lorcana.app.views.widgets.TextNormal
@@ -208,44 +210,58 @@ fun ShowHeader(
 
     val expectedPadding = paddingDp + 4.dp
 
-    Column(
-        modifier = Modifier.padding(
-            PaddingValues(
-                start = themeEnvironment.defaultPadding,
-                end = themeEnvironment.defaultPadding
-            )
-        ),
-        verticalArrangement = Arrangement.spacedBy(expectedPadding)
-    ) {
+    val states by LocalApp.current.states.collectAsState()
+
+    Box(modifier = Modifier.fillMaxWidth()) {
         Column(
-            modifier = Modifier
-                .padding(
-                    start = expectedPadding,
-                    top = expectedPadding,
-                    end = expectedPadding
+            modifier = Modifier.padding(
+                PaddingValues(
+                    start = themeEnvironment.defaultPadding,
+                    end = themeEnvironment.defaultPadding
                 )
+            ),
+            verticalArrangement = Arrangement.spacedBy(expectedPadding)
         ) {
-            @Suppress("MagicNumber")
-            TextTitle(
-                text = Resources.strings.cards.localized(),
-                fontSize = (12 + (30 - 12) * progress).sp
-            )
+            Column(
+                modifier = Modifier
+                    .padding(
+                        start = expectedPadding,
+                        top = expectedPadding,
+                        end = expectedPadding
+                    )
+            ) {
+                @Suppress("MagicNumber")
+                TextTitle(
+                    text = Resources.strings.cards.localized(),
+                    fontSize = (12 + (30 - 12) * progress).sp
+                )
+            }
+
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(16.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                ShowSearch(
+                    modifier = Modifier.width(160.dp)
+                ) {
+                    search.value = it
+                }
+
+                ShowSwitchCollection {
+                    showCollection.value = it
+                }
+            }
         }
 
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.spacedBy(16.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            ShowSearch(
-                modifier = Modifier.width(160.dp)
-            ) {
-                search.value = it
-            }
 
-            ShowSwitchCollection {
-                showCollection.value = it
-            }
+        MenuSets(
+            modifier = Modifier.align(
+                alignment = Alignment.TopEnd
+            ),
+            sets = states.sets
+        ) {
+
         }
     }
 }

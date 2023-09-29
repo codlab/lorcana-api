@@ -2,7 +2,7 @@ package com.lorcanaapi
 
 import com.github.codlab.lorcana.card.Card
 import com.github.codlab.lorcana.files.readContent
-import com.github.codlab.lorcana.lorcania.LorcaniaHolder
+import com.github.codlab.lorcana.lorcania.LorcanaHolder
 import com.github.codlab.lorcana.shared.SharedRes
 import com.jcabi.manifests.Manifests
 import io.ktor.client.HttpClient
@@ -48,7 +48,7 @@ fun main(arg: Array<String>) {
         runBlocking {
             val setCode = it.first
             val content = it.second.readContent()
-            val mapped = LorcaniaHolder.fromContent(content)
+            val mapped = LorcanaHolder.fromContent(content)
             println(content.length)
 
             val cards = mapped.props.cards.values

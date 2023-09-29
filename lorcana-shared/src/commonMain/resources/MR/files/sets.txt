@@ -1,17 +1,17 @@
 [
   {
-    "set_code": "TFC",
+    "set_code": "tfc",
     "card_count": 204,
     "name": "The First Chapter"
   },
   {
-    "set_code": "D23",
+    "set_code": "d23",
     "card_count": 0,
     "name": "D23, Promo1"
   },
   {
-    "set_code": "TFC",
+    "set_code": "rotf",
     "card_count": 204,
-    "name": "The First Chapter"
+    "name": "Rise Of The Floodborn"
   }
 ]

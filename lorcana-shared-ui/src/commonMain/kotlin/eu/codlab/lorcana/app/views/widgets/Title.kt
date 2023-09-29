@@ -1,10 +1,14 @@
 package eu.codlab.lorcana.app.views.widgets
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.MoreVert
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -31,6 +35,23 @@ private val subtitleColor = PairColor(
     dark = Color(0xff8f959f),
     light = Color(0xff343434)
 )
+
+@Composable
+fun LorcanaIcon(
+    modifier: Modifier = Modifier,
+    imageVector: ImageVector,
+    isDark: Boolean = LocalDarkTheme.current,
+    color: Color? = null
+) {
+    val actual = color ?: if (isDark) titleColor.dark else titleColor.light
+
+    return Icon(
+        modifier = modifier,
+        imageVector = imageVector,
+        contentDescription = "More",
+        tint = actual,
+    )
+}
 
 @Composable
 fun TextTitle(
@@ -110,6 +131,7 @@ private fun RenderTextDark() {
             TextTitle(text = "title")
             TextSubtitle(text = "subtitle")
             TextNormal(text = "text")
+            LorcanaIcon(imageVector = Icons.Default.MoreVert)
         }
     }
 }
@@ -122,6 +144,8 @@ private fun RenderTextLight() {
             TextTitle(text = "title")
             TextSubtitle(text = "subtitle")
             TextNormal(text = "text")
+
+            LorcanaIcon(imageVector = Icons.Default.MoreVert)
         }
     }
 }
