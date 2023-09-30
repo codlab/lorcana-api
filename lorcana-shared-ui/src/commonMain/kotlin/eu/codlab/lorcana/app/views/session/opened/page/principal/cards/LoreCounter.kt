@@ -9,8 +9,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.tooling.preview.Preview
-import cafe.adriel.voyager.navigator.tab.Tab
-import cafe.adriel.voyager.navigator.tab.TabOptions
 import eu.codlab.lorcana.app.theme.LocalThemeEnvironment
 import eu.codlab.lorcana.app.theme.LorcanaIcons
 import eu.codlab.lorcana.app.theme.MyApplicationTheme
@@ -21,8 +19,8 @@ import eu.codlab.lorcana.app.views.widgets.TextNormal
 import eu.codlab.lorcana.resources.Resources
 import eu.codlab.moko.ext.localized
 
-internal object LoreCounter : Tab {
-    override val options: TabOptions
+internal class LoreCounter : Tab {
+    override val option: TabOptions
         @Composable
         get() {
             val title = Resources.strings.lore.localized()
@@ -30,7 +28,7 @@ internal object LoreCounter : Tab {
 
             return remember {
                 TabOptions(
-                    index = 2u,
+                    index = 2,
                     title = title,
                     icon = icon
                 )

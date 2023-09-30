@@ -4,9 +4,9 @@ import platform.Foundation.NSCachesDirectory
 import platform.Foundation.NSSearchPathForDirectoriesInDomains
 import platform.Foundation.NSUserDomainMask
 
-actual val RootPath = cachePath() //StandardPaths.resourcesFolder
+actual val RootPath = cachePath()
 
-fun cachePath(): String {
+private fun cachePath(): String {
     val result = NSSearchPathForDirectoriesInDomains(
         NSCachesDirectory,
         NSUserDomainMask,

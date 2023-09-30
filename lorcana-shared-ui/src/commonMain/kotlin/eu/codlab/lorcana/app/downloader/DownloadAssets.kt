@@ -4,8 +4,10 @@ import com.github.codlab.lorcana.card.Card
 import com.github.codlab.lorcana.files.VirtualFile
 import com.github.codlab.lorcana.files.touch
 import com.github.codlab.lorcana.http.createClient
+import com.github.codlab.lorcana.lorcania.LorcanaCard
 import io.ktor.client.call.body
 import io.ktor.client.request.get
+import io.ktor.http.HttpStatusCode
 import io.ktor.http.Url
 
 class DownloadAssets {
@@ -23,7 +25,8 @@ class DownloadAssets {
     }
 
     suspend fun exists(
-        card: Card, lang: String,
+        card: Card,
+        lang: String,
         mode: String = "normal",
         size: String = "large"
     ): Boolean {
@@ -38,7 +41,7 @@ class DownloadAssets {
     }
 
     fun local(
-        card: Card,
+        card: LorcanaCard,
         lang: String,
         mode: String = "normal",
         size: String = "large"
@@ -53,7 +56,8 @@ class DownloadAssets {
     }
 
     fun remote(
-        card: Card, lang: String,
+        card: LorcanaCard,
+        lang: String,
         mode: String = "normal",
         size: String = "large"
     ): String {
@@ -65,7 +69,8 @@ class DownloadAssets {
     }
 
     suspend fun fetch(
-        card: Card, lang: String,
+        card: LorcanaCard,
+        lang: String,
         mode: String = "normal",
         size: String = "large"
     ) {
@@ -99,10 +104,12 @@ class DownloadAssets {
 
         if (!localPath.exists()) {
             println("${localPath.absolutePath} does not exists")
-            val bytes = client.get(Url(remote)).body<ByteArray>()
-            touch(localPath.absolutePath)
-            localPath.write(bytes)
-            //client.get(Url(remote)).bodyAsChannel().copyAndClose(file.writeChannel())
+            val httpResponse = client.get(Url(remote))
+            if (httpResponse.status == HttpStatusCode.Accepted) {
+                touch(localPath.absolutePath)
+                localPath.write(httpResponse.body<ByteArray>())
+            }
+            // client.get(Url(remote)).bodyAsChannel().copyAndClose(file.writeChannel())
         } else {
             println("${localPath.absolutePath} does exist")
         }

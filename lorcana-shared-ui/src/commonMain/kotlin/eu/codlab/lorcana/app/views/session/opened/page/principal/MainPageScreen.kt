@@ -14,49 +14,63 @@ import androidx.compose.material.Icon
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import cafe.adriel.voyager.navigator.CurrentScreen
-import cafe.adriel.voyager.navigator.tab.LocalTabNavigator
-import cafe.adriel.voyager.navigator.tab.Tab
-import cafe.adriel.voyager.navigator.tab.TabNavigator
-import com.github.codlab.lorcana.card.Card
+import com.github.codlab.lorcana.lorcania.LorcanaCard
 import eu.codlab.lorcana.app.theme.LocalThemeEnvironment
 import eu.codlab.lorcana.app.theme.MyApplicationTheme
 import eu.codlab.lorcana.app.views.session.opened.page.principal.cards.CardsList
 import eu.codlab.lorcana.app.views.session.opened.page.principal.cards.Decks
 import eu.codlab.lorcana.app.views.session.opened.page.principal.cards.LoreCounter
+import eu.codlab.lorcana.app.views.session.opened.page.principal.cards.Tab
 import eu.codlab.lorcana.app.views.widgets.BottomSpacer
 import eu.codlab.lorcana.app.views.widgets.TextNormal
 
 @Composable
-fun MainPageScreen(onCard: (Card) -> Unit) {
+fun MainPageScreen(onCard: (LorcanaCard) -> Unit) {
+    val tabs = remember {
+        listOf(
+            LoreCounter(),
+            CardsList(onCard),
+            Decks()
+        )
+    }
+    val tab = remember { mutableStateOf(tabs[1]) }
+
     Column(
         Modifier
             .fillMaxSize(),
         Arrangement.spacedBy(5.dp)
     ) {
-        TabNavigator(CardsList(onCard)) {
-            Scaffold(
-                content = {
-                    Column(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .padding(it)
-                    ) {
-                        CurrentScreen()
-                    }
-                },
-                bottomBar = { BottomBar(onCard) }
-            )
-        }
+        Scaffold(
+            content = {
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(it)
+                ) {
+                    tab.value.Content()
+                }
+            },
+            bottomBar = {
+                BottomBar(tabs, tab.value) {
+                    tab.value = it
+                }
+            }
+        )
     }
 }
 
 @Composable
-fun BottomBar(onCard: (Card) -> Unit) {
+fun BottomBar(
+    tabs: List<Tab>,
+    currentTab: Tab,
+    onTab: (Tab) -> Unit
+) {
     Surface(
         elevation = 24.dp
     ) {
@@ -66,9 +80,9 @@ fun BottomBar(onCard: (Card) -> Unit) {
             )
         ) {
             BottomNavigation(backgroundColor = Color.Transparent) {
-                TabNavigationItem(LoreCounter)
-                TabNavigationItem(CardsList(onCard))
-                TabNavigationItem(Decks)
+                tabs.map {
+                    TabNavigationItem(it, it.option.index == currentTab.option.index, onTab)
+                }
             }
 
             BottomSpacer()
@@ -77,12 +91,7 @@ fun BottomBar(onCard: (Card) -> Unit) {
 }
 
 @Composable
-private fun RowScope.TabNavigationItem(tab: Tab) {
-    val tabNavigator = LocalTabNavigator.current
-    val isSelected = tabNavigator.current.options.index == tab.options.index
-
-    println("isSelected/$isSelected tabNavigator ${tabNavigator.current.options.index} ${tab.options.index}")
-
+private fun RowScope.TabNavigationItem(tab: Tab, isSelected: Boolean, onTab: (Tab) -> Unit) {
     val tint = if (isSelected) {
         LocalThemeEnvironment.current.navigationColors.selected
     } else {
@@ -90,20 +99,20 @@ private fun RowScope.TabNavigationItem(tab: Tab) {
     }
     BottomNavigationItem(
         selected = isSelected,
-        onClick = { tabNavigator.current = tab },
+        onClick = { onTab(tab) },
         icon = {
             Icon(
                 modifier = Modifier
                     .width(25.dp)
                     .height(25.dp),
-                painter = tab.options.icon!!,
-                contentDescription = tab.options.title,
+                painter = tab.option.icon!!,
+                contentDescription = tab.option.title,
                 tint = tint
             )
         },
         label = {
             TextNormal(
-                text = tab.options.title,
+                text = tab.option.title,
                 color = tint
             )
         }

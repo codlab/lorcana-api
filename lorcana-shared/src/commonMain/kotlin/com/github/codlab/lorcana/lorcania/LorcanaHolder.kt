@@ -74,6 +74,15 @@ data class LorcanaCard(
         return languages[language.uppercase()]
     }
 
+    fun getRemoteUrl(mode: String, size: String, lang: String = "en"): String {
+        val root = "https://lorcana.codlab.eu/images/"
+        return "$root/${this.getSetId()}_${mode}_${size}_${this.number}_$lang@1x.webp".lowercase()
+    }
+
+    fun getLocalUrl(mode: String, size: String, lang: String = "en"): String {
+        return "${this.getSetId()}_${mode}_${size}_${this.number}_$lang".lowercase()
+    }
+
     companion object {
         fun fake(): LorcanaCard {
             return LorcanaCard(

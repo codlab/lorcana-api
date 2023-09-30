@@ -20,9 +20,8 @@ import eu.codlab.lorcana.app.views.widgets.LorcanaIcon
 fun MenuSets(
     modifier: Modifier = Modifier,
     sets: List<LorcanaSet>,
-    onSet: (LorcanaSet) -> Unit,
-
-    ) {
+    onSet: (LorcanaSet) -> Unit
+) {
     var expanded by remember { mutableStateOf(false) }
 
     Box(modifier = modifier) {
@@ -41,7 +40,7 @@ fun MenuSets(
                 DropdownMenuItem(
                     text = {
                         Text(
-                            text = it.name
+                            text = it.name()
                         )
                     },
                     onClick = {

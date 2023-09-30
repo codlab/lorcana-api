@@ -8,7 +8,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.unit.dp
-import com.github.codlab.lorcana.card.Card
+import com.github.codlab.lorcana.lorcania.LorcanaCard
 import dev.icerock.moko.resources.ImageResource
 import dev.icerock.moko.resources.compose.painterResource
 import eu.codlab.lorcana.resources.Resources
@@ -20,7 +20,7 @@ private val shape = RoundedCornerShape(CornerRadiusPercent)
 
 @Composable
 fun <Fallback> SingleCardView(
-    card: Card,
+    card: LorcanaCard,
     modifier: Modifier,
     model: AbstractCardModel<Fallback>,
     colorFilter: ColorFilter? = null,
@@ -38,12 +38,14 @@ fun <Fallback> SingleCardView(
     ) {
         if (onlyLocalResource || state.loading || !state.loaded) {
             BackImage(
-                modifier, model.imageResource(card), colorFilter
+                modifier,
+                model.imageResource(card),
+                colorFilter
             )
         } else {
             val painterResource = asyncPainterResource(
                 data = state.dataForAsync!!,
-                key = "${card.setCode}_${card.cardNumber}"
+                key = "${card.getSetId()}_${card.number}"
             )
 
             KamelImage(
@@ -53,11 +55,17 @@ fun <Fallback> SingleCardView(
                 colorFilter = colorFilter,
                 onLoading = { _ ->
                     BackImage(
-                        modifier, model.imageResource(card), colorFilter
+                        modifier,
+                        model.imageResource(card),
+                        colorFilter
                     )
                 },
-                onFailure = { _ ->
-                    // would be interesting to manage the state here
+                onFailure = {
+                    BackImage(
+                        modifier,
+                        model.imageResource(card),
+                        colorFilter
+                    )
                 }
             )
         }

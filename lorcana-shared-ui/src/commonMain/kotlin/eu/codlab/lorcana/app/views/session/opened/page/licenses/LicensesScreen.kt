@@ -8,20 +8,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import cafe.adriel.voyager.core.screen.Screen
 import eu.codlab.lorcana.app.views.widgets.StatusBarAndNavigation
 
-internal class LicensesScreen : Screen {
-    @Composable
-    override fun Content() {
-        StatusBarAndNavigation()
+@Composable
+fun LicensesScreen() {
+    StatusBarAndNavigation()
 
-        Column(
-            Modifier.fillMaxSize()
-                .background(Color.Transparent),
-            Arrangement.spacedBy(5.dp)
-        ) {
-            LicensesContent()
-        }
+    Column(
+        Modifier.fillMaxSize()
+            .background(Color.Transparent),
+        Arrangement.spacedBy(5.dp)
+    ) {
+        LicensesContent()
     }
 }

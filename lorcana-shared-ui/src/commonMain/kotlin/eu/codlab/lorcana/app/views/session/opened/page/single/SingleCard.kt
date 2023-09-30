@@ -16,7 +16,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -29,7 +28,7 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.intl.Locale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.github.codlab.lorcana.card.Card
+import com.github.codlab.lorcana.lorcania.LorcanaCard
 import eu.codlab.lorcana.app.theme.LocalDarkTheme
 import eu.codlab.lorcana.app.theme.LocalThemeEnvironment
 import eu.codlab.lorcana.app.theme.MyApplicationTheme
@@ -48,7 +47,7 @@ import eu.codlab.lorcana.resources.Resources
 import eu.codlab.moko.ext.localized
 
 @Composable
-fun SingleCard(card: Card) {
+fun SingleCard(card: LorcanaCard) {
     val downloader = LocalDownloader.current
     val env = LocalThemeEnvironment.current
 
@@ -91,7 +90,7 @@ private val shape = RoundedCornerShape(CornerRadiusPercent)
 @Composable
 @Suppress("LongMethod")
 fun CardItem(
-    card: Card,
+    card: LorcanaCard,
     model: CardItemModel
 ) {
     val localApp = LocalApp.current
@@ -100,8 +99,8 @@ fun CardItem(
     var numbers by remember {
         mutableStateOf(
             localApp.getCardNumbers(
-                card.setCode,
-                card.cardNumber.toLong()
+                card.getSetId(),
+                card.number.toLong()
             )
         )
     }
@@ -133,8 +132,8 @@ fun CardItem(
 
         val update: (FoilNormal) -> Unit = {
             localApp.save(
-                card.setCode,
-                card.cardNumber.toLong(),
+                card.getSetId(),
+                card.number.toLong(),
                 it
             )
         }
@@ -207,7 +206,7 @@ fun CardPreviewDark() {
     MyApplicationTheme(darkTheme = false) {
         Column(modifier = Modifier.systemBackground()) {
             CardItem(
-                card = Card.fake(),
+                card = LorcanaCard.fake(),
                 model = CardItemModel.fake()
             )
         }
@@ -220,7 +219,7 @@ fun CardPreviewLight() {
     MyApplicationTheme(darkTheme = true) {
         Column(modifier = Modifier.systemBackground()) {
             CardItem(
-                card = Card.fake(),
+                card = LorcanaCard.fake(),
                 model = CardItemModel.fake()
             )
         }
@@ -231,7 +230,7 @@ fun CardPreviewLight() {
 @Composable
 fun CardPreviewDarkTablet() {
     MyApplicationTheme(darkTheme = false) {
-        SingleCard(card = Card.fake())
+        SingleCard(card = LorcanaCard.fake())
     }
 }
 
@@ -239,6 +238,6 @@ fun CardPreviewDarkTablet() {
 @Composable
 fun CardPreviewLightTablet() {
     MyApplicationTheme(darkTheme = true) {
-        SingleCard(card = Card.fake())
+        SingleCard(card = LorcanaCard.fake())
     }
 }

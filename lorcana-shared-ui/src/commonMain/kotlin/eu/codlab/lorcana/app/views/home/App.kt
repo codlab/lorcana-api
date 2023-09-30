@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.ProvidableCompositionLocal
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.runtime.getValue
@@ -21,7 +20,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalDensity
-import com.github.codlab.lorcana.card.Card
 import eu.codlab.lorcana.app.theme.AppColor
 import eu.codlab.lorcana.app.theme.MyApplicationTheme
 import eu.codlab.lorcana.app.theme.WindowSize
@@ -29,26 +27,22 @@ import eu.codlab.lorcana.app.utils.rememberViewModel
 import eu.codlab.lorcana.downloader.DownloadAssets
 
 val LocalWindow = compositionLocalOf { WindowSize.COMPACT }
-val LocalCards: ProvidableCompositionLocal<List<Card>> = compositionLocalOf { emptyList() }
 val LocalApp = compositionLocalOf { AppModel() }
 val LocalDownloader = compositionLocalOf { DownloadAssets() }
 
-@Suppress("LongMethod") // interestingly, detekt shows APp is 67 length long
+@Suppress("LongMethod") // interestingly, detekt shows App is 67 length long
 @Composable
 fun App(isDarkTheme: Boolean) {
     val currentAppModel = LocalApp.current
     val localDensity = LocalDensity.current
 
     var window by remember { mutableStateOf(WindowSize.COMPACT) }
-    var cards by remember { mutableStateOf(emptyList<Card>()) }
     val model = rememberViewModel { currentAppModel }
 
     val downloader by remember { mutableStateOf(DownloadAssets()) }
 
     val state by model.states.collectAsState()
     println("${state.loading} ${state.loggedIn} $window")
-
-    cards = state.cards
 
     LaunchedEffect(downloader) {
         println("starting downloading assets...")
@@ -57,7 +51,6 @@ fun App(isDarkTheme: Boolean) {
 
     CompositionLocalProvider(
         LocalWindow provides window,
-        LocalCards provides cards,
         LocalApp provides model,
         LocalDownloader provides downloader
     ) {

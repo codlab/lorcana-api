@@ -49,7 +49,7 @@ fun LorcanaIcon(
         modifier = modifier,
         imageVector = imageVector,
         contentDescription = "More",
-        tint = actual,
+        tint = actual
     )
 }
 

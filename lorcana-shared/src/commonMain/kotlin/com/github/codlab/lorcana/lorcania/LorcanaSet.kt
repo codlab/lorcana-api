@@ -1,46 +1,51 @@
 package com.github.codlab.lorcana.lorcania
 
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
-import kotlinx.serialization.json.Json
-
-@Serializable
-data class LorcanaSet(
-    @SerialName("set_code")
-    val setCode: String = "TFC",
-    @SerialName("card_count")
-    val cardCount: Int = 0,
-    val name: String = ""
+class LorcanaSet(
+    private val lorcanaHolder: LorcanaHolder,
+    private val lorcanaSet: LorcanaSetObject
 ) {
-    companion object {
 
-        fun fake(): List<LorcanaSet> {
-            return listOf(
-                LorcanaSet(
-                    setCode = "tfc",
-                    cardCount = 100,
-                    name = "The First Chapter"
-                ),
-                LorcanaSet(
-                    setCode = "d23",
-                    cardCount = 100,
-                    name = "Promo & Disney 100"
-                ),
-                LorcanaSet(
-                    setCode = "rotf",
-                    cardCount = 100,
-                    name = "Rise Of The Floodborn"
-                )
-            )
+    private var translations: MutableMap<String, CardMap> = HashMap()
+    private val cards: List<LorcanaCard>
+
+    init {
+        val languages = listOf("en", "fr", "de")
+
+        languages.forEach {
+            translations.put(it, CardMap())
         }
 
-        private val json = Json {
-            ignoreUnknownKeys = true
-            coerceInputValues = true
-        }
+        cards = lorcanaHolder.props.cards.values.toList()
 
-        fun fromArray(content: String): List<LorcanaSet> {
-            return Json.decodeFromString(content)
+        cards.forEach { card ->
+            languages.forEach { lang ->
+                card.translation(lang)?.let { translation ->
+                    translations.get(lang)?.append(card, translation)
+                }
+            }
         }
     }
+
+    fun name() = lorcanaSet.name
+
+    fun cardCount() = cards.size
+
+    fun code() = lorcanaSet.setCode
+
+    fun cards() = this.cards
+    fun translations(language: String): CardMap? {
+        return translations[language.lowercase()]
+    }
+}
+
+class CardMap {
+    private val cardMaps: MutableMap<String, LorcanaCard> = HashMap()
+
+    fun append(card: LorcanaCard, translation: LorcanaCardTranslation) {
+        cardMaps["${translation.name} ${translation.title}"] = card
+    }
+
+    fun keys() = cardMaps.keys
+
+    fun get(key: String) = cardMaps[key]
 }

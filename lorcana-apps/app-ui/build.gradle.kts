@@ -94,9 +94,6 @@ dependencies {
     @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
     implementation(compose.components.resources)
 
-    api(libs.voyager.navigator)
-    api(libs.voyager.tab.navigator)
-    api(libs.voyager.transitions)
     api(libs.look.and.feel)
     implementation(libs.moko.viewmodel)
     implementation(libs.moko.viewmodel.compose)

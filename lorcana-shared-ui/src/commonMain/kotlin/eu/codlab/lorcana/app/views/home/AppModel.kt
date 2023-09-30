@@ -1,7 +1,9 @@
 package eu.codlab.lorcana.app.views.home
 
-import com.github.codlab.lorcana.card.Card
+import androidx.compose.ui.text.intl.Locale
+import com.github.codlab.lorcana.lorcania.LorcanaHolder
 import com.github.codlab.lorcana.lorcania.LorcanaSet
+import com.github.codlab.lorcana.lorcania.LorcanaSetObject
 import com.github.codlab.lorcana.shared.SharedRes
 import eu.codlab.lorcana.app.utils.StateViewModel
 import eu.codlab.lorcana.app.utils.launch
@@ -11,13 +13,11 @@ import eu.codlab.lorcana.models.LorcanaController
 import kotlin.time.ExperimentalTime
 
 data class AppModelState(
-    var cards: List<Card> = emptyList(),
-    var cardMaps: Map<String, Card> = emptyMap(),
     var initialized: Boolean = false,
     var loading: Boolean = false,
     var loggedIn: Boolean = false,
-
-    var sets: List<LorcanaSet> = emptyList()
+    val lang: String = "en",
+    var cardSets: List<LorcanaSet> = emptyList()
 )
 
 @OptIn(ExperimentalTime::class)
@@ -27,6 +27,7 @@ class AppModel : StateViewModel<AppModelState>(AppModelState()) {
 
     companion object {
         fun fake(): AppModel {
+            Locale.current.language.split("_")[0].lowercase()
             return AppModel()
         }
     }
@@ -47,25 +48,33 @@ class AppModel : StateViewModel<AppModelState>(AppModelState()) {
             databaseController.selectAll()
 
             val textSets = SharedRes.files.sets.safelyReadContent()
-            val sets = LorcanaSet.fromArray(textSets)
+            val sets = LorcanaSetObject.fromArray(textSets)
 
-            val textCards = SharedRes.files.allCards.safelyReadContent()
-            val cards = Card.fromArray(textCards).sortedBy {
-                it.cardNumber
-            }
+            var cardSets: MutableList<LorcanaSet> = ArrayList()
 
-            val cardMaps: MutableMap<String, Card> = HashMap()
+            listOf(
+                Pair(SharedRes.files.tfc, "tfc"),
+                Pair(SharedRes.files.d23, "d23"),
+                Pair(SharedRes.files.rotf, "rotf")
+            ).forEach { fileLang ->
+                val file = fileLang.first
+                val lang = fileLang.second
 
-            cards.forEach {
-                cardMaps["${it.name} ${it.subTitle}"] = it
+                sets.find { it.setCode.lowercase() == lang }?.let { lorcanaSet ->
+                    cardSets.add(
+                        LorcanaSet(
+                            LorcanaHolder.fromContent(file.safelyReadContent()),
+                            lorcanaSet = lorcanaSet
+                        )
+                    )
+                }
             }
 
             updateState {
                 copy(
-                    sets = sets,
                     initialized = true,
-                    cards = cards,
-                    cardMaps = cardMaps
+                    cardSets = cardSets,
+                    lang = Locale.current.language.split("_")[0].lowercase()
                 )
             }
         } catch (e: Throwable) {

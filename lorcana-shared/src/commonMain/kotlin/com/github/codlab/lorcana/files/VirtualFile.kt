@@ -1,6 +1,5 @@
 package com.github.codlab.lorcana.files
 
-import korlibs.io.file.Vfs
 import korlibs.io.file.VfsFile
 import korlibs.io.file.std.localVfs
 import korlibs.time.DateTime

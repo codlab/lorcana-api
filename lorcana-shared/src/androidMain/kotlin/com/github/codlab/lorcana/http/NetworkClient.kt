@@ -23,6 +23,7 @@ actual fun createClient(
             }
             level = LogLevel.ALL
         }
+        @Suppress("MagicNumber")
         install(HttpTimeout) {
             requestTimeoutMillis = 12000
         }

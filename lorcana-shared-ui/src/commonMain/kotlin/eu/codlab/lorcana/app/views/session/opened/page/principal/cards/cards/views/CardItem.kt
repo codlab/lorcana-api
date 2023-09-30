@@ -25,8 +25,8 @@ import androidx.compose.ui.text.intl.Locale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.github.codlab.lorcana.Platforms
-import com.github.codlab.lorcana.card.Card
 import com.github.codlab.lorcana.currentPlatform
+import com.github.codlab.lorcana.lorcania.LorcanaCard
 import eu.codlab.lorcana.app.theme.MyApplicationTheme
 import eu.codlab.lorcana.app.utils.rememberViewModel
 import eu.codlab.lorcana.app.views.home.LocalApp
@@ -41,13 +41,17 @@ private const val Ratio = 0.75f
 private const val CardAspectRatio = 0.70f
 
 @Composable
-fun CardItem(card: Card, showCollection: Boolean = true, onCard: (Card) -> Unit) {
+fun CardItem(
+    card: LorcanaCard,
+    showCollection: Boolean = true,
+    onCard: (LorcanaCard) -> Unit
+) {
     val localApp = LocalApp.current
 
     var numbers by remember { mutableStateOf(FoilNormal(0, 0)) }
 
     LaunchedEffect(card, showCollection) {
-        numbers = localApp.getCardNumbers(card.setCode, card.cardNumber.toLong())
+        numbers = localApp.getCardNumbers(card.getSetId(), card.number.toLong())
     }
 
     val downloader = LocalDownloader.current
@@ -90,7 +94,7 @@ fun CardItem(card: Card, showCollection: Boolean = true, onCard: (Card) -> Unit)
 fun CardItemPreview() {
     MyApplicationTheme {
         Column(modifier = Modifier.background(Color.White)) {
-            CardItem(card = Card.fake()) {}
+            CardItem(card = LorcanaCard.fake()) {}
         }
     }
 }

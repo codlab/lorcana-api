@@ -63,12 +63,13 @@ fun AppContent() {
                 }
                 MainPageScreen {
                     navigator.navigate(
-                        route = "/show/card/${it.cardNumber}",
+                        route = "/show/card/${it.getSetId()}/${it.number}",
                         options = NavOptions(
                             popUpTo = PopUpTo(
                                 route = "/home",
                                 inclusive = false
-                            )
+                            ),
+                            launchSingleTop = true
                         )
                     )
                 }
@@ -77,7 +78,7 @@ fun AppContent() {
 
         scene(
             // Scene's route path
-            route = "/show/card/{cardId}",
+            route = "/show/card/{setId}/{cardId}",
             swipeProperties = SwipeProperties()
         ) { backStackEntry ->
             SideEffect {
@@ -86,19 +87,19 @@ fun AppContent() {
             }
 
             println(backStackEntry.path)
-            val value = backStackEntry.pathMap["cardId"]
-            value?.let { cardId ->
-                val cards = state.cards
-                val card = cards.find { it.cardNumber == cardId.toInt() }
+            val cardId = backStackEntry.pathMap["cardId"] ?: return@scene
+            val setId = backStackEntry.pathMap["setId"] ?: return@scene
 
-                Column(
-                    modifier = Modifier.fillMaxSize(),
-                    Arrangement.spacedBy(5.dp)
-                ) {
-                    TopSpacer()
-                    SingleCard(card!!)
-                    BottomSpacer()
-                }
+            val set = state.cardSets.find { it.code() == setId } ?: return@scene
+            val card = set.cards().find { it.number == cardId.toInt() }
+
+            Column(
+                modifier = Modifier.fillMaxSize(),
+                Arrangement.spacedBy(5.dp)
+            ) {
+                TopSpacer()
+                SingleCard(card!!)
+                BottomSpacer()
             }
         }
     }

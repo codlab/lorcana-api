@@ -48,11 +48,10 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import cafe.adriel.voyager.navigator.tab.Tab
-import cafe.adriel.voyager.navigator.tab.TabOptions
 import com.germainkevin.collapsingtopbar.CollapsingTopBar
 import com.germainkevin.collapsingtopbar.rememberCollapsingTopBarScrollBehavior
-import com.github.codlab.lorcana.card.Card
+import com.github.codlab.lorcana.lorcania.LorcanaCard
+import com.github.codlab.lorcana.lorcania.LorcanaSet
 import com.willowtreeapps.fuzzywuzzy.diffutils.FuzzySearch
 import eu.codlab.lorcana.app.theme.AppColor
 import eu.codlab.lorcana.app.theme.LocalDarkTheme
@@ -73,9 +72,8 @@ import eu.codlab.moko.ext.localized
 
 private val minGridCellSize = 128.dp
 
-internal class CardsList(val onCard: (Card) -> Unit) : Tab {
-
-    override val options: TabOptions
+internal class CardsList(val onCard: (LorcanaCard) -> Unit) : Tab {
+    override val option: TabOptions
         @Composable
         get() {
             val title = Resources.strings.cards.localized()
@@ -83,7 +81,7 @@ internal class CardsList(val onCard: (Card) -> Unit) : Tab {
 
             return remember {
                 TabOptions(
-                    index = 0u,
+                    index = 1,
                     title = title,
                     icon = icon
                 )
@@ -106,17 +104,24 @@ internal class CardsList(val onCard: (Card) -> Unit) : Tab {
 @Suppress("LongMethod")
 @Composable
 fun ShowCardList(
-    onCard: (Card) -> Unit,
+    onCard: (LorcanaCard) -> Unit,
     useCornerTop: Boolean
 ) {
     StatusBarAndNavigation()
     val states by LocalApp.current.states.collectAsState()
     val search = remember { mutableStateOf(TextFieldValue("")) }
-    var cards by remember { mutableStateOf(states.cards) }
     val showCollection = remember { mutableStateOf(false) }
 
-    LaunchedEffect(search.value) {
-        cards = searchCards(states.cardMaps, search.value.text) ?: states.cards
+    var set by remember { mutableStateOf(states.cardSets.firstOrNull()) }
+
+    var cards = set?.cards() ?: emptyList()
+
+    println("set $set")
+
+    LaunchedEffect(set, search.value) {
+        val actualset = set ?: return@LaunchedEffect
+
+        cards = searchCards(actualset, states.lang, search.value.text) ?: actualset.cards()
     }
 
     val minHeight = 112.dp
@@ -163,8 +168,11 @@ fun ShowCardList(
             ShowHeader(
                 search = search,
                 showCollection = showCollection,
-                progress = progress
-            )
+                progress = progress,
+                set = set
+            ) {
+                set = it
+            }
         }
 
         LazyVerticalGrid(
@@ -188,7 +196,7 @@ fun ShowCardList(
             items(
                 count = cards.size,
                 key = { id ->
-                    cards[id].cardNumber
+                    cards[id].number
                 }
             ) { photo ->
                 CardItem(cards[photo], showCollection.value, onCard)
@@ -201,7 +209,9 @@ fun ShowCardList(
 fun ShowHeader(
     search: MutableState<TextFieldValue>,
     showCollection: MutableState<Boolean>,
-    progress: Float
+    progress: Float,
+    set: LorcanaSet? = null,
+    onSet: (LorcanaSet) -> Unit
 ) {
     val themeEnvironment = LocalThemeEnvironment.current
     val paddingDp = with(LocalDensity.current) {
@@ -232,7 +242,7 @@ fun ShowHeader(
             ) {
                 @Suppress("MagicNumber")
                 TextTitle(
-                    text = Resources.strings.cards.localized(),
+                    text = set?.name() ?: Resources.strings.cards.localized(),
                     fontSize = (12 + (30 - 12) * progress).sp
                 )
             }
@@ -254,42 +264,39 @@ fun ShowHeader(
             }
         }
 
-
         MenuSets(
             modifier = Modifier.align(
                 alignment = Alignment.TopEnd
             ),
-            sets = states.sets
-        ) {
-
-        }
+            sets = states.cardSets,
+            onSet = onSet
+        )
     }
 }
 
 const val ThresholdScore = 80
 
-fun searchCards(cards: Map<String, Card>, search: String): List<Card>? {
-    if (search.isEmpty()) return null
+fun searchCards(set: LorcanaSet, lang: String, search: String): List<LorcanaCard>? {
+    val translations = set.translations(lang)
+    if (null == translations || search.isEmpty()) return null
 
-    val found = mutableListOf<Card>()
+    val found = mutableListOf<LorcanaCard>()
 
-    found += cards.values.filter {
-        "${it.name} ${it.subTitle}"
+    found += set.cards().filter {
+        "${it.name} ${it.title}"
             .lowercase().contains(search.lowercase())
     }
 
     val result = FuzzySearch.extractAll(
         search.lowercase(),
-        cards.keys
+        translations.keys()
     )
 
     val treshold = result.filter { it.score > ThresholdScore }
 
-    found += treshold.map { cards[it.string] }.filter { card ->
-        null == found.find { null != card && it.cardNumber == card.cardNumber }
+    return found + treshold.map { translations.get(it.string ?: "") }.filter { card ->
+        null == found.find { null != card && it.number == card.number }
     }.filterNotNull()
-
-    return found
 }
 
 @OptIn(ExperimentalComposeUiApi::class)
