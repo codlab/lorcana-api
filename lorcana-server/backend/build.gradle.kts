@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
     application
@@ -24,17 +26,6 @@ application {
     applicationDefaultJvmArgs = listOf("-Dio.ktor.development=$isDevelopment")
 }
 
-java {
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = JavaVersion.VERSION_17
-}
-
-tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
-    kotlinOptions {
-        jvmTarget = libs.versions.java.get()
-    }
-}
-
 tasks.withType<Jar> {
     manifest {
         attributes["Main-Class"] = mainClassInManifest
@@ -53,4 +44,24 @@ dependencies {
     testApi(libs.ktor.server.tests.jvm)
     testApi(kotlin("test"))
 
+}
+
+/*afterEvaluate {
+    tasks.withType<JavaCompile>().configureEach {
+        sourceCompatibility = JavaVersion.VERSION_17.toString()
+        targetCompatibility = JavaVersion.VERSION_17.toString()
+    }
+}*/
+
+tasks {
+    withType<KotlinCompile> {
+        kotlinOptions {
+            jvmTarget = libs.versions.java.get()
+        }
+    }
+
+    withType<JavaCompile> {
+        sourceCompatibility = libs.versions.java.get()
+        targetCompatibility = libs.versions.java.get()
+    }
 }
