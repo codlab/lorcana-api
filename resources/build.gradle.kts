@@ -109,7 +109,7 @@ tasks.register("generateMR") {
 
 tasks.register("generateImages") {
     group = "moko-resources"
-    val parent = file("${rootProject.projectDir}/src/data/images")
+    val parent = file("${rootProject.projectDir}/assets/data/images")
     var resources = file("${project.projectDir}/src/commonMain/resources/MR/images/")
     if (!resources.exists()) resources.mkdirs()
 
@@ -126,7 +126,7 @@ tasks.register("concatenateMR") {
     dependsOn("generateImages")
     group = "moko-resources"
 
-    val parent = file("${rootProject.projectDir}/src/data/cards")
+    val parent = file("${rootProject.projectDir}/assets/data/cards")
     val array = parent.list()?.map {
         val current = File(parent.absolutePath, it)
         current.readText()

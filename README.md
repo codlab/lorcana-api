@@ -1,10 +1,14 @@
-### Lorcana.api.com
+### Multiplatform Lorcana Manager APP & API
 
-# Backend
+![Lorcana header](assets/header.jpeg)
 
-This is the backend code for [Lorcana-api.com](https://lorcana-api.com).
-Lorcana-Api is a website for easiley fetching and filtering Lorcana cards.
-Several endpoints are avaliable, like /strict/, /fuzzy/, /lists/, and /search/. An in-depth explanation of all of these endpoints is avaliable at [Lorcana-api.com](lorcana-api.com/How-To.html)
+# Join the Discord community
+
+Join us by [clicking here](https://discord.gg/JsABX9CvcU)
+
+# Backend available for your projects
+
+An effortless backend implementation to provide access to cards and their data
 
 # Front end
 
@@ -13,12 +17,11 @@ A Kotlin Multiplatform implementation is available for :
 - Android
 - iOS
 - JVM (Windows, Linux, MacOS)
-
-Still WIP but will bring management support
+- JS (WIP)
 
 # Shared implementation
 
-The cards are available in src/data and are bundled inside the shared project available for use by both the server & apps
+The cards are available in assets/data and are bundled inside the shared project available for use by both the server & apps
 
 # Usage
 
@@ -33,11 +36,10 @@ It will be refactored but the apps exists alongside "app-ui" which exists solely
 
 ## Roadmap
 
-- remove the preview & safearea libs to be refactored into outside libs
-- refactor the project structure
 - upgrade backend code
 - add actual UI content
 - update documentation
+- Lore counter & Deck management
 
 # Resources
 

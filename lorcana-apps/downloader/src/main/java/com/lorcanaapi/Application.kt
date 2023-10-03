@@ -17,8 +17,6 @@ import net.coobird.thumbnailator.ThumbnailParameter
 import net.coobird.thumbnailator.name.Rename
 import java.io.File
 
-var cards: List<Card> = emptyList()
-
 val client = HttpClient(CIO) {
 }
 
@@ -27,10 +25,6 @@ val client = HttpClient(CIO) {
 
 @Suppress("LongMethod")
 fun main(arg: Array<String>) {
-    cards = runBlocking {
-        val textCards = SharedRes.files.allCards.readContent()
-        return@runBlocking Card.fromArray(textCards)
-    }
 
     @Suppress("TooGenericExceptionCaught", "SwallowedException")
     val rootDir = try {
@@ -66,7 +60,7 @@ fun main(arg: Array<String>) {
                     val url = langUrl.second
                     val lang = langUrl.first
 
-                    val folder = "src/data/lorcania_images"
+                    val folder = "assets/data/lorcania_images"
                     val filenameLarge = "${setCode}_normal_large_${card.number}_$lang@1x.webp"
                     val filenameSmall = "${setCode}_normal_small_${card.number}_$lang@1x.webp"
                     val expectedFolder = File(rootDir, folder)
@@ -101,7 +95,7 @@ fun main(arg: Array<String>) {
     runBlocking {
         cards.forEach { card ->
             println("doing ${card.setCode}/${card.cardNumber}")
-            val imagesFolder = File(rootDir, "src/data/images")
+            val imagesFolder = File(rootDir, "assets/data/images")
 
             listOf(imagesFolder).forEach {
                 if (!it.exists()) it.mkdirs()
@@ -119,7 +113,7 @@ fun main(arg: Array<String>) {
             //    downloadImage(it.first, rootDir, it.second)
             //}
 
-            val folder = "src/data/images"
+            val folder = "assets/data/images"
             val filename = "${card.setCode}_foil_large_${card.cardNumber}_en@1x.png".lowercase()
             val thumbnailed = "${card.setCode}_foil_small_${card.cardNumber}_en@1x.png".lowercase()
             val expectedFolder = File(rootDir, folder)
@@ -131,11 +125,11 @@ fun main(arg: Array<String>) {
                     urls.foil,
                     rootDir,
                     filename,
-                    "src/data/foils"
+                    "assets/data/foils"
                 )
 
                 @Suppress("SpreadOperator")
-                Thumbnails.of(*File(rootDir, "src/data/foils").listFiles())
+                Thumbnails.of(*File(rootDir, "assets/data/foils").listFiles())
                     .size(ExpectedSizeImage.first, ExpectedSizeImage.second)
                     .outputFormat("png")
                     .toFiles(
@@ -155,7 +149,7 @@ suspend fun downloadImage(
     url: String,
     root: String,
     name: String,
-    path: String = "src/data/images"
+    path: String = "assets/data/images"
 ): Boolean {
     return try {
         val folder = File(root, path)

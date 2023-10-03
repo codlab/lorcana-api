@@ -73,18 +73,18 @@ app-ui/src/androidMain/kotlin
 app/shared_logic/src/commonMain/resources/MR/files/licenseReleaseReport.json
 /app-ui/src/commonMain/resources/MR/files/licenseReleaseReport.json
 
-src/data/allCards.txt
+assets/data/allCards.txt
 
 karma.config.d/
 webpack.config.d/
 
-src/data/foils/
-src/data/images/tfc_*
-src/data/images/d23_*
-src/data/images/rotf_*
-src/data/lorcania_images/tfc_*
-src/data/lorcania_images/d23_*
-src/data/lorcania_images/rotf_*
+assets/data/foils/
+assets/data/images/tfc_*
+assets/data/images/d23_*
+assets/data/images/rotf_*
+assets/data/lorcania_images/tfc_*
+assets/data/lorcania_images/d23_*
+assets/data/lorcania_images/rotf_*
 resources/src/commonMain/resources/MR/images/tfc_*
 resources/src/commonMain/resources/MR/images/d23_*
 resources/src/commonMain/resources/MR/images/rotf_*

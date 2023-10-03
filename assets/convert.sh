@@ -1,11 +1,14 @@
 #!/bin/bash
 
+current=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+
+pushd "$current/.."
 
 echo "running download..."
 ./gradlew :downloader:run
 
 echo "now converting the images..."
-pushd src/data/
+pushd assets/data/
 
 mkdir images
 
@@ -20,3 +23,6 @@ done
 popd
 
 ./gradlew :resources:generateMR
+
+# going back to the original path
+popd

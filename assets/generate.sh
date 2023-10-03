@@ -1,3 +1,7 @@
+current=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+
+pushd "$current/.."
+
 ASSETS_PATH="assets"
 IMG_PATH="lorcana-apps/iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/ic_launcher_foreground-"
 LOGO="$ASSETS_PATH/logo.png"
@@ -22,3 +26,6 @@ cp "$LOGO" MyIcon.iconset/icon_512x512@2x.png
 iconutil -c icns MyIcon.iconset
 rm -R MyIcon.iconset
 mv MyIcon.icns lorcana-apps/jvmApp/icon.icns
+
+# going back to the original path
+popd
