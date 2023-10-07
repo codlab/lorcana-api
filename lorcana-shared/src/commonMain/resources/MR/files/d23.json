@@ -1,1200 +1,1501 @@
-{
-	"cards": {
-		"1": {
-			"id": 1,
-			"name": "Mickey Mouse",
-			"title": "Brave Little Tailor",
-			"cost": 8,
-			"inkwell": 1,
-			"attack": 5,
-			"defence": 5,
-			"color": 1,
-			"type": "glimmer",
-			"action": "<b>Evasive<\/b> (<i>Only characters with Evasive can challenge this character.<\/i>)",
-			"flavour": "When defeat looms and victory hangs by a thread, a hero bolts to the rescue, patching things up through shear determination.",
-			"separator": "pen",
-			"stars": 4,
-			"illustrator": "Nicholas Kole",
-			"card_set_id": 1,
-			"language": "EN",
-			"number": 1,
-			"pack": "P1",
-			"rarity": "promo",
-			"image": "https:\/\/images.lorcania.com\/cards\/d23\/1_en_mickey-716.webp",
-			"blurhash": "LGKAN9Vt5kxDA0M|xrs:ugELnPj[",
-			"franchise_id": 1,
-			"final": 1,
-			"spoiler": 0,
-			"created_at": "2022-09-22T12:35:18.000000Z",
-			"updated_at": "2022-09-22T12:35:18.000000Z",
-			"languages": {
-				"EN": {
-					"card_id": 1,
-					"language": "EN",
-					"name": "Mickey Mouse",
-					"title": "Brave Little Tailor",
-					"action": "<b>Evasive<\/b> (<i>Only characters with Evasive can challenge this character.<\/i>)",
-					"flavour": "When defeat looms and victory hangs by a thread, a hero bolts to the rescue, patching things up through shear determination.",
-					"image": "https:\/\/images.lorcania.com\/cards\/d23\/1_en_mickey-716.webp"
-				}
-			},
-			"edition": [{
-				"id": 1,
-				"name": "D23 & 1st edition",
-				"code": "d23"
-			}]
-		},
-		"2": {
-			"id": 2,
-			"name": "Stitch",
-			"title": "Rock Star",
-			"cost": 6,
-			"inkwell": 1,
-			"attack": 3,
-			"defence": 5,
-			"color": 4,
-			"type": "glimmer",
-			"action": "<b>Shift<\/b> 4 (<i>You may pay 4 * to play this on top of one of your Stitch characters.<\/i>)<br><mark>Adoring Fans<\/mark> Whenever you play a character with cost 2 or less, you may exert it to draw a card.",
-			"flavour": "The best part about a beachside concert is that there's always room for one more.",
-			"separator": "pen",
-			"stars": 3,
-			"illustrator": "Simangaliso Sibaya",
-			"card_set_id": 1,
-			"language": "EN",
-			"number": 2,
-			"pack": "P1",
-			"rarity": "promo",
-			"image": "https:\/\/images.lorcania.com\/cards\/d23\/2_en_stitch-716.webp",
-			"blurhash": "L3Jjbh5800Vr0FOWVBt600S${]^k",
-			"franchise_id": 2,
-			"final": 1,
-			"spoiler": 0,
-			"created_at": "2022-09-22T12:35:18.000000Z",
-			"updated_at": "2022-09-22T12:35:18.000000Z",
-			"languages": {
-				"EN": {
-					"card_id": 2,
-					"language": "EN",
-					"name": "Stitch",
-					"title": "Rock Star",
-					"action": "<b>Shift<\/b> 4 (<i>You may pay 4 * to play this on top of one of your Stitch characters.<\/i>)<br><mark>Adoring Fans<\/mark> Whenever you play a character with cost 2 or less, you may exert it to draw a card.",
-					"flavour": "The best part about a beachside concert is that there's always room for one more.",
-					"image": "https:\/\/images.lorcania.com\/cards\/d23\/2_en_stitch-716.webp"
-				}
-			},
-			"edition": [{
-				"id": 2,
-				"name": "D23 & 1st edition (Foil)",
-				"code": "d23_foil"
-			}]
-		},
-		"3": {
-			"id": 3,
-			"name": "Elsa",
-			"title": "Snow Queen",
-			"cost": 3,
-			"inkwell": 1,
-			"attack": 2,
-			"defence": 3,
-			"color": 5,
-			"type": "glimmer",
-			"action": "<mark>Freeze<\/mark> \u21b7 - Exert chosen opposing character.",
-			"flavour": "Recreated by magical ink, Elsa found herself in an unfamiliar new world. Fortunately, ice works the same way everywhere.",
-			"separator": "pen",
-			"stars": 1,
-			"illustrator": "Nicholas Kole",
-			"card_set_id": 1,
-			"language": "EN",
-			"number": 3,
-			"pack": "P1",
-			"rarity": "promo",
-			"image": "https:\/\/images.lorcania.com\/cards\/d23\/3_en_elsa-716.webp",
-			"blurhash": "LKHeFKi_4.Wo0uxBR#WB$@n#n-e-",
-			"franchise_id": 3,
-			"final": 1,
-			"spoiler": 0,
-			"created_at": "2022-09-22T12:35:18.000000Z",
-			"updated_at": "2022-09-22T12:35:18.000000Z",
-			"languages": {
-				"EN": {
-					"card_id": 3,
-					"language": "EN",
-					"name": "Elsa",
-					"title": "Snow Queen",
-					"action": "<mark>Freeze<\/mark> \u21b7 - Exert chosen opposing character.",
-					"flavour": "Recreated by magical ink, Elsa found herself in an unfamiliar new world. Fortunately, ice works the same way everywhere.",
-					"image": "https:\/\/images.lorcania.com\/cards\/d23\/3_en_elsa-716.webp"
-				}
-			},
-			"edition": [{
-				"id": 2,
-				"name": "D23 & 1st edition (Foil)",
-				"code": "d23_foil"
-			}]
-		},
-		"4": {
-			"id": 4,
-			"name": "Cruella De Vil",
-			"title": "Miserable As Usual",
-			"cost": 2,
-			"inkwell": 1,
-			"attack": 1,
-			"defence": 3,
-			"color": 3,
-			"type": "glimmer",
-			"action": "<mark>You'll Be Sorry<\/mark> When this character is challenged and banished, you may return chosen character to their player's hand.",
-			"flavour": "When she stops by, misery is company.",
-			"separator": "pen",
-			"stars": 1,
-			"illustrator": "Nicholas Kole",
-			"card_set_id": 1,
-			"language": "EN",
-			"number": 4,
-			"pack": "P1",
-			"rarity": "promo",
-			"image": "https:\/\/images.lorcania.com\/cards\/d23\/4_en_cruella-716.webp",
-			"blurhash": "LFH_o5Iq4;bE07bEX4of_kR*K3%1",
-			"franchise_id": 4,
-			"final": 1,
-			"spoiler": 0,
-			"created_at": "2022-09-22T12:35:18.000000Z",
-			"updated_at": "2022-09-22T12:35:18.000000Z",
-			"languages": {
-				"EN": {
-					"card_id": 4,
-					"language": "EN",
-					"name": "Cruella De Vil",
-					"title": "Miserable As Usual",
-					"action": "<mark>You'll Be Sorry<\/mark> When this character is challenged and banished, you may return chosen character to their player's hand.",
-					"flavour": "When she stops by, misery is company.",
-					"image": "https:\/\/images.lorcania.com\/cards\/d23\/4_en_cruella-716.webp"
-				}
-			},
-			"edition": [{
-				"id": 2,
-				"name": "D23 & 1st edition (Foil)",
-				"code": "d23_foil"
-			}]
-		},
-		"5": {
-			"id": 5,
-			"name": "Maleficent",
-			"title": "Monstrous Dragon",
-			"cost": 9,
-			"inkwell": 1,
-			"attack": 7,
-			"defence": 5,
-			"color": 1,
-			"type": "glimmer",
-			"action": "<mark>Dragon Fire<\/mark> When you play this character, you may banish chosen opposing character.",
-			"flavour": "The ninth Rule of Villainy: When all else fails, turn into a dragon.",
-			"separator": "pen",
-			"stars": 2,
-			"illustrator": "Luis Huerta",
-			"card_set_id": 1,
-			"language": "EN",
-			"number": 5,
-			"pack": "P1",
-			"rarity": "promo",
-			"image": "https:\/\/images.lorcania.com\/cards\/d23\/5_en_maleficent-716.webp",
-			"blurhash": "L6J~u]je0fE%01-o%ZOr4GnjNH-m",
-			"franchise_id": 5,
-			"final": 1,
-			"spoiler": 0,
-			"created_at": "2022-09-22T12:35:18.000000Z",
-			"updated_at": "2022-09-22T12:35:18.000000Z",
-			"languages": {
-				"EN": {
-					"card_id": 5,
-					"language": "EN",
-					"name": "Maleficent",
-					"title": "Monstrous Dragon",
-					"action": "<mark>Dragon Fire<\/mark> When you play this character, you may banish chosen opposing character.",
-					"flavour": "The ninth Rule of Villainy: When all else fails, turn into a dragon.",
-					"image": "https:\/\/images.lorcania.com\/cards\/d23\/5_en_maleficent-716.webp"
-				},
-				"DE": {
-					"card_id": 5,
-					"language": "DE",
-					"name": null,
-					"title": null,
-					"action": null,
-					"flavour": null,
-					"image": null
-				},
-				"FR": {
-					"card_id": 5,
-					"language": "FR",
-					"name": null,
-					"title": null,
-					"action": null,
-					"flavour": null,
-					"image": null
-				}
-			},
-			"edition": [{
-				"id": 2,
-				"name": "D23 & 1st edition (Foil)",
-				"code": "d23_foil"
-			}]
-		},
-		"6": {
-			"id": 6,
-			"name": "Robin Hood",
-			"title": "Unrivaled Archer",
-			"cost": 6,
-			"inkwell": 1,
-			"attack": 4,
-			"defence": 4,
-			"color": 2,
-			"type": "glimmer",
-			"action": "<mark>Feed The Poor<\/mark> When you play this character, if an opponent has more cards in their hand than you, draw a card.<br><mark>Good Shot<\/mark> During your turn, this character has <b>Evasive<\/b>. (<i>They can challenge characters with Evasive.<\/i>)",
-			"flavour": "\"We never rob. We just sort of borrow a bit from those who can afford it.\"",
-			"separator": "pen",
-			"stars": 2,
-			"illustrator": "John Loren",
-			"card_set_id": 1,
-			"language": "EN",
-			"number": 6,
-			"pack": "P1",
-			"rarity": "promo",
-			"image": "https:\/\/images.lorcania.com\/cards\/d23\/6_en_robin-716.webp",
-			"blurhash": "L9GlLpHD02iI02yq$jn3Uuv~t8t7",
-			"franchise_id": 6,
-			"final": 1,
-			"spoiler": 0,
-			"created_at": "2022-09-22T12:35:18.000000Z",
-			"updated_at": "2022-09-22T12:35:18.000000Z",
-			"languages": {
-				"EN": {
-					"card_id": 6,
-					"language": "EN",
-					"name": "Robin Hood",
-					"title": "Unrivaled Archer",
-					"action": "<mark>Feed The Poor<\/mark> When you play this character, if an opponent has more cards in their hand than you, draw a card.<br><mark>Good Shot<\/mark> During your turn, this character has <b>Evasive<\/b>. (<i>They can challenge characters with Evasive.<\/i>)",
-					"flavour": "\"We never rob. We just sort of borrow a bit from those who can afford it.\"",
-					"image": "https:\/\/images.lorcania.com\/cards\/d23\/6_en_robin-716.webp"
-				}
-			},
-			"edition": [{
-				"id": 2,
-				"name": "D23 & 1st edition (Foil)",
-				"code": "d23_foil"
-			}]
-		},
-		"7": {
-			"id": 7,
-			"name": "Captain Hook",
-			"title": "Forceful Duelist",
-			"cost": 1,
-			"inkwell": 1,
-			"attack": 1,
-			"defence": 2,
-			"color": 6,
-			"type": "glimmer",
-			"action": "<b>Challenger<\/b> +2 (<i>When challenging, this character get +2 \u203b.<\/i>)",
-			"flavour": "He loves to make light of a foe's predicament.",
-			"separator": "pen",
-			"stars": 1,
-			"illustrator": "Marcel Berg",
-			"card_set_id": 1,
-			"language": "EN",
-			"number": 7,
-			"pack": "P1",
-			"rarity": "promo",
-			"image": "https:\/\/images.lorcania.com\/cards\/d23\/7_en_hook-716.webp",
-			"blurhash": "L7H24X^*029a05?GXgIU{@RQots*",
-			"franchise_id": 7,
-			"final": 1,
-			"spoiler": 0,
-			"created_at": "2022-09-22T12:35:18.000000Z",
-			"updated_at": "2022-09-22T12:35:18.000000Z",
-			"languages": {
-				"EN": {
-					"card_id": 7,
-					"language": "EN",
-					"name": "Captain Hook",
-					"title": "Forceful Duelist",
-					"action": "<b>Challenger<\/b> +2 (<i>When challenging, this character get +2 \u203b.<\/i>)",
-					"flavour": "He loves to make light of a foe's predicament.",
-					"image": "https:\/\/images.lorcania.com\/cards\/d23\/7_en_hook-716.webp"
-				}
-			},
-			"edition": [{
-				"id": 2,
-				"name": "D23 & 1st edition (Foil)",
-				"code": "d23_foil"
-			}]
-		},
-		"8": {
-			"id": 39,
-			"name": "Mickey Mouse",
-			"title": "Detective",
-			"cost": 3,
-			"inkwell": 0,
-			"attack": 1,
-			"defence": 3,
-			"color": 2,
-			"type": "glimmer",
-			"action": "<mark>GET A CLUE<\/mark> When you play this character, you may put the top card of your deck into your inkwell facedown and exerted.",
-			"flavour": "Wherever the seaweed had come from, Mickey was sure of one thing: something fishy was going on.",
-			"separator": "pen",
-			"stars": 1,
-			"illustrator": "Jared Nickerl",
-			"card_set_id": 1,
-			"language": "EN",
-			"number": 8,
-			"pack": "P1",
-			"rarity": "promo",
-			"image": "https:\/\/images.lorcania.com\/cards\/p1\/8_en_mickey_mouse_detective-716.webp",
-			"blurhash": "",
-			"franchise_id": 1,
-			"final": 0,
-			"spoiler": 0,
-			"created_at": "2023-01-17T15:03:16.000000Z",
-			"updated_at": "2023-06-26T19:24:51.000000Z",
-			"languages": {
-				"EN": {
-					"card_id": 39,
-					"language": "EN",
-					"name": "Mickey Mouse",
-					"title": "Detective",
-					"action": "<mark>GET A CLUE<\/mark> When you play this character, you may put the top card of your deck into your inkwell facedown and exerted.",
-					"flavour": "Wherever the seaweed had come from, Mickey was sure of one thing: something fishy was going on.",
-					"image": "https:\/\/images.lorcania.com\/cards\/p1\/8_en_mickey_mouse_detective-716.webp"
-				},
-				"DE": {
-					"card_id": 39,
-					"language": "DE",
-					"name": null,
-					"title": null,
-					"action": null,
-					"flavour": null,
-					"image": null
-				},
-				"FR": {
-					"card_id": 39,
-					"language": "FR",
-					"name": null,
-					"title": null,
-					"action": null,
-					"flavour": null,
-					"image": null
-				}
-			},
-			"edition": [{
-				"id": 7,
-				"name": "Organized Play",
-				"code": "op"
-			}]
-		},
-		"9": {
-			"id": 71,
-			"name": "Heihei",
-			"title": "Boat Snack",
-			"cost": 1,
-			"inkwell": 1,
-			"attack": 1,
-			"defence": 2,
-			"color": 4,
-			"type": "glimmer",
-			"action": "<b>Support<\/b> <i>(Whenever this character quests, you\u0003 may add their \u203b to another chosen character\u2018s \u203b this turn.)<\/i>",
-			"flavour": "\u201eSometimes, our strengths lie beneath the surface.\u0003Far beneath, in some cases. . . .\u201c<br \/>\u0003\u2212Moana",
-			"separator": "book",
-			"stars": 1,
-			"illustrator": "Jenna Gray",
-			"card_set_id": 1,
-			"language": "EN",
-			"number": 9,
-			"pack": "P1",
-			"rarity": "promo",
-			"image": "https:\/\/images.lorcania.com\/cards\/p1\/9_en_heihei-716.webp",
-			"blurhash": "",
-			"franchise_id": 11,
-			"final": 0,
-			"spoiler": 0,
-			"created_at": "2023-04-17T19:15:53.000000Z",
-			"updated_at": "2023-06-26T19:24:41.000000Z",
-			"languages": {
-				"EN": {
-					"card_id": 71,
-					"language": "EN",
-					"name": "Heihei",
-					"title": "Boat Snack",
-					"action": "<b>Support<\/b> <i>(Whenever this character quests, you\u0003 may add their \u203b to another chosen character\u2018s \u203b this turn.)<\/i>",
-					"flavour": "\u201eSometimes, our strengths lie beneath the surface.\u0003Far beneath, in some cases. . . .\u201c<br \/>\u0003\u2212Moana",
-					"image": "https:\/\/images.lorcania.com\/cards\/p1\/9_en_heihei-716.webp"
-				},
-				"DE": {
-					"card_id": 71,
-					"language": "DE",
-					"name": null,
-					"title": null,
-					"action": null,
-					"flavour": null,
-					"image": null
-				},
-				"FR": {
-					"card_id": 71,
-					"language": "FR",
-					"name": null,
-					"title": null,
-					"action": null,
-					"flavour": null,
-					"image": null
-				}
-			},
-			"edition": [{
-				"id": 7,
-				"name": "Organized Play",
-				"code": "op"
-			}]
-		},
-		"10": {
-			"id": 72,
-			"name": "Yzma",
-			"title": "Alchemist",
-			"cost": 2,
-			"inkwell": 1,
-			"attack": 2,
-			"defence": 2,
-			"color": 5,
-			"type": "glimmer",
-			"action": "<mark>YOU'RE EXCUSED<\/mark> Whenever this character quests, look at the top card of your deck. Put it on either the top or the bottom of your deck.",
-			"flavour": "\"When I want your opinion, I will give it to you!\"",
-			"separator": "pen",
-			"stars": 1,
-			"illustrator": "Hadjie Joos",
-			"card_set_id": 1,
-			"language": "EN",
-			"number": 10,
-			"pack": "P1",
-			"rarity": "promo",
-			"image": "https:\/\/images.lorcania.com\/cards\/p1\/10_en_yzma-716.webp",
-			"blurhash": "L3HK@NKT00_10G~ox7-nXsxo=~In",
-			"franchise_id": 20,
-			"final": 0,
-			"spoiler": 0,
-			"created_at": "2023-04-17T19:16:36.000000Z",
-			"updated_at": "2023-06-26T19:23:21.000000Z",
-			"languages": {
-				"EN": {
-					"card_id": 72,
-					"language": "EN",
-					"name": "Yzma",
-					"title": "Alchemist",
-					"action": "<mark>YOU'RE EXCUSED<\/mark> Whenever this character quests, look at the top card of your deck. Put it on either the top or the bottom of your deck.",
-					"flavour": "\"When I want your opinion, I will give it to you!\"",
-					"image": "https:\/\/images.lorcania.com\/cards\/p1\/10_en_yzma-716.webp"
-				},
-				"DE": {
-					"card_id": 72,
-					"language": "DE",
-					"name": null,
-					"title": null,
-					"action": null,
-					"flavour": null,
-					"image": null
-				},
-				"FR": {
-					"card_id": 72,
-					"language": "FR",
-					"name": null,
-					"title": null,
-					"action": null,
-					"flavour": null,
-					"image": null
-				}
-			},
-			"edition": [{
-				"id": 7,
-				"name": "Organized Play",
-				"code": "op"
-			}]
-		},
-		"11": {
-			"id": 226,
-			"name": "Mickey Mouse",
-			"title": "Musketeer",
-			"cost": 6,
-			"inkwell": 1,
-			"attack": 2,
-			"defence": 7,
-			"color": 6,
-			"type": "glimmer",
-			"action": "<b>Bodyguard<\/b> <i>(This character may enter play exerted. \nAn opposing character who challenges one of \nyour characters must choose one with Bodyguard\nif able.)<\/i><br \/><mark>ALL FOR ONE<\/mark> Your other Musketeer characters\nget +1 \u203b.",
-			"flavour": null,
-			"separator": null,
-			"stars": 2,
-			"illustrator": "Jochem Van Gool",
-			"card_set_id": 1,
-			"language": "EN",
-			"number": 11,
-			"pack": "P1",
-			"rarity": "promo",
-			"image": "https:\/\/images.lorcania.com\/cards\/p1\/11_en_mickey_mouse-716.webp",
-			"blurhash": "",
-			"franchise_id": 1,
-			"final": 0,
-			"spoiler": 0,
-			"created_at": "2023-08-03T17:46:25.000000Z",
-			"updated_at": "2023-08-03T17:46:25.000000Z",
-			"languages": {
-				"EN": {
-					"card_id": 226,
-					"language": "EN",
-					"name": "Mickey Mouse",
-					"title": "Musketeer",
-					"action": "<b>Bodyguard<\/b> <i>(This character may enter play exerted. \nAn opposing character who challenges one of \nyour characters must choose one with Bodyguard\nif able.)<\/i><br \/><mark>ALL FOR ONE<\/mark> Your other Musketeer characters\nget +1 \u203b.",
-					"flavour": null,
-					"image": "https:\/\/images.lorcania.com\/cards\/p1\/11_en_mickey_mouse-716.webp"
-				},
-				"DE": {
-					"card_id": 226,
-					"language": "DE",
-					"name": null,
-					"title": null,
-					"action": null,
-					"flavour": null,
-					"image": null
-				},
-				"FR": {
-					"card_id": 226,
-					"language": "FR",
-					"name": null,
-					"title": null,
-					"action": null,
-					"flavour": null,
-					"image": null
-				}
-			},
-			"edition": [{
-				"id": 9,
-				"name": "GenCon 23",
-				"code": "gencon23"
-			}, {
-				"id": 10,
-				"name": "Promo",
-				"code": "promo"
-			}]
-		},
-		"12": {
-			"id": 97,
-			"name": "Goofy",
-			"title": "Musketeer",
-			"cost": 5,
-			"inkwell": 1,
-			"attack": 3,
-			"defence": 6,
-			"color": 4,
-			"type": "glimmer",
-			"action": "<b>Bodyguard<\/b> <i>(This character may enter play exerted. \rAn opposing character who challenges one of \ryour characters must choose one with Bodyguard\rif able.)<\/i><br \/><mark>AND TWO FOR TEA!<\/mark> When you play this character, you may remove up to 2 damage from each of your Musketeer characters.",
-			"flavour": "\"En gawrsh!\"",
-			"separator": "pen",
-			"stars": 1,
-			"illustrator": "Jochem van Gool",
-			"card_set_id": 1,
-			"language": "EN",
-			"number": 12,
-			"pack": "P1",
-			"rarity": "promo",
-			"image": "https:\/\/images.lorcania.com\/cards\/p1\/12_goofy-716.webp",
-			"blurhash": "",
-			"franchise_id": 1,
-			"final": 0,
-			"spoiler": 0,
-			"created_at": "2023-06-21T10:31:43.000000Z",
-			"updated_at": "2023-06-26T19:26:20.000000Z",
-			"languages": {
-				"EN": {
-					"card_id": 97,
-					"language": "EN",
-					"name": "Goofy",
-					"title": "Musketeer",
-					"action": "<b>Bodyguard<\/b> <i>(This character may enter play exerted. \rAn opposing character who challenges one of \ryour characters must choose one with Bodyguard\rif able.)<\/i><br \/><mark>AND TWO FOR TEA!<\/mark> When you play this character, you may remove up to 2 damage from each of your Musketeer characters.",
-					"flavour": "\"En gawrsh!\"",
-					"image": "https:\/\/images.lorcania.com\/cards\/p1\/12_goofy-716.webp"
-				},
-				"DE": {
-					"card_id": 97,
-					"language": "DE",
-					"name": null,
-					"title": null,
-					"action": null,
-					"flavour": null,
-					"image": null
-				},
-				"FR": {
-					"card_id": 97,
-					"language": "FR",
-					"name": "Dingo",
-					"title": "Mousquetaire",
-					"action": "<b>Rempart<\/b> <i>(Ce personnage peut entrer en jeu \u00e9puis\u00e9. Lorsqu'il vous d\u00e9fie, un personnage adverse doit, si possible, choisir l'un de vos personnages avec Rempart)<\/i><br \/><mark>ET DEUX FOIS RIEN !<\/mark> Lorsque vous jouez ce personnage,\nvous pouvez retirer jusqu'\u00e0 2 jetons Dommage de chacun de vos personnages Mousquetaire.",
-					"flavour": "\"En garde, hyuck!\"",
-					"image": null
-				}
-			},
-			"edition": [{
-				"id": 8,
-				"name": "GamesCon 23",
-				"code": "gamecon23"
-			}, {
-				"id": 10,
-				"name": "Promo",
-				"code": "promo"
-			}]
-		},
-		"18": {
-			"id": 242,
-			"name": "Mickey Mouse",
-			"title": "Friendly Face",
-			"cost": 6,
-			"inkwell": 1,
-			"attack": 1,
-			"defence": 6,
-			"color": 4,
-			"type": "glimmer",
-			"action": "<mark>GLAD YOU\u2019RE HERE!<\/mark> Whenever this character quests, you pay 3 \u2b21 less for the next character you play this turn.",
-			"flavour": "\u201cCome on in\u2212there\u2019s lots to explore.\u201d",
-			"separator": "pen",
-			"stars": 3,
-			"illustrator": "Mark Henn",
-			"card_set_id": 1,
-			"language": "EN",
-			"number": 18,
-			"pack": "204",
-			"rarity": "promo",
-			"image": "https:\/\/images.lorcania.com\/cards\/p1\/18_en_mickey_mouse-716.webp",
-			"blurhash": "",
-			"franchise_id": 1,
-			"final": 0,
-			"spoiler": 1,
-			"created_at": "2023-09-12T12:56:04.000000Z",
-			"updated_at": "2023-09-12T12:56:04.000000Z",
-			"languages": {
-				"EN": {
-					"card_id": 242,
-					"language": "EN",
-					"name": "Mickey Mouse",
-					"title": "Friendly Face",
-					"action": "<mark>GLAD YOU\u2019RE HERE!<\/mark> Whenever this character quests, you pay 3 \u2b21 less for the next character you play this turn.",
-					"flavour": "\u201cCome on in\u2212there\u2019s lots to explore.\u201d",
-					"image": "https:\/\/images.lorcania.com\/cards\/p1\/18_en_mickey_mouse-716.webp"
-				},
-				"DE": {
-					"card_id": 242,
-					"language": "DE",
-					"name": null,
-					"title": null,
-					"action": null,
-					"flavour": null,
-					"image": null
-				},
-				"FR": {
-					"card_id": 242,
-					"language": "FR",
-					"name": null,
-					"title": null,
-					"action": null,
-					"flavour": null,
-					"image": null
-				}
-			},
-			"edition": [{
-				"id": 11,
-				"name": "Disney 100",
-				"code": "disney100"
-			}]
-		},
-		"19": {
-			"id": 243,
-			"name": "Elsa",
-			"title": "Gloves Off",
-			"cost": 4,
-			"inkwell": 1,
-			"attack": 3,
-			"defence": 2,
-			"color": 5,
-			"type": "glimmer",
-			"action": "<b>Challenger<\/b> +3 <i>(While challenging, this character gets +3 \u203b)<\/i>",
-			"flavour": "The power of ice may not stop the flood, but it will help protect Lorcana.",
-			"separator": "pen",
-			"stars": 1,
-			"illustrator": "Brittney Lee",
-			"card_set_id": 1,
-			"language": "EN",
-			"number": 19,
-			"pack": "204",
-			"rarity": "promo",
-			"image": "https:\/\/images.lorcania.com\/cards\/p1\/19_en_elsa-716.webp",
-			"blurhash": "",
-			"franchise_id": 3,
-			"final": 0,
-			"spoiler": 1,
-			"created_at": "2023-09-12T12:59:17.000000Z",
-			"updated_at": "2023-09-12T12:59:17.000000Z",
-			"languages": {
-				"EN": {
-					"card_id": 243,
-					"language": "EN",
-					"name": "Elsa",
-					"title": "Gloves Off",
-					"action": "<b>Challenger<\/b> +3 <i>(While challenging, this character gets +3 \u203b)<\/i>",
-					"flavour": "The power of ice may not stop the flood, but it will help protect Lorcana.",
-					"image": "https:\/\/images.lorcania.com\/cards\/p1\/19_en_elsa-716.webp"
-				},
-				"DE": {
-					"card_id": 243,
-					"language": "DE",
-					"name": null,
-					"title": null,
-					"action": null,
-					"flavour": null,
-					"image": null
-				},
-				"FR": {
-					"card_id": 243,
-					"language": "FR",
-					"name": null,
-					"title": null,
-					"action": null,
-					"flavour": null,
-					"image": null
-				}
-			},
-			"edition": [{
-				"id": 11,
-				"name": "Disney 100",
-				"code": "disney100"
-			}]
-		},
-		"20": {
-			"id": 244,
-			"name": "Genie",
-			"title": "Powers Unleashed",
-			"cost": 8,
-			"inkwell": 0,
-			"attack": 3,
-			"defence": 5,
-			"color": 3,
-			"type": "glimmer",
-			"action": "<b>Shift<\/b> 6 (<i>You may pay 6 \u2b21 to play this on top of one of your characters named Genie.<\/i>)<br \/>\n<b>Evasive<\/b> <i>(Only characters with Evasive can challenge this character.)<\/i><br \/>\n<mark>PHENOMENAL COSMIC POWER<\/mark> Whenever this character quests, you may play an action with cost 5 or less for free.",
-			"flavour": null,
-			"separator": null,
-			"stars": 3,
-			"illustrator": "Eric Goldberg",
-			"card_set_id": 1,
-			"language": "EN",
-			"number": 20,
-			"pack": "204",
-			"rarity": "promo",
-			"image": "https:\/\/images.lorcania.com\/cards\/p1\/20_en_genie-716.webp",
-			"blurhash": "",
-			"franchise_id": 10,
-			"final": 0,
-			"spoiler": 1,
-			"created_at": "2023-09-12T13:01:53.000000Z",
-			"updated_at": "2023-09-12T13:01:53.000000Z",
-			"languages": {
-				"EN": {
-					"card_id": 244,
-					"language": "EN",
-					"name": "Genie",
-					"title": "Powers Unleashed",
-					"action": "<b>Shift<\/b> 6 (<i>You may pay 6 \u2b21 to play this on top of one of your characters named Genie.<\/i>)<br \/>\n<b>Evasive<\/b> <i>(Only characters with Evasive can challenge this character.)<\/i><br \/>\n<mark>PHENOMENAL COSMIC POWER<\/mark> Whenever this character quests, you may play an action with cost 5 or less for free.",
-					"flavour": null,
-					"image": "https:\/\/images.lorcania.com\/cards\/p1\/20_en_genie-716.webp"
-				},
-				"DE": {
-					"card_id": 244,
-					"language": "DE",
-					"name": null,
-					"title": null,
-					"action": null,
-					"flavour": null,
-					"image": null
-				},
-				"FR": {
-					"card_id": 244,
-					"language": "FR",
-					"name": null,
-					"title": null,
-					"action": null,
-					"flavour": null,
-					"image": null
-				}
-			},
-			"edition": [{
-				"id": 11,
-				"name": "Disney 100",
-				"code": "disney100"
-			}]
-		},
-		"21": {
-			"id": 245,
-			"name": "Stitch",
-			"title": "Abomination",
-			"cost": 6,
-			"inkwell": 1,
-			"attack": 4,
-			"defence": 6,
-			"color": 1,
-			"type": "glimmer",
-			"action": null,
-			"flavour": "\u201cHis destructive programming is taking effect. He will be irresistibly drawn to large cities, where he will back up sewers, reverse street signs, and steal everyone's left shoe.\u201d \n\u2212Jumba Jookiba",
-			"separator": "book",
-			"stars": 3,
-			"illustrator": "Alex Kupershmidt",
-			"card_set_id": 1,
-			"language": "EN",
-			"number": 21,
-			"pack": "204",
-			"rarity": "promo",
-			"image": "https:\/\/images.lorcania.com\/cards\/p1\/21_en_stitch-716.webp",
-			"blurhash": "",
-			"franchise_id": 2,
-			"final": 0,
-			"spoiler": 1,
-			"created_at": "2023-09-12T13:03:48.000000Z",
-			"updated_at": "2023-09-12T13:03:48.000000Z",
-			"languages": {
-				"EN": {
-					"card_id": 245,
-					"language": "EN",
-					"name": "Stitch",
-					"title": "Abomination",
-					"action": null,
-					"flavour": "\u201cHis destructive programming is taking effect. He will be irresistibly drawn to large cities, where he will back up sewers, reverse street signs, and steal everyone's left shoe.\u201d \n\u2212Jumba Jookiba",
-					"image": "https:\/\/images.lorcania.com\/cards\/p1\/21_en_stitch-716.webp"
-				},
-				"DE": {
-					"card_id": 245,
-					"language": "DE",
-					"name": null,
-					"title": null,
-					"action": null,
-					"flavour": null,
-					"image": null
-				},
-				"FR": {
-					"card_id": 245,
-					"language": "FR",
-					"name": null,
-					"title": null,
-					"action": null,
-					"flavour": null,
-					"image": null
-				}
-			},
-			"edition": [{
-				"id": 11,
-				"name": "Disney 100",
-				"code": "disney100"
-			}]
-		},
-		"22": {
-			"id": 246,
-			"name": "Maleficent",
-			"title": "Uninvited",
-			"cost": 5,
-			"inkwell": 1,
-			"attack": 3,
-			"defence": 6,
-			"color": 2,
-			"type": "glimmer",
-			"action": null,
-			"flavour": "She had no invitation\u2212and needed no introduction.",
-			"separator": "pen",
-			"stars": 3,
-			"illustrator": "Lorelay Bove",
-			"card_set_id": 1,
-			"language": "EN",
-			"number": 22,
-			"pack": "204",
-			"rarity": "promo",
-			"image": "https:\/\/images.lorcania.com\/cards\/p1\/22_en_maleficent-716.webp",
-			"blurhash": "",
-			"franchise_id": 5,
-			"final": 0,
-			"spoiler": 1,
-			"created_at": "2023-09-12T13:07:22.000000Z",
-			"updated_at": "2023-09-12T13:07:22.000000Z",
-			"languages": {
-				"EN": {
-					"card_id": 246,
-					"language": "EN",
-					"name": "Maleficent",
-					"title": "Uninvited",
-					"action": null,
-					"flavour": "She had no invitation\u2212and needed no introduction.",
-					"image": "https:\/\/images.lorcania.com\/cards\/p1\/22_en_maleficent-716.webp"
-				},
-				"DE": {
-					"card_id": 246,
-					"language": "DE",
-					"name": null,
-					"title": null,
-					"action": null,
-					"flavour": null,
-					"image": null
-				},
-				"FR": {
-					"card_id": 246,
-					"language": "FR",
-					"name": null,
-					"title": null,
-					"action": null,
-					"flavour": null,
-					"image": null
-				}
-			},
-			"edition": [{
-				"id": 11,
-				"name": "Disney 100",
-				"code": "disney100"
-			}]
-		},
-		"23": {
-			"id": 247,
-			"name": "Maui",
-			"title": "Demigod",
-			"cost": 8,
-			"inkwell": 1,
-			"attack": 8,
-			"defence": 8,
-			"color": 6,
-			"type": "glimmer",
-			"action": null,
-			"flavour": "When the gods gift you a boat, you take it. The boat\u2019s owner is optional.",
-			"separator": "pen",
-			"stars": 3,
-			"illustrator": "Bill Schwab",
-			"card_set_id": 1,
-			"language": "EN",
-			"number": 23,
-			"pack": "204",
-			"rarity": "promo",
-			"image": "https:\/\/images.lorcania.com\/cards\/p1\/23_en_maui-716.webp",
-			"blurhash": "",
-			"franchise_id": 11,
-			"final": 0,
-			"spoiler": 1,
-			"created_at": "2023-09-12T13:10:05.000000Z",
-			"updated_at": "2023-09-12T13:10:05.000000Z",
-			"languages": {
-				"EN": {
-					"card_id": 247,
-					"language": "EN",
-					"name": "Maui",
-					"title": "Demigod",
-					"action": null,
-					"flavour": "When the gods gift you a boat, you take it. The boat\u2019s owner is optional.",
-					"image": "https:\/\/images.lorcania.com\/cards\/p1\/23_en_maui-716.webp"
-				},
-				"DE": {
-					"card_id": 247,
-					"language": "DE",
-					"name": null,
-					"title": null,
-					"action": null,
-					"flavour": null,
-					"image": null
-				},
-				"FR": {
-					"card_id": 247,
-					"language": "FR",
-					"name": null,
-					"title": null,
-					"action": null,
-					"flavour": null,
-					"image": null
-				}
-			},
-			"edition": [{
-				"id": 11,
-				"name": "Disney 100",
-				"code": "disney100"
-			}]
-		},
-		"13": {
-			"id": 13,
-			"image": "https:\/\/images.lorcania.com\/cards%2Fback.webp",
-			"name": "Unknown",
-			"dummy": 1,
-			"number": 13,
-			"languages": {
-				"EN": {
-					"card_id": 13,
-					"language": null,
-					"name": "Unknown",
-					"title": null,
-					"action": null,
-					"flavour": null,
-					"image": "https:\/\/images.lorcania.com\/cards%2Fback.webp"
-				},
-				"DE": {
-					"card_id": 13,
-					"language": "DE",
-					"name": "Malefiz",
-					"title": "B\u00f6ser Besuch",
-					"action": null,
-					"flavour": "\u201eDie Prizessin soll strahlend und sch\u00f6n wie eine Rose erbl\u00fchen. Und von einem jeden geliebt werden, der ihr begegnet. Jedoch, bevor sie ihren 16. Geburtstag untergeht, soll sie sich mit der Spindel eines Spinnrades in den Finger stechen ...\u201c",
-					"image": "https:\/\/images.lorcania.com\/cards\/tfc\/150_de_maleficent-716.webp"
-				},
-				"FR": {
-					"card_id": 13,
-					"language": "FR",
-					"name": "Mal\u00e9fique",
-					"title": "Sinistre visiteuse",
-					"action": null,
-					"flavour": "\"La princesse, en grandissant, aura la gr\u00e2ce et la beaut\u00e9. Chacun l'aimera et lui sera d\u00e9vou\u00e9. Mais ma volont\u00e9 est telle qu'avant l'aube de ses seize ans, elle se piquera le doigt \u00e0 la pointe d'une quenouille.\"",
-					"image": "https:\/\/images.lorcania.com\/cards\/tfc\/150_fr_maleficent-716.webp"
-				}
-			}
-		},
-		"14": {
-			"id": 14,
-			"image": "https:\/\/images.lorcania.com\/cards%2Fback.webp",
-			"name": "Unknown",
-			"dummy": 1,
-			"number": 14,
-			"languages": {
-				"EN": {
-					"card_id": 14,
-					"language": null,
-					"name": "Unknown",
-					"title": null,
-					"action": null,
-					"flavour": null,
-					"image": "https:\/\/images.lorcania.com\/cards%2Fback.webp"
-				},
-				"DE": {
-					"card_id": 14,
-					"language": "DE",
-					"name": "Vaiana",
-					"title": "Von Motunui",
-					"action": "<mark>WIR KRIEGEN DAS HIN<\/mark> Jedes Mal, wenn dieser Charakter erkundet, darfst du deine anderen Prinzessinnen bereit machen. Sie k\u00f6nnen in diesem Zug nicht mehr erkunden.",
-					"flavour": "\u201eIch bin Vaiana von Motunui. Du kommst jetzt auf mein Boot, segelst \u00fcber das Meer und bringst das Herz nach Te Fiti zur\u00fcck.\u201c",
-					"image": "https:\/\/images.lorcania.com\/cards\/tfc\/14_de_moana-716.webp"
-				},
-				"FR": {
-					"card_id": 14,
-					"language": "FR",
-					"name": "Vaiana",
-					"title": "de Motunui",
-					"action": "<mark>NOUS ALLONS LE R\u00c9PARER<\/mark> Lorsque ce personnage est envoy\u00e9 \u00e0 l'aventure, vous pouvez redresser vos autres personnages Princesse. Elles ne peuvent pas \u00eatre envoy\u00e9es \u00e0 l'aventure pour le reste de ce tour.",
-					"flavour": "\"Je su\u00eds Vaiana de Motunui. Tu vas monter sur mon bateau, traverser la mer et restituer le c\u0153ur de Te Fiti.\"",
-					"image": "https:\/\/images.lorcania.com\/cards\/tfc\/14_fr_moana-716.webp"
-				}
-			}
-		},
-		"15": {
-			"id": 15,
-			"image": "https:\/\/images.lorcania.com\/cards%2Fback.webp",
-			"name": "Unknown",
-			"dummy": 1,
-			"number": 15,
-			"languages": {
-				"EN": {
-					"card_id": 15,
-					"language": null,
-					"name": "Unknown",
-					"title": null,
-					"action": null,
-					"flavour": null,
-					"image": "https:\/\/images.lorcania.com\/cards%2Fback.webp"
-				},
-				"DE": {
-					"card_id": 15,
-					"language": "DE",
-					"name": "Simba",
-					"title": "Zur\u00fcckgekehrter K\u00f6nig",
-					"action": "<b>Herausfordern<\/b> +4 (W\u00e4hrend dieser Charakter herausfordert, erh\u00e4lt er +4 \u203b.)<br \/><mark>KATZENSPRUNG<\/mark> In deinem Zug erh\u00e4lt dieser Charakter <b>Wendig<\/b>. <i>(Er kann Charaktere mit Wendig herausfordern.)<\/i>",
-					"flavour": "\u201eIch werde alles tun, um mein K\u00f6nigreich zu retten.\u201c",
-					"image": "https:\/\/images.lorcania.com\/cards\/tfc\/189_de_simba-716.webp"
-				},
-				"FR": {
-					"card_id": 15,
-					"language": "FR",
-					"name": "Simba",
-					"title": "Roi de retour",
-					"action": "<b>Offensif<\/b> +4 (Lorsqu'il d\u00e9fie, ce personnage gagne +4 \u203b.)<br \/><mark>BOND<\/mark> Durant votre tour, ce personnage gagne <b>Insaisissable<\/b>. <i>(Il peut d\u00e9fier les personnages avec Insaisissable.)<\/i>",
-					"flavour": "\u201cJe ferais n'importe quoi pour sauver mon royaume.\u201c",
-					"image": "https:\/\/images.lorcania.com\/cards\/tfc\/189_fr_simba-716.webp"
-				}
-			}
-		},
-		"16": {
-			"id": 16,
-			"image": "https:\/\/images.lorcania.com\/cards%2Fback.webp",
-			"name": "Unknown",
-			"dummy": 1,
-			"number": 16,
-			"languages": {
-				"EN": {
-					"card_id": 16,
-					"language": null,
-					"name": "Unknown",
-					"title": null,
-					"action": null,
-					"flavour": null,
-					"image": "https:\/\/images.lorcania.com\/cards%2Fback.webp"
-				},
-				"DE": {
-					"card_id": 16,
-					"language": "DE",
-					"name": "Micky Maus",
-					"title": "Eigenwilliger Zauberer",
-					"action": "<mark>LEBENDIGER BESEN<\/mark> Du zahlst 1 \u2b21 weniger, um Besen auszuspielen.<br \/>\u2028<mark>UNERM\u00dcDLICHE ARBEITER<\/mark> Jedes Mal, wenn einer deiner Besen durch eine Herausforderung verbannt wird, darfst du jene Karte zur\u00fcck auf deine Hand nehmen.",
-					"flavour": "Immer f\u00fcr eine saubere Sache zu haben.",
-					"image": "https:\/\/images.lorcania.com\/cards\/tfc\/51_de_mickey_mouse-716.webp"
-				},
-				"FR": {
-					"card_id": 16,
-					"language": "FR",
-					"name": "Mickey Mouse",
-					"title": "Sorcier ren\u00e9gat",
-					"action": "<mark>ANIMER LES BALAIS<\/mark> Les personnages Balai vous co\u00fbtent 1 \u2b21 de moins \u00e0 jouer.<br \/>\u2028<mark>TRAVAILLEUR INFATIGABLE<\/mark> Si l'un de vos personnages Balai est banni via un d\u00e9fi, vous pouvez le reprendre en main.",
-					"flavour": "Les probl\u00e8mes ? Il les balaie !",
-					"image": "https:\/\/images.lorcania.com\/cards\/tfc\/51_fr_mickey_mouse-716.webp"
-				}
-			}
-		},
-		"17": {
-			"id": 17,
-			"image": "https:\/\/images.lorcania.com\/cards%2Fback.webp",
-			"name": "Unknown",
-			"dummy": 1,
-			"number": 17,
-			"languages": {
-				"EN": {
-					"card_id": 17,
-					"language": null,
-					"name": "Unknown",
-					"title": null,
-					"action": null,
-					"flavour": null,
-					"image": "https:\/\/images.lorcania.com\/cards%2Fback.webp"
-				},
-				"DE": {
-					"card_id": 17,
-					"language": "DE",
-					"name": "Mulan",
-					"title": "Kaiserliche Soldatin",
-					"action": "<mark>MIT GUTEM BEISPIELVORAN GEHEN<\/mark> Jedes Mal, wenn dieser Charakter in deinem Zug durch eine Herausforderung einen anderen Charakter verbannt, erhalten deine anderen Charaktere in diesem Zug je +1 \u25c6.",
-					"flavour": null,
-					"image": "https:\/\/images.lorcania.com\/cards\/tfc\/118_de_mulan-716.webp"
-				},
-				"FR": {
-					"card_id": 17,
-					"language": "FR",
-					"name": "Mulan",
-					"title": "Soldat imp\u00e9rial",
-					"action": "<mark>UN EXEMPLE<\/mark> Lorsque ce personnage en bannit un autre via un d\u00e9fi,tous vos autres personnages gagnent +1 \u25c6 pour le reste de ce tour.",
-					"flavour": null,
-					"image": "https:\/\/images.lorcania.com\/cards\/tfc\/118_fr_mulan-716.webp"
-				}
-			}
-		}
-	}
-}
+[
+  {
+    "id": 1,
+    "name": "Mickey Mouse",
+    "title": "Brave Little Tailor",
+    "cost": 8,
+    "inkwell": 1,
+    "attack": 5,
+    "defence": 5,
+    "color": 1,
+    "type": "glimmer",
+    "flavour": "When defeat looms and victory hangs by a thread, a hero bolts to the rescue, patching things up through shear determination.",
+    "separator": "pen",
+    "stars": 4,
+    "illustrator": "Nicholas Kole",
+    "language": "EN",
+    "number": 1,
+    "pack": "P1",
+    "rarity": "promo",
+    "image": "https://images.lorcania.com/cards/d23/1_en_mickey-716.webp",
+    "blurhash": "LGKAN9Vt5kxDA0M|xrs:ugELnPj[",
+    "franchise_id": 1,
+    "final": 1,
+    "spoiler": 0,
+    "created_at": "2022-09-22T12:35:18.000000Z",
+    "updated_at": "2022-09-22T12:35:18.000000Z",
+    "languages": {
+      "en": {
+        "name": "Mickey Mouse",
+        "title": "Brave Little Tailor",
+        "flavour": "When defeat looms and victory hangs by a thread, a hero bolts to the rescue, patching things up through shear determination.",
+        "image": "https://images.lorcania.com/cards/d23/1_en_mickey-716.webp",
+        "actions": [
+          {
+            "name": "Evasive",
+            "description": [
+              {
+                "type": "text",
+                "text": "("
+              },
+              {
+                "type": "note",
+                "text": "Only characters with Evasive can challenge this character."
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "edition": [
+      {
+        "id": 1,
+        "name": "D23 & 1st edition",
+        "code": "d23"
+      }
+    ],
+    "actions": [
+      {
+        "name": "Evasive",
+        "description": [
+          {
+            "type": "text",
+            "text": "("
+          },
+          {
+            "type": "note",
+            "text": "Only characters with Evasive can challenge this character."
+          }
+        ]
+      }
+    ],
+    "setCode": "d23"
+  },
+  {
+    "id": 2,
+    "name": "Stitch",
+    "title": "Rock Star",
+    "cost": 6,
+    "inkwell": 1,
+    "attack": 3,
+    "defence": 5,
+    "color": 4,
+    "type": "glimmer",
+    "flavour": "The best part about a beachside concert is that there's always room for one more.",
+    "separator": "pen",
+    "stars": 3,
+    "illustrator": "Simangaliso Sibaya",
+    "language": "EN",
+    "number": 2,
+    "pack": "P1",
+    "rarity": "promo",
+    "image": "https://images.lorcania.com/cards/d23/2_en_stitch-716.webp",
+    "blurhash": "L3Jjbh5800Vr0FOWVBt600S${]^k",
+    "franchise_id": 2,
+    "final": 1,
+    "spoiler": 0,
+    "created_at": "2022-09-22T12:35:18.000000Z",
+    "updated_at": "2022-09-22T12:35:18.000000Z",
+    "languages": {
+      "en": {
+        "name": "Stitch",
+        "title": "Rock Star",
+        "flavour": "The best part about a beachside concert is that there's always room for one more.",
+        "image": "https://images.lorcania.com/cards/d23/2_en_stitch-716.webp",
+        "actions": [
+          {
+            "name": "Shift",
+            "description": [
+              {
+                "type": "text",
+                "text": "4 ("
+              },
+              {
+                "type": "note",
+                "text": "You may pay 4 * to play this on top of one of your Stitch characters."
+              }
+            ]
+          },
+          {
+            "name": "Adoring Fans",
+            "description": [
+              {
+                "type": "text",
+                "text": "Whenever you play a character with cost 2 or less, you may exert it to draw a card."
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "edition": [
+      {
+        "id": 2,
+        "name": "D23 & 1st edition (Foil)",
+        "code": "d23_foil"
+      }
+    ],
+    "actions": [
+      {
+        "name": "Shift",
+        "description": [
+          {
+            "type": "text",
+            "text": "4 ("
+          },
+          {
+            "type": "note",
+            "text": "You may pay 4 * to play this on top of one of your Stitch characters."
+          }
+        ]
+      },
+      {
+        "name": "Adoring Fans",
+        "description": [
+          {
+            "type": "text",
+            "text": "Whenever you play a character with cost 2 or less, you may exert it to draw a card."
+          }
+        ]
+      }
+    ],
+    "setCode": "d23"
+  },
+  {
+    "id": 3,
+    "name": "Elsa",
+    "title": "Snow Queen",
+    "cost": 3,
+    "inkwell": 1,
+    "attack": 2,
+    "defence": 3,
+    "color": 5,
+    "type": "glimmer",
+    "flavour": "Recreated by magical ink, Elsa found herself in an unfamiliar new world. Fortunately, ice works the same way everywhere.",
+    "separator": "pen",
+    "stars": 1,
+    "illustrator": "Nicholas Kole",
+    "language": "EN",
+    "number": 3,
+    "pack": "P1",
+    "rarity": "promo",
+    "image": "https://images.lorcania.com/cards/d23/3_en_elsa-716.webp",
+    "blurhash": "LKHeFKi_4.Wo0uxBR#WB$@n#n-e-",
+    "franchise_id": 3,
+    "final": 1,
+    "spoiler": 0,
+    "created_at": "2022-09-22T12:35:18.000000Z",
+    "updated_at": "2022-09-22T12:35:18.000000Z",
+    "languages": {
+      "en": {
+        "name": "Elsa",
+        "title": "Snow Queen",
+        "flavour": "Recreated by magical ink, Elsa found herself in an unfamiliar new world. Fortunately, ice works the same way everywhere.",
+        "image": "https://images.lorcania.com/cards/d23/3_en_elsa-716.webp",
+        "actions": [
+          {
+            "name": "Freeze",
+            "description": [
+              {
+                "type": "text",
+                "text": "↷ - Exert chosen opposing character."
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "edition": [
+      {
+        "id": 2,
+        "name": "D23 & 1st edition (Foil)",
+        "code": "d23_foil"
+      }
+    ],
+    "actions": [
+      {
+        "name": "Freeze",
+        "description": [
+          {
+            "type": "text",
+            "text": "↷ - Exert chosen opposing character."
+          }
+        ]
+      }
+    ],
+    "setCode": "d23"
+  },
+  {
+    "id": 4,
+    "name": "Cruella De Vil",
+    "title": "Miserable As Usual",
+    "cost": 2,
+    "inkwell": 1,
+    "attack": 1,
+    "defence": 3,
+    "color": 3,
+    "type": "glimmer",
+    "flavour": "When she stops by, misery is company.",
+    "separator": "pen",
+    "stars": 1,
+    "illustrator": "Nicholas Kole",
+    "language": "EN",
+    "number": 4,
+    "pack": "P1",
+    "rarity": "promo",
+    "image": "https://images.lorcania.com/cards/d23/4_en_cruella-716.webp",
+    "blurhash": "LFH_o5Iq4;bE07bEX4of_kR*K3%1",
+    "franchise_id": 4,
+    "final": 1,
+    "spoiler": 0,
+    "created_at": "2022-09-22T12:35:18.000000Z",
+    "updated_at": "2022-09-22T12:35:18.000000Z",
+    "languages": {
+      "en": {
+        "name": "Cruella De Vil",
+        "title": "Miserable As Usual",
+        "flavour": "When she stops by, misery is company.",
+        "image": "https://images.lorcania.com/cards/d23/4_en_cruella-716.webp",
+        "actions": [
+          {
+            "name": "You'll Be Sorry",
+            "description": [
+              {
+                "type": "text",
+                "text": "When this character is challenged and banished, you may return chosen character to their player's hand."
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "edition": [
+      {
+        "id": 2,
+        "name": "D23 & 1st edition (Foil)",
+        "code": "d23_foil"
+      }
+    ],
+    "actions": [
+      {
+        "name": "You'll Be Sorry",
+        "description": [
+          {
+            "type": "text",
+            "text": "When this character is challenged and banished, you may return chosen character to their player's hand."
+          }
+        ]
+      }
+    ],
+    "setCode": "d23"
+  },
+  {
+    "id": 5,
+    "name": "Maleficent",
+    "title": "Monstrous Dragon",
+    "cost": 9,
+    "inkwell": 1,
+    "attack": 7,
+    "defence": 5,
+    "color": 1,
+    "type": "glimmer",
+    "flavour": "The ninth Rule of Villainy: When all else fails, turn into a dragon.",
+    "separator": "pen",
+    "stars": 2,
+    "illustrator": "Luis Huerta",
+    "language": "EN",
+    "number": 5,
+    "pack": "P1",
+    "rarity": "promo",
+    "image": "https://images.lorcania.com/cards/d23/5_en_maleficent-716.webp",
+    "blurhash": "L6J~u]je0fE%01-o%ZOr4GnjNH-m",
+    "franchise_id": 5,
+    "final": 1,
+    "spoiler": 0,
+    "created_at": "2022-09-22T12:35:18.000000Z",
+    "updated_at": "2022-09-22T12:35:18.000000Z",
+    "languages": {
+      "en": {
+        "name": "Maleficent",
+        "title": "Monstrous Dragon",
+        "flavour": "The ninth Rule of Villainy: When all else fails, turn into a dragon.",
+        "image": "https://images.lorcania.com/cards/d23/5_en_maleficent-716.webp",
+        "actions": [
+          {
+            "name": "Dragon Fire",
+            "description": [
+              {
+                "type": "text",
+                "text": "When you play this character, you may banish chosen opposing character."
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "edition": [
+      {
+        "id": 2,
+        "name": "D23 & 1st edition (Foil)",
+        "code": "d23_foil"
+      }
+    ],
+    "actions": [
+      {
+        "name": "Dragon Fire",
+        "description": [
+          {
+            "type": "text",
+            "text": "When you play this character, you may banish chosen opposing character."
+          }
+        ]
+      }
+    ],
+    "setCode": "d23"
+  },
+  {
+    "id": 6,
+    "name": "Robin Hood",
+    "title": "Unrivaled Archer",
+    "cost": 6,
+    "inkwell": 1,
+    "attack": 4,
+    "defence": 4,
+    "color": 2,
+    "type": "glimmer",
+    "flavour": "\"We never rob. We just sort of borrow a bit from those who can afford it.\"",
+    "separator": "pen",
+    "stars": 2,
+    "illustrator": "John Loren",
+    "language": "EN",
+    "number": 6,
+    "pack": "P1",
+    "rarity": "promo",
+    "image": "https://images.lorcania.com/cards/d23/6_en_robin-716.webp",
+    "blurhash": "L9GlLpHD02iI02yq$jn3Uuv~t8t7",
+    "franchise_id": 6,
+    "final": 1,
+    "spoiler": 0,
+    "created_at": "2022-09-22T12:35:18.000000Z",
+    "updated_at": "2022-09-22T12:35:18.000000Z",
+    "languages": {
+      "en": {
+        "name": "Robin Hood",
+        "title": "Unrivaled Archer",
+        "flavour": "\"We never rob. We just sort of borrow a bit from those who can afford it.\"",
+        "image": "https://images.lorcania.com/cards/d23/6_en_robin-716.webp",
+        "actions": [
+          {
+            "name": "Feed The Poor",
+            "description": [
+              {
+                "type": "text",
+                "text": "When you play this character, if an opponent has more cards in their hand than you, draw a card."
+              }
+            ]
+          },
+          {
+            "name": "Good Shot",
+            "description": [
+              {
+                "type": "text",
+                "text": "During your turn, this character has <b>Evasive</b>. (<i>They can challenge characters with Evasive.</i>)"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "edition": [
+      {
+        "id": 2,
+        "name": "D23 & 1st edition (Foil)",
+        "code": "d23_foil"
+      }
+    ],
+    "actions": [
+      {
+        "name": "Feed The Poor",
+        "description": [
+          {
+            "type": "text",
+            "text": "When you play this character, if an opponent has more cards in their hand than you, draw a card."
+          }
+        ]
+      },
+      {
+        "name": "Good Shot",
+        "description": [
+          {
+            "type": "text",
+            "text": "During your turn, this character has <b>Evasive</b>. (<i>They can challenge characters with Evasive.</i>)"
+          }
+        ]
+      }
+    ],
+    "setCode": "d23"
+  },
+  {
+    "id": 7,
+    "name": "Captain Hook",
+    "title": "Forceful Duelist",
+    "cost": 1,
+    "inkwell": 1,
+    "attack": 1,
+    "defence": 2,
+    "color": 6,
+    "type": "glimmer",
+    "flavour": "He loves to make light of a foe's predicament.",
+    "separator": "pen",
+    "stars": 1,
+    "illustrator": "Marcel Berg",
+    "language": "EN",
+    "number": 7,
+    "pack": "P1",
+    "rarity": "promo",
+    "image": "https://images.lorcania.com/cards/d23/7_en_hook-716.webp",
+    "blurhash": "L7H24X^*029a05?GXgIU{@RQots*",
+    "franchise_id": 7,
+    "final": 1,
+    "spoiler": 0,
+    "created_at": "2022-09-22T12:35:18.000000Z",
+    "updated_at": "2022-09-22T12:35:18.000000Z",
+    "languages": {
+      "en": {
+        "name": "Captain Hook",
+        "title": "Forceful Duelist",
+        "flavour": "He loves to make light of a foe's predicament.",
+        "image": "https://images.lorcania.com/cards/d23/7_en_hook-716.webp",
+        "actions": [
+          {
+            "name": "Challenger",
+            "description": [
+              {
+                "type": "text",
+                "text": "+2 ("
+              },
+              {
+                "type": "note",
+                "text": "When challenging, this character get +2 ※."
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "edition": [
+      {
+        "id": 2,
+        "name": "D23 & 1st edition (Foil)",
+        "code": "d23_foil"
+      }
+    ],
+    "actions": [
+      {
+        "name": "Challenger",
+        "description": [
+          {
+            "type": "text",
+            "text": "+2 ("
+          },
+          {
+            "type": "note",
+            "text": "When challenging, this character get +2 ※."
+          }
+        ]
+      }
+    ],
+    "setCode": "d23"
+  },
+  {
+    "id": 39,
+    "name": "Mickey Mouse",
+    "title": "Detective",
+    "cost": 3,
+    "inkwell": 0,
+    "attack": 1,
+    "defence": 3,
+    "color": 2,
+    "type": "glimmer",
+    "flavour": "Wherever the seaweed had come from, Mickey was sure of one thing: something fishy was going on.",
+    "separator": "pen",
+    "stars": 1,
+    "illustrator": "Jared Nickerl",
+    "language": "EN",
+    "number": 8,
+    "pack": "P1",
+    "rarity": "promo",
+    "image": "https://images.lorcania.com/cards/p1/8_en_mickey_mouse_detective-716.webp",
+    "blurhash": "",
+    "franchise_id": 1,
+    "final": 0,
+    "spoiler": 0,
+    "created_at": "2023-01-17T15:03:16.000000Z",
+    "updated_at": "2023-06-26T19:24:51.000000Z",
+    "languages": {
+      "en": {
+        "name": "Mickey Mouse",
+        "title": "Detective",
+        "flavour": "Wherever the seaweed had come from, Mickey was sure of one thing: something fishy was going on.",
+        "image": "https://images.lorcania.com/cards/p1/8_en_mickey_mouse_detective-716.webp",
+        "actions": [
+          {
+            "name": "GET A CLUE",
+            "description": [
+              {
+                "type": "text",
+                "text": "When you play this character, you may put the top card of your deck into your inkwell facedown and exerted."
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "edition": [
+      {
+        "id": 7,
+        "name": "Organized Play",
+        "code": "op"
+      }
+    ],
+    "actions": [
+      {
+        "name": "GET A CLUE",
+        "description": [
+          {
+            "type": "text",
+            "text": "When you play this character, you may put the top card of your deck into your inkwell facedown and exerted."
+          }
+        ]
+      }
+    ],
+    "setCode": "d23"
+  },
+  {
+    "id": 71,
+    "name": "Heihei",
+    "title": "Boat Snack",
+    "cost": 1,
+    "inkwell": 1,
+    "attack": 1,
+    "defence": 2,
+    "color": 4,
+    "type": "glimmer",
+    "flavour": "„Sometimes, our strengths lie beneath the surface.\u0003Far beneath, in some cases. . . .“<br />\u0003−Moana",
+    "separator": "book",
+    "stars": 1,
+    "illustrator": "Jenna Gray",
+    "language": "EN",
+    "number": 9,
+    "pack": "P1",
+    "rarity": "promo",
+    "image": "https://images.lorcania.com/cards/p1/9_en_heihei-716.webp",
+    "blurhash": "",
+    "franchise_id": 11,
+    "final": 0,
+    "spoiler": 0,
+    "created_at": "2023-04-17T19:15:53.000000Z",
+    "updated_at": "2023-06-26T19:24:41.000000Z",
+    "languages": {
+      "en": {
+        "name": "Heihei",
+        "title": "Boat Snack",
+        "flavour": "„Sometimes, our strengths lie beneath the surface.\u0003Far beneath, in some cases. . . .“<br />\u0003−Moana",
+        "image": "https://images.lorcania.com/cards/p1/9_en_heihei-716.webp",
+        "actions": [
+          {
+            "name": "Support",
+            "description": [
+              {
+                "type": "note",
+                "text": "(Whenever this character quests, you\u0003 may add their ※ to another chosen character‘s ※ this turn.)"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "edition": [
+      {
+        "id": 7,
+        "name": "Organized Play",
+        "code": "op"
+      }
+    ],
+    "actions": [
+      {
+        "name": "Support",
+        "description": [
+          {
+            "type": "note",
+            "text": "(Whenever this character quests, you\u0003 may add their ※ to another chosen character‘s ※ this turn.)"
+          }
+        ]
+      }
+    ],
+    "setCode": "d23"
+  },
+  {
+    "id": 72,
+    "name": "Yzma",
+    "title": "Alchemist",
+    "cost": 2,
+    "inkwell": 1,
+    "attack": 2,
+    "defence": 2,
+    "color": 5,
+    "type": "glimmer",
+    "flavour": "\"When I want your opinion, I will give it to you!\"",
+    "separator": "pen",
+    "stars": 1,
+    "illustrator": "Hadjie Joos",
+    "language": "EN",
+    "number": 10,
+    "pack": "P1",
+    "rarity": "promo",
+    "image": "https://images.lorcania.com/cards/p1/10_en_yzma-716.webp",
+    "blurhash": "L3HK@NKT00_10G~ox7-nXsxo=~In",
+    "franchise_id": 20,
+    "final": 0,
+    "spoiler": 0,
+    "created_at": "2023-04-17T19:16:36.000000Z",
+    "updated_at": "2023-06-26T19:23:21.000000Z",
+    "languages": {
+      "en": {
+        "name": "Yzma",
+        "title": "Alchemist",
+        "flavour": "\"When I want your opinion, I will give it to you!\"",
+        "image": "https://images.lorcania.com/cards/p1/10_en_yzma-716.webp",
+        "actions": [
+          {
+            "name": "YOU'RE EXCUSED",
+            "description": [
+              {
+                "type": "text",
+                "text": "Whenever this character quests, look at the top card of your deck. Put it on either the top or the bottom of your deck."
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "edition": [
+      {
+        "id": 7,
+        "name": "Organized Play",
+        "code": "op"
+      }
+    ],
+    "actions": [
+      {
+        "name": "YOU'RE EXCUSED",
+        "description": [
+          {
+            "type": "text",
+            "text": "Whenever this character quests, look at the top card of your deck. Put it on either the top or the bottom of your deck."
+          }
+        ]
+      }
+    ],
+    "setCode": "d23"
+  },
+  {
+    "id": 226,
+    "name": "Mickey Mouse",
+    "title": "Musketeer",
+    "cost": 6,
+    "inkwell": 1,
+    "attack": 2,
+    "defence": 7,
+    "color": 6,
+    "type": "glimmer",
+    "flavour": null,
+    "separator": null,
+    "stars": 2,
+    "illustrator": "Jochem Van Gool",
+    "language": "EN",
+    "number": 11,
+    "pack": "P1",
+    "rarity": "promo",
+    "image": "https://images.lorcania.com/cards/p1/11_en_mickey_mouse-716.webp",
+    "blurhash": "",
+    "franchise_id": 1,
+    "final": 0,
+    "spoiler": 0,
+    "created_at": "2023-08-03T17:46:25.000000Z",
+    "updated_at": "2023-08-03T17:46:25.000000Z",
+    "languages": {
+      "en": {
+        "name": "Mickey Mouse",
+        "title": "Musketeer",
+        "flavour": null,
+        "image": "https://images.lorcania.com/cards/p1/11_en_mickey_mouse-716.webp",
+        "actions": [
+          {
+            "name": "Bodyguard",
+            "description": [
+              {
+                "type": "note",
+                "text": "(This character may enter play exerted.  An opposing character who challenges one of  your characters must choose one with Bodyguard if able.)"
+              }
+            ]
+          },
+          {
+            "name": "ALL FOR ONE",
+            "description": [
+              {
+                "type": "text",
+                "text": "Your other Musketeer characters get +1 ※."
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "edition": [
+      {
+        "id": 9,
+        "name": "GenCon 23",
+        "code": "gencon23"
+      },
+      {
+        "id": 10,
+        "name": "Promo",
+        "code": "promo"
+      }
+    ],
+    "actions": [
+      {
+        "name": "Bodyguard",
+        "description": [
+          {
+            "type": "note",
+            "text": "(This character may enter play exerted.  An opposing character who challenges one of  your characters must choose one with Bodyguard if able.)"
+          }
+        ]
+      },
+      {
+        "name": "ALL FOR ONE",
+        "description": [
+          {
+            "type": "text",
+            "text": "Your other Musketeer characters get +1 ※."
+          }
+        ]
+      }
+    ],
+    "setCode": "d23"
+  },
+  {
+    "id": 97,
+    "name": "Goofy",
+    "title": "Musketeer",
+    "cost": 5,
+    "inkwell": 1,
+    "attack": 3,
+    "defence": 6,
+    "color": 4,
+    "type": "glimmer",
+    "flavour": "\"En gawrsh!\"",
+    "separator": "pen",
+    "stars": 1,
+    "illustrator": "Jochem van Gool",
+    "language": "EN",
+    "number": 12,
+    "pack": "P1",
+    "rarity": "promo",
+    "image": "https://images.lorcania.com/cards/p1/12_goofy-716.webp",
+    "blurhash": "",
+    "franchise_id": 1,
+    "final": 0,
+    "spoiler": 0,
+    "created_at": "2023-06-21T10:31:43.000000Z",
+    "updated_at": "2023-06-26T19:26:20.000000Z",
+    "languages": {
+      "en": {
+        "name": "Goofy",
+        "title": "Musketeer",
+        "flavour": "\"En gawrsh!\"",
+        "image": "https://images.lorcania.com/cards/p1/12_goofy-716.webp",
+        "actions": [
+          {
+            "name": "Bodyguard",
+            "description": [
+              {
+                "type": "note",
+                "text": "(This character may enter play exerted."
+              }
+            ]
+          },
+          {
+            "name": "AND TWO FOR TEA!",
+            "description": [
+              {
+                "type": "text",
+                "text": "When you play this character, you may remove up to 2 damage from each of your Musketeer characters."
+              }
+            ]
+          }
+        ]
+      },
+      "fr": {
+        "name": "Dingo",
+        "title": "Mousquetaire",
+        "flavour": "\"En garde, hyuck!\"",
+        "image": null,
+        "actions": [
+          {
+            "name": "Rempart",
+            "description": [
+              {
+                "type": "note",
+                "text": "(Ce personnage peut entrer en jeu épuisé. Lorsqu'il vous défie, un personnage adverse doit, si possible, choisir l'un de vos personnages avec Rempart)"
+              }
+            ]
+          },
+          {
+            "name": "ET DEUX FOIS RIEN !",
+            "description": [
+              {
+                "type": "text",
+                "text": "Lorsque vous jouez ce personnage, vous pouvez retirer jusqu'à 2 jetons Dommage de chacun de vos personnages Mousquetaire."
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "edition": [
+      {
+        "id": 8,
+        "name": "GamesCon 23",
+        "code": "gamecon23"
+      },
+      {
+        "id": 10,
+        "name": "Promo",
+        "code": "promo"
+      }
+    ],
+    "actions": [
+      {
+        "name": "Bodyguard",
+        "description": [
+          {
+            "type": "note",
+            "text": "(This character may enter play exerted."
+          }
+        ]
+      },
+      {
+        "name": "AND TWO FOR TEA!",
+        "description": [
+          {
+            "type": "text",
+            "text": "When you play this character, you may remove up to 2 damage from each of your Musketeer characters."
+          }
+        ]
+      }
+    ],
+    "setCode": "d23"
+  },
+  {
+    "id": 13,
+    "image": "https://images.lorcania.com/cards%2Fback.webp",
+    "name": "Unknown",
+    "dummy": 1,
+    "number": 13,
+    "languages": {
+      "de": {
+        "name": "Malefiz",
+        "title": "Böser Besuch",
+        "flavour": "„Die Prizessin soll strahlend und schön wie eine Rose erblühen. Und von einem jeden geliebt werden, der ihr begegnet. Jedoch, bevor sie ihren 16. Geburtstag untergeht, soll sie sich mit der Spindel eines Spinnrades in den Finger stechen ...“",
+        "image": "https://images.lorcania.com/cards/tfc/150_de_maleficent-716.webp"
+      },
+      "fr": {
+        "name": "Maléfique",
+        "title": "Sinistre visiteuse",
+        "flavour": "\"La princesse, en grandissant, aura la grâce et la beauté. Chacun l'aimera et lui sera dévoué. Mais ma volonté est telle qu'avant l'aube de ses seize ans, elle se piquera le doigt à la pointe d'une quenouille.\"",
+        "image": "https://images.lorcania.com/cards/tfc/150_fr_maleficent-716.webp"
+      }
+    }
+  },
+  {
+    "id": 14,
+    "image": "https://images.lorcania.com/cards%2Fback.webp",
+    "name": "Unknown",
+    "dummy": 1,
+    "number": 14,
+    "languages": {
+      "de": {
+        "name": "Vaiana",
+        "title": "Von Motunui",
+        "flavour": "„Ich bin Vaiana von Motunui. Du kommst jetzt auf mein Boot, segelst über das Meer und bringst das Herz nach Te Fiti zurück.“",
+        "image": "https://images.lorcania.com/cards/tfc/14_de_moana-716.webp",
+        "actions": [
+          {
+            "name": "WIR KRIEGEN DAS HIN",
+            "description": [
+              {
+                "type": "text",
+                "text": "Jedes Mal, wenn dieser Charakter erkundet, darfst du deine anderen Prinzessinnen bereit machen. Sie können in diesem Zug nicht mehr erkunden."
+              }
+            ]
+          }
+        ]
+      },
+      "fr": {
+        "name": "Vaiana",
+        "title": "de Motunui",
+        "flavour": "\"Je suís Vaiana de Motunui. Tu vas monter sur mon bateau, traverser la mer et restituer le cœur de Te Fiti.\"",
+        "image": "https://images.lorcania.com/cards/tfc/14_fr_moana-716.webp",
+        "actions": [
+          {
+            "name": "NOUS ALLONS LE RÉPARER",
+            "description": [
+              {
+                "type": "text",
+                "text": "Lorsque ce personnage est envoyé à l'aventure, vous pouvez redresser vos autres personnages Princesse. Elles ne peuvent pas être envoyées à l'aventure pour le reste de ce tour."
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": 15,
+    "image": "https://images.lorcania.com/cards%2Fback.webp",
+    "name": "Unknown",
+    "dummy": 1,
+    "number": 15,
+    "languages": {
+      "de": {
+        "name": "Simba",
+        "title": "Zurückgekehrter König",
+        "flavour": "„Ich werde alles tun, um mein Königreich zu retten.“",
+        "image": "https://images.lorcania.com/cards/tfc/189_de_simba-716.webp",
+        "actions": [
+          {
+            "name": "Herausfordern",
+            "description": [
+              {
+                "type": "text",
+                "text": "+4 (Während dieser Charakter herausfordert, erhält er +4 ※.)"
+              }
+            ]
+          },
+          {
+            "name": "KATZENSPRUNG",
+            "description": [
+              {
+                "type": "text",
+                "text": "In deinem Zug erhält dieser Charakter <b>Wendig</b>. <i>(Er kann Charaktere mit Wendig herausfordern.)</i>"
+              }
+            ]
+          }
+        ]
+      },
+      "fr": {
+        "name": "Simba",
+        "title": "Roi de retour",
+        "flavour": "“Je ferais n'importe quoi pour sauver mon royaume.“",
+        "image": "https://images.lorcania.com/cards/tfc/189_fr_simba-716.webp",
+        "actions": [
+          {
+            "name": "Offensif",
+            "description": [
+              {
+                "type": "text",
+                "text": "+4 (Lorsqu'il défie, ce personnage gagne +4 ※.)"
+              }
+            ]
+          },
+          {
+            "name": "BOND",
+            "description": [
+              {
+                "type": "text",
+                "text": "Durant votre tour, ce personnage gagne <b>Insaisissable</b>. <i>(Il peut défier les personnages avec Insaisissable.)</i>"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": 16,
+    "image": "https://images.lorcania.com/cards%2Fback.webp",
+    "name": "Unknown",
+    "dummy": 1,
+    "number": 16,
+    "languages": {
+      "de": {
+        "name": "Micky Maus",
+        "title": "Eigenwilliger Zauberer",
+        "flavour": "Immer für eine saubere Sache zu haben.",
+        "image": "https://images.lorcania.com/cards/tfc/51_de_mickey_mouse-716.webp",
+        "actions": [
+          {
+            "name": "LEBENDIGER BESEN",
+            "description": [
+              {
+                "type": "text",
+                "text": "Du zahlst 1 ⬡ weniger, um Besen auszuspielen."
+              }
+            ]
+          },
+          {
+            "name": "UNERMÜDLICHE ARBEITER",
+            "description": [
+              {
+                "type": "text",
+                "text": "Jedes Mal, wenn einer deiner Besen durch eine Herausforderung verbannt wird, darfst du jene Karte zurück auf deine Hand nehmen."
+              }
+            ]
+          }
+        ]
+      },
+      "fr": {
+        "name": "Mickey Mouse",
+        "title": "Sorcier renégat",
+        "flavour": "Les problèmes ? Il les balaie !",
+        "image": "https://images.lorcania.com/cards/tfc/51_fr_mickey_mouse-716.webp",
+        "actions": [
+          {
+            "name": "ANIMER LES BALAIS",
+            "description": [
+              {
+                "type": "text",
+                "text": "Les personnages Balai vous coûtent 1 ⬡ de moins à jouer."
+              }
+            ]
+          },
+          {
+            "name": "TRAVAILLEUR INFATIGABLE",
+            "description": [
+              {
+                "type": "text",
+                "text": "Si l'un de vos personnages Balai est banni via un défi, vous pouvez le reprendre en main."
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": 17,
+    "image": "https://images.lorcania.com/cards%2Fback.webp",
+    "name": "Unknown",
+    "dummy": 1,
+    "number": 17,
+    "languages": {
+      "de": {
+        "name": "Mulan",
+        "title": "Kaiserliche Soldatin",
+        "flavour": null,
+        "image": "https://images.lorcania.com/cards/tfc/118_de_mulan-716.webp",
+        "actions": [
+          {
+            "name": "MIT GUTEM BEISPIELVORAN GEHEN",
+            "description": [
+              {
+                "type": "text",
+                "text": "Jedes Mal, wenn dieser Charakter in deinem Zug durch eine Herausforderung einen anderen Charakter verbannt, erhalten deine anderen Charaktere in diesem Zug je +1 ◆."
+              }
+            ]
+          }
+        ]
+      },
+      "fr": {
+        "name": "Mulan",
+        "title": "Soldat impérial",
+        "flavour": null,
+        "image": "https://images.lorcania.com/cards/tfc/118_fr_mulan-716.webp",
+        "actions": [
+          {
+            "name": "UN EXEMPLE",
+            "description": [
+              {
+                "type": "text",
+                "text": "Lorsque ce personnage en bannit un autre via un défi,tous vos autres personnages gagnent +1 ◆ pour le reste de ce tour."
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": 242,
+    "name": "Mickey Mouse",
+    "title": "Friendly Face",
+    "cost": 6,
+    "inkwell": 1,
+    "attack": 1,
+    "defence": 6,
+    "color": 4,
+    "type": "glimmer",
+    "flavour": "“Come on in−there’s lots to explore.”",
+    "separator": "pen",
+    "stars": 3,
+    "illustrator": "Mark Henn",
+    "language": "EN",
+    "number": 18,
+    "pack": "204",
+    "rarity": "promo",
+    "image": "https://images.lorcania.com/cards/p1/18_en_mickey_mouse-716.webp",
+    "blurhash": "",
+    "franchise_id": 1,
+    "final": 0,
+    "spoiler": 1,
+    "created_at": "2023-09-12T12:56:04.000000Z",
+    "updated_at": "2023-09-12T12:56:04.000000Z",
+    "languages": {
+      "en": {
+        "name": "Mickey Mouse",
+        "title": "Friendly Face",
+        "flavour": "“Come on in−there’s lots to explore.”",
+        "image": "https://images.lorcania.com/cards/p1/18_en_mickey_mouse-716.webp",
+        "actions": [
+          {
+            "name": "GLAD YOU’RE HERE!",
+            "description": [
+              {
+                "type": "text",
+                "text": "Whenever this character quests, you pay 3 ⬡ less for the next character you play this turn."
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "edition": [
+      {
+        "id": 11,
+        "name": "Disney 100",
+        "code": "disney100"
+      }
+    ],
+    "actions": [
+      {
+        "name": "GLAD YOU’RE HERE!",
+        "description": [
+          {
+            "type": "text",
+            "text": "Whenever this character quests, you pay 3 ⬡ less for the next character you play this turn."
+          }
+        ]
+      }
+    ],
+    "setCode": "d23"
+  },
+  {
+    "id": 243,
+    "name": "Elsa",
+    "title": "Gloves Off",
+    "cost": 4,
+    "inkwell": 1,
+    "attack": 3,
+    "defence": 2,
+    "color": 5,
+    "type": "glimmer",
+    "flavour": "The power of ice may not stop the flood, but it will help protect Lorcana.",
+    "separator": "pen",
+    "stars": 1,
+    "illustrator": "Brittney Lee",
+    "language": "EN",
+    "number": 19,
+    "pack": "204",
+    "rarity": "promo",
+    "image": "https://images.lorcania.com/cards/p1/19_en_elsa-716.webp",
+    "blurhash": "",
+    "franchise_id": 3,
+    "final": 0,
+    "spoiler": 1,
+    "created_at": "2023-09-12T12:59:17.000000Z",
+    "updated_at": "2023-09-12T12:59:17.000000Z",
+    "languages": {
+      "en": {
+        "name": "Elsa",
+        "title": "Gloves Off",
+        "flavour": "The power of ice may not stop the flood, but it will help protect Lorcana.",
+        "image": "https://images.lorcania.com/cards/p1/19_en_elsa-716.webp",
+        "actions": [
+          {
+            "name": "Challenger",
+            "description": [
+              {
+                "type": "text",
+                "text": "+3"
+              },
+              {
+                "type": "note",
+                "text": "(While challenging, this character gets +3 ※)"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "edition": [
+      {
+        "id": 11,
+        "name": "Disney 100",
+        "code": "disney100"
+      }
+    ],
+    "actions": [
+      {
+        "name": "Challenger",
+        "description": [
+          {
+            "type": "text",
+            "text": "+3"
+          },
+          {
+            "type": "note",
+            "text": "(While challenging, this character gets +3 ※)"
+          }
+        ]
+      }
+    ],
+    "setCode": "d23"
+  },
+  {
+    "id": 244,
+    "name": "Genie",
+    "title": "Powers Unleashed",
+    "cost": 8,
+    "inkwell": 0,
+    "attack": 3,
+    "defence": 5,
+    "color": 3,
+    "type": "glimmer",
+    "flavour": null,
+    "separator": null,
+    "stars": 3,
+    "illustrator": "Eric Goldberg",
+    "language": "EN",
+    "number": 20,
+    "pack": "204",
+    "rarity": "promo",
+    "image": "https://images.lorcania.com/cards/p1/20_en_genie-716.webp",
+    "blurhash": "",
+    "franchise_id": 10,
+    "final": 0,
+    "spoiler": 1,
+    "created_at": "2023-09-12T13:01:53.000000Z",
+    "updated_at": "2023-09-12T13:01:53.000000Z",
+    "languages": {
+      "en": {
+        "name": "Genie",
+        "title": "Powers Unleashed",
+        "flavour": null,
+        "image": "https://images.lorcania.com/cards/p1/20_en_genie-716.webp",
+        "actions": [
+          {
+            "name": "Shift",
+            "description": [
+              {
+                "type": "text",
+                "text": "6 ("
+              },
+              {
+                "type": "note",
+                "text": "You may pay 6 ⬡ to play this on top of one of your characters named Genie."
+              }
+            ]
+          },
+          {
+            "name": "Evasive",
+            "description": [
+              {
+                "type": "note",
+                "text": "(Only characters with Evasive can challenge this character.)"
+              }
+            ]
+          },
+          {
+            "name": "PHENOMENAL COSMIC POWER",
+            "description": [
+              {
+                "type": "text",
+                "text": "Whenever this character quests, you may play an action with cost 5 or less for free."
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "edition": [
+      {
+        "id": 11,
+        "name": "Disney 100",
+        "code": "disney100"
+      }
+    ],
+    "actions": [
+      {
+        "name": "Shift",
+        "description": [
+          {
+            "type": "text",
+            "text": "6 ("
+          },
+          {
+            "type": "note",
+            "text": "You may pay 6 ⬡ to play this on top of one of your characters named Genie."
+          }
+        ]
+      },
+      {
+        "name": "Evasive",
+        "description": [
+          {
+            "type": "note",
+            "text": "(Only characters with Evasive can challenge this character.)"
+          }
+        ]
+      },
+      {
+        "name": "PHENOMENAL COSMIC POWER",
+        "description": [
+          {
+            "type": "text",
+            "text": "Whenever this character quests, you may play an action with cost 5 or less for free."
+          }
+        ]
+      }
+    ],
+    "setCode": "d23"
+  },
+  {
+    "id": 245,
+    "name": "Stitch",
+    "title": "Abomination",
+    "cost": 6,
+    "inkwell": 1,
+    "attack": 4,
+    "defence": 6,
+    "color": 1,
+    "type": "glimmer",
+    "flavour": "“His destructive programming is taking effect. He will be irresistibly drawn to large cities, where he will back up sewers, reverse street signs, and steal everyone's left shoe.” \n−Jumba Jookiba",
+    "separator": "book",
+    "stars": 3,
+    "illustrator": "Alex Kupershmidt",
+    "language": "EN",
+    "number": 21,
+    "pack": "204",
+    "rarity": "promo",
+    "image": "https://images.lorcania.com/cards/p1/21_en_stitch-716.webp",
+    "blurhash": "",
+    "franchise_id": 2,
+    "final": 0,
+    "spoiler": 1,
+    "created_at": "2023-09-12T13:03:48.000000Z",
+    "updated_at": "2023-09-12T13:03:48.000000Z",
+    "languages": {
+      "en": {
+        "name": "Stitch",
+        "title": "Abomination",
+        "flavour": "“His destructive programming is taking effect. He will be irresistibly drawn to large cities, where he will back up sewers, reverse street signs, and steal everyone's left shoe.” \n−Jumba Jookiba",
+        "image": "https://images.lorcania.com/cards/p1/21_en_stitch-716.webp"
+      }
+    },
+    "edition": [
+      {
+        "id": 11,
+        "name": "Disney 100",
+        "code": "disney100"
+      }
+    ],
+    "setCode": "d23"
+  },
+  {
+    "id": 246,
+    "name": "Maleficent",
+    "title": "Uninvited",
+    "cost": 5,
+    "inkwell": 1,
+    "attack": 3,
+    "defence": 6,
+    "color": 2,
+    "type": "glimmer",
+    "flavour": "She had no invitation−and needed no introduction.",
+    "separator": "pen",
+    "stars": 3,
+    "illustrator": "Lorelay Bove",
+    "language": "EN",
+    "number": 22,
+    "pack": "204",
+    "rarity": "promo",
+    "image": "https://images.lorcania.com/cards/p1/22_en_maleficent-716.webp",
+    "blurhash": "",
+    "franchise_id": 5,
+    "final": 0,
+    "spoiler": 1,
+    "created_at": "2023-09-12T13:07:22.000000Z",
+    "updated_at": "2023-09-12T13:07:22.000000Z",
+    "languages": {
+      "en": {
+        "name": "Maleficent",
+        "title": "Uninvited",
+        "flavour": "She had no invitation−and needed no introduction.",
+        "image": "https://images.lorcania.com/cards/p1/22_en_maleficent-716.webp"
+      }
+    },
+    "edition": [
+      {
+        "id": 11,
+        "name": "Disney 100",
+        "code": "disney100"
+      }
+    ],
+    "setCode": "d23"
+  },
+  {
+    "id": 247,
+    "name": "Maui",
+    "title": "Demigod",
+    "cost": 8,
+    "inkwell": 1,
+    "attack": 8,
+    "defence": 8,
+    "color": 6,
+    "type": "glimmer",
+    "flavour": "When the gods gift you a boat, you take it. The boat’s owner is optional.",
+    "separator": "pen",
+    "stars": 3,
+    "illustrator": "Bill Schwab",
+    "language": "EN",
+    "number": 23,
+    "pack": "204",
+    "rarity": "promo",
+    "image": "https://images.lorcania.com/cards/p1/23_en_maui-716.webp",
+    "blurhash": "",
+    "franchise_id": 11,
+    "final": 0,
+    "spoiler": 1,
+    "created_at": "2023-09-12T13:10:05.000000Z",
+    "updated_at": "2023-09-12T13:10:05.000000Z",
+    "languages": {
+      "en": {
+        "name": "Maui",
+        "title": "Demigod",
+        "flavour": "When the gods gift you a boat, you take it. The boat’s owner is optional.",
+        "image": "https://images.lorcania.com/cards/p1/23_en_maui-716.webp"
+      }
+    },
+    "edition": [
+      {
+        "id": 11,
+        "name": "Disney 100",
+        "code": "disney100"
+      }
+    ],
+    "setCode": "d23"
+  }
+]

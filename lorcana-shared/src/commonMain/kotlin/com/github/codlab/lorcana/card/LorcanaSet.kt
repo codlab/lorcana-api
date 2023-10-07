@@ -1,4 +1,4 @@
-package com.github.codlab.lorcana.lorcania
+package com.github.codlab.lorcana.card
 
 class LorcanaSet(
     private val lorcanaHolder: LorcanaHolder,
@@ -6,7 +6,8 @@ class LorcanaSet(
 ) {
 
     private var translations: MutableMap<String, CardMap> = HashMap()
-    private val cards: List<LorcanaCard>
+
+    private val search = Search()
 
     init {
         val languages = listOf("en", "fr", "de")
@@ -15,9 +16,7 @@ class LorcanaSet(
             translations.put(it, CardMap())
         }
 
-        cards = lorcanaHolder.cards.values.toList()
-
-        cards.forEach { card ->
+        lorcanaHolder.cards.forEach { card ->
             languages.forEach { lang ->
                 card.translation(lang)?.let { translation ->
                     translations.get(lang)?.append(card, translation)
@@ -28,13 +27,20 @@ class LorcanaSet(
 
     fun name() = lorcanaSet.name
 
-    fun cardCount() = cards.size
+    fun cardCount() = lorcanaHolder.cards.size
 
     fun code() = lorcanaSet.setCode
 
-    fun cards() = this.cards
+    fun cards() = lorcanaHolder.cards
+
     fun translations(language: String): CardMap? {
         return translations[language.lowercase()]
+    }
+
+    fun search(language: String, query: String?): List<LorcanaCard> {
+        val holder = translations(language) ?: return emptyList()
+
+        return search.match(language, query, cards(), holder)
     }
 }
 

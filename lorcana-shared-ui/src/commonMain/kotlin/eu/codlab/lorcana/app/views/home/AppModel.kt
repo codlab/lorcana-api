@@ -1,16 +1,12 @@
 package eu.codlab.lorcana.app.views.home
 
 import androidx.compose.ui.text.intl.Locale
-import com.github.codlab.lorcana.lorcania.LorcanaHolder
-import com.github.codlab.lorcana.lorcania.LorcanaSet
-import com.github.codlab.lorcana.lorcania.LorcanaSetObject
-import com.github.codlab.lorcana.shared.SharedRes
+import com.github.codlab.lorcana.card.LorcanaSet
+import com.github.codlab.lorcana.card.SetsLoader
 import eu.codlab.lorcana.app.utils.StateViewModel
 import eu.codlab.lorcana.app.utils.launch
 import eu.codlab.lorcana.models.FoilNormal
 import eu.codlab.lorcana.models.LorcanaController
-import eu.codlab.moko.ext.safelyReadContent
-import kotlin.time.ExperimentalTime
 
 data class AppModelState(
     var initialized: Boolean = false,
@@ -20,7 +16,6 @@ data class AppModelState(
     var cardSets: List<LorcanaSet> = emptyList()
 )
 
-@OptIn(ExperimentalTime::class)
 class AppModel : StateViewModel<AppModelState>(AppModelState()) {
 
     private val databaseController = LorcanaController()
@@ -47,28 +42,7 @@ class AppModel : StateViewModel<AppModelState>(AppModelState()) {
         try {
             databaseController.selectAll()
 
-            val textSets = SharedRes.files.sets.safelyReadContent()
-            val sets = LorcanaSetObject.fromArray(textSets)
-
-            var cardSets: MutableList<LorcanaSet> = ArrayList()
-
-            listOf(
-                Pair(SharedRes.files.tfc, "tfc"),
-                Pair(SharedRes.files.d23, "d23"),
-                Pair(SharedRes.files.rotf, "rotf")
-            ).forEach { fileLang ->
-                val file = fileLang.first
-                val lang = fileLang.second
-
-                sets.find { it.setCode.lowercase() == lang }?.let { lorcanaSet ->
-                    cardSets.add(
-                        LorcanaSet(
-                            LorcanaHolder.fromContent(file.safelyReadContent()),
-                            lorcanaSet = lorcanaSet
-                        )
-                    )
-                }
-            }
+            val cardSets = SetsLoader().load()
 
             updateState {
                 copy(

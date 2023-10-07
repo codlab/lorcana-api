@@ -1,3 +1,5 @@
+**/node_modules/
+assets/cleanup/index.js
 
 kotlin-js-store/
 

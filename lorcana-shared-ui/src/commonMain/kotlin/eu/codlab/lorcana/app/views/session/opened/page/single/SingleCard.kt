@@ -28,7 +28,7 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.intl.Locale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.github.codlab.lorcana.lorcania.LorcanaCard
+import com.github.codlab.lorcana.card.LorcanaCard
 import eu.codlab.compose.theme.LocalDarkTheme
 import eu.codlab.compose.theme.LocalThemeEnvironment
 import eu.codlab.compose.widgets.CustomOutlinedButton
@@ -100,7 +100,7 @@ fun CardItem(
     var numbers by remember {
         mutableStateOf(
             localApp.getCardNumbers(
-                card.getSetId(),
+                card.setCode,
                 card.number.toLong()
             )
         )
@@ -133,7 +133,7 @@ fun CardItem(
 
         val update: (FoilNormal) -> Unit = {
             localApp.save(
-                card.getSetId(),
+                card.setCode,
                 card.number.toLong(),
                 it
             )

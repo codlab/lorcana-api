@@ -87,8 +87,6 @@ kotlin {
 
                 implementation(libs.about.libraries)
                 implementation(libs.kamel.image)
-
-                implementation(libs.fuzzywuzzy.multiplatform)
             }
         }
         val commonTest by getting {

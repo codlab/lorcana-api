@@ -50,9 +50,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.germainkevin.collapsingtopbar.CollapsingTopBar
 import com.germainkevin.collapsingtopbar.rememberCollapsingTopBarScrollBehavior
-import com.github.codlab.lorcana.lorcania.LorcanaCard
-import com.github.codlab.lorcana.lorcania.LorcanaSet
-import com.willowtreeapps.fuzzywuzzy.diffutils.FuzzySearch
+import com.github.codlab.lorcana.card.LorcanaCard
+import com.github.codlab.lorcana.card.LorcanaSet
 import eu.codlab.compose.theme.LocalDarkTheme
 import eu.codlab.compose.theme.LocalThemeEnvironment
 import eu.codlab.compose.widgets.CustomOutlinedEditText
@@ -260,23 +259,7 @@ fun searchCards(set: LorcanaSet, lang: String, search: String): List<LorcanaCard
     val translations = set.translations(lang)
     if (null == translations || search.isEmpty()) return null
 
-    val found = mutableListOf<LorcanaCard>()
-
-    found += set.cards().filter {
-        "${it.name} ${it.title}"
-            .lowercase().contains(search.lowercase())
-    }
-
-    val result = FuzzySearch.extractAll(
-        search.lowercase(),
-        translations.keys()
-    )
-
-    val treshold = result.filter { it.score > ThresholdScore }
-
-    return found + treshold.map { translations.get(it.string ?: "") }.filter { card ->
-        null == found.find { null != card && it.number == card.number }
-    }.filterNotNull()
+    return set.search(lang, search)
 }
 
 @OptIn(ExperimentalComposeUiApi::class)

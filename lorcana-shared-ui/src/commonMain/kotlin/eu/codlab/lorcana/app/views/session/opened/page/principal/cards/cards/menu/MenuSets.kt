@@ -13,7 +13,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import com.github.codlab.lorcana.lorcania.LorcanaSet
+import com.github.codlab.lorcana.card.LorcanaSet
 import eu.codlab.compose.widgets.VectorIcon
 
 @Composable

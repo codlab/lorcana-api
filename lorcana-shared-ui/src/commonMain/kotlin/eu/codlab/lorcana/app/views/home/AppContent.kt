@@ -63,7 +63,7 @@ fun AppContent() {
                 }
                 MainPageScreen {
                     navigator.navigate(
-                        route = "/show/card/${it.getSetId()}/${it.number}",
+                        route = "/show/card/${it.setCode}/${it.number}",
                         options = NavOptions(
                             popUpTo = PopUpTo(
                                 route = "/home",

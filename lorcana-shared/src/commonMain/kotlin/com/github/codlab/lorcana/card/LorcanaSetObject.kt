@@ -1,4 +1,4 @@
-package com.github.codlab.lorcana.lorcania
+package com.github.codlab.lorcana.card
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -40,7 +40,7 @@ data class LorcanaSetObject(
         }
 
         fun fromArray(content: String): List<LorcanaSetObject> {
-            return Json.decodeFromString(content)
+            return json.decodeFromString(content)
         }
     }
 }

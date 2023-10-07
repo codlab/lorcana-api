@@ -1,26 +1,9 @@
 package eu.codlab.lorcana.app.utils
 
-import com.github.codlab.lorcana.card.Card
-import com.github.codlab.lorcana.lorcania.LorcanaCard
+import com.github.codlab.lorcana.card.LorcanaCard
 import dev.icerock.moko.resources.ImageResource
 import eu.codlab.lorcana.resources.Resources
 import eu.codlab.moko.ext.getImageByFileNameExt
-
-fun Card.getImage(mode: String, size: String, lang: String = "en"): ImageResource {
-    val attempt = getLocalUrl(mode, size, lang)
-
-    @Suppress("TooGenericExceptionCaught", "SwallowedException")
-    return try {
-        Resources.images.getImageByFileNameExt(attempt) ?: Resources.images.cardBackx300
-    } catch (err: Throwable) {
-        try {
-            val en = getLocalUrl(mode, size, "en")
-            Resources.images.getImageByFileNameExt(en) ?: Resources.images.cardBackx300
-        } catch (err: Throwable) {
-            Resources.images.cardBackx300
-        }
-    }
-}
 
 fun LorcanaCard.getImage(
     mode: String,

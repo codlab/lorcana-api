@@ -1,12 +1,9 @@
 package com.lorcanaapi
 
-import com.github.codlab.lorcana.card.Card
+import com.github.codlab.lorcana.card.LorcanaSet
 
-class JvmApp(val cards: List<Card>) {
-
-    val map: Map<String, Card>
-    init {
-        map = HashMap()
-        cards.forEach { map["${it.name} ${it.subTitle}"] = it }
-    }
+class JvmApp(
+    val sets: List<LorcanaSet>
+) {
+    // nothing for now
 }

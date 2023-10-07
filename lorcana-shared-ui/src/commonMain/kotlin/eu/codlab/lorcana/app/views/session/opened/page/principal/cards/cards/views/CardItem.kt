@@ -24,7 +24,7 @@ import androidx.compose.ui.graphics.ColorMatrix
 import androidx.compose.ui.text.intl.Locale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.github.codlab.lorcana.lorcania.LorcanaCard
+import com.github.codlab.lorcana.card.LorcanaCard
 import eu.codlab.lorcana.app.theme.MyApplicationTheme
 import eu.codlab.lorcana.app.utils.rememberViewModel
 import eu.codlab.lorcana.app.views.home.LocalApp
@@ -49,7 +49,7 @@ fun CardItem(
     var numbers by remember { mutableStateOf(FoilNormal(0, 0)) }
 
     LaunchedEffect(card, showCollection) {
-        numbers = localApp.getCardNumbers(card.getSetId(), card.number.toLong())
+        numbers = localApp.getCardNumbers(card.setCode, card.number.toLong())
     }
 
     val downloader = LocalDownloader.current

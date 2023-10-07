@@ -8,7 +8,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.unit.dp
-import com.github.codlab.lorcana.lorcania.LorcanaCard
+import com.github.codlab.lorcana.card.LorcanaCard
 import dev.icerock.moko.resources.ImageResource
 import dev.icerock.moko.resources.compose.painterResource
 import eu.codlab.lorcana.resources.Resources
@@ -45,7 +45,7 @@ fun <Fallback> SingleCardView(
         } else {
             val painterResource = asyncPainterResource(
                 data = state.dataForAsync!!,
-                key = "${card.getSetId()}_${card.number}"
+                key = "${card.setCode}_${card.number}"
             )
 
             KamelImage(

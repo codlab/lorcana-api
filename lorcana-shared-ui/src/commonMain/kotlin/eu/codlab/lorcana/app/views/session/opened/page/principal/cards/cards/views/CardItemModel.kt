@@ -1,6 +1,6 @@
 package eu.codlab.lorcana.app.views.session.opened.page.principal.cards.cards.views
 
-import com.github.codlab.lorcana.lorcania.LorcanaCard
+import com.github.codlab.lorcana.card.LorcanaCard
 import eu.codlab.lorcana.app.downloader.DownloadAssets
 
 class CardItemModel(

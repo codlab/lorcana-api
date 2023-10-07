@@ -35,6 +35,8 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
+                implementation(libs.fuzzywuzzy.multiplatform)
+
                 api(libs.moko.resources)
                 api(libs.moko.resources.ext)
                 api(libs.kotlinx.serialization.json)

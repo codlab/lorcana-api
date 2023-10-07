@@ -1,4 +1,4 @@
-package com.github.codlab.lorcana.lorcania
+package com.github.codlab.lorcana.card
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -6,7 +6,7 @@ import kotlinx.serialization.json.Json
 
 @Serializable
 data class LorcanaHolder(
-    val cards: Map<String, LorcanaCard>
+    val cards: List<LorcanaCard>
 ) {
     companion object {
         private val json = Json {
@@ -15,7 +15,7 @@ data class LorcanaHolder(
         }
 
         fun fromContent(content: String): LorcanaHolder {
-            return json.decodeFromString(content)
+            return LorcanaHolder(json.decodeFromString(content))
         }
     }
 }
@@ -31,13 +31,12 @@ data class LorcanaCard(
     val defence: Int = 0,
     val color: Int = 0,
     val type: String = "",
-    val action: String = "",
+    val actions: List<Action> = emptyList(),
     val flavour: String = "",
     val separator: String = "",
     val stars: Int = 0,
     val illustrator: String = "",
-    @SerialName("card_set_id")
-    val cardSetId: Int = 1,
+    val setCode: String = "d23",
     val language: String = "",
     val number: Int = 12,
     val pack: String = "204", // 204?
@@ -60,40 +59,46 @@ data class LorcanaCard(
         return image.replace("\\/", "/")
     }
 
-    fun getSetId(): String {
-        return listOf("d23", "tfc", "rotf")[cardSetId - 1]
-    }
-
     fun translation(language: String): LorcanaCardTranslation? {
         return languages[language.uppercase()]
     }
 
     fun getRemoteUrl(mode: String, size: String, lang: String = "en"): String {
         val root = "https://lorcana.codlab.eu/images/"
-        return "$root/${this.getSetId()}_${mode}_${size}_${this.number}_$lang@1x.webp".lowercase()
+        return "$root/${setCode}_${mode}_${size}_${number}_$lang@1x.webp".lowercase()
     }
 
     fun getLocalUrl(mode: String, size: String, lang: String = "en"): String {
-        return "${this.getSetId()}_${mode}_${size}_${this.number}_$lang.jpg".lowercase()
+        return "${setCode}_${mode}_${size}_${number}_$lang.jpg".lowercase()
     }
 
     companion object {
         fun fake(): LorcanaCard {
-            return LorcanaCard(
-                cardSetId = 1
-            )
+            return LorcanaCard()
         }
     }
 }
 
 @Serializable
+data class Action(
+    val name: String? = null,
+    val description: List<SubDescription>
+) {
+    @Serializable
+    data class SubDescription(
+        /**
+         * text or note
+         */
+        val type: String,
+        val text: String
+    )
+}
+
+@Serializable
 data class LorcanaCardTranslation(
-    @SerialName("card_id")
-    val cardId: Int,
-    val language: String = "",
     val name: String = "",
     val title: String = "",
-    val action: String = "",
+    val actions: List<Action> = emptyList(),
     val flavour: String = "",
     private val image: String = ""
 ) {

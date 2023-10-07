@@ -1,7 +1,6 @@
 package eu.codlab.lorcana.app.downloader
 
-import com.github.codlab.lorcana.card.Card
-import com.github.codlab.lorcana.lorcania.LorcanaCard
+import com.github.codlab.lorcana.card.LorcanaCard
 import eu.codlab.files.VirtualFile
 import eu.codlab.files.touch
 import eu.codlab.http.createClient
@@ -25,7 +24,7 @@ class DownloadAssets {
     }
 
     suspend fun exists(
-        card: Card,
+        card: LorcanaCard,
         lang: String,
         mode: String = "normal",
         size: String = "large"

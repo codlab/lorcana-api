@@ -20,7 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.github.codlab.lorcana.lorcania.LorcanaCard
+import com.github.codlab.lorcana.card.LorcanaCard
 import eu.codlab.compose.theme.LocalThemeEnvironment
 import eu.codlab.compose.widgets.BottomSpacer
 import eu.codlab.compose.widgets.TextNormal
