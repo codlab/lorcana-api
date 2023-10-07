@@ -74,7 +74,7 @@ data class LorcanaCard(
     }
 
     fun getLocalUrl(mode: String, size: String, lang: String = "en"): String {
-        return "${this.getSetId()}_${mode}_${size}_${this.number}_$lang.png".lowercase()
+        return "${this.getSetId()}_${mode}_${size}_${this.number}_$lang.jpg".lowercase()
     }
 
     companion object {

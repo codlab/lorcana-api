@@ -15,7 +15,7 @@ mkdir images
 for x in `ls lorcania_images | grep _small_`;
 do
 	original=$x
-	new=${x%.*}.jpeg
+	new=${x%.*}.jpg
 
 	convert lorcania_images/$original -geometry 200x images/$new;
 done

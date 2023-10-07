@@ -1,8 +1,6 @@
 package eu.codlab.lorcana.app.theme
 
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.dp
 import eu.codlab.compose.theme.ColorBottomNavigations
 import eu.codlab.compose.theme.ColorTheme
 import eu.codlab.compose.theme.ThemeEnvironment

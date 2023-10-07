@@ -31,7 +31,6 @@ val shapes = Shapes(
     large = RoundedCornerShape(0.dp)
 )
 
-
 val darkThemeEnvironment = createEnvironmentDark(
     ThemeEnvironment(
         material = Material(

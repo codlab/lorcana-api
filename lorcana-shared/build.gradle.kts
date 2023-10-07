@@ -120,20 +120,3 @@ tasks.register("generateMR") {
     tasks.matching { it.name.startsWith("generateMR") && it.name.endsWith("Main") }
         .forEach { this.dependsOn(it) }
 }
-
-tasks.register("concatenateMR") {
-    group = "moko-resources"
-    val parent = file("${rootProject.projectDir}/assets/data/cards")
-    val array = parent.list()?.map {
-        val current = File(parent.absolutePath, it)
-        current.readText()
-    } ?: mutableListOf()
-
-    val concatenateText = array.joinToString(separator = ",", prefix = "[", postfix = "]")
-    val concatenate = File(parent.absolutePath, "../allCards.txt")
-    concatenate.writeText(concatenateText)
-
-    tasks.findByName("generateMR")?.dependsOn(this)
-    tasks.matching { it.name.startsWith("generateMR") && it.name.endsWith("Main") }
-        .forEach { this.dependsOn(it) }
-}

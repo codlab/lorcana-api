@@ -73,8 +73,6 @@ app-ui/src/androidMain/kotlin
 app/shared_logic/src/commonMain/resources/MR/files/licenseReleaseReport.json
 /app-ui/src/commonMain/resources/MR/files/licenseReleaseReport.json
 
-assets/data/allCards.txt
-
 karma.config.d/
 webpack.config.d/
 

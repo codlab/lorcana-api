@@ -84,6 +84,6 @@ data class Card(
     }
 
     fun getLocalUrl(mode: String, size: String, lang: String = "en"): String {
-        return "${this.setCode}_${mode}_${size}_${this.cardNumber}_$lang.png".lowercase()
+        return "${this.setCode}_${mode}_${size}_${this.cardNumber}_$lang.jpg".lowercase()
     }
 }

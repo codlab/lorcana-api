@@ -20,11 +20,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalDensity
+import eu.codlab.lorcana.app.downloader.DownloadAssets
 import eu.codlab.lorcana.app.theme.AppColor
 import eu.codlab.lorcana.app.theme.MyApplicationTheme
 import eu.codlab.lorcana.app.theme.WindowSize
 import eu.codlab.lorcana.app.utils.rememberViewModel
-import eu.codlab.lorcana.app.downloader.DownloadAssets
 
 val LocalWindow = compositionLocalOf { WindowSize.COMPACT }
 val LocalApp = compositionLocalOf { AppModel() }

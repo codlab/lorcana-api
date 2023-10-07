@@ -124,25 +124,6 @@ tasks.register("generateImages") {
     }
 }
 
-tasks.register("concatenateMR") {
-    dependsOn("generateImages")
-    group = "moko-resources"
-
-    val parent = file("${rootProject.projectDir}/assets/data/cards")
-    val array = parent.list()?.map {
-        val current = File(parent.absolutePath, it)
-        current.readText()
-    } ?: mutableListOf()
-
-    val concatenateText = array.joinToString(separator = ",", prefix = "[", postfix = "]")
-    val concatenate = File(parent.absolutePath, "../allCards.txt")
-    concatenate.writeText(concatenateText)
-
-    tasks.findByName("generateMR")?.dependsOn(this)
-    tasks.matching { it.name.startsWith("generateMR") && it.name.endsWith("Main") }
-        .forEach { this.dependsOn(it) }
-}
-
 val licenseCopy by tasks.registering(Copy::class) {
     dependsOn(":lorcana-shared-ui:licenseReleaseReport")
 

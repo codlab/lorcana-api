@@ -3,7 +3,6 @@ package eu.codlab.lorcana.app.utils
 import com.github.codlab.lorcana.card.Card
 import com.github.codlab.lorcana.lorcania.LorcanaCard
 import dev.icerock.moko.resources.ImageResource
-import dev.icerock.moko.resources.getImageByFileName
 import eu.codlab.lorcana.resources.Resources
 import eu.codlab.moko.ext.getImageByFileNameExt
 

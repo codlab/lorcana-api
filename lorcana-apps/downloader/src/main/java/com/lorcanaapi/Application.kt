@@ -24,7 +24,6 @@ val client = HttpClient(CIO) {
 
 @Suppress("LongMethod")
 fun main(arg: Array<String>) {
-
     @Suppress("TooGenericExceptionCaught", "SwallowedException")
     val rootDir = try {
         Manifests.read("RootPath")
