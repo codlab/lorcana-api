@@ -29,19 +29,20 @@ import androidx.compose.ui.text.intl.Locale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.github.codlab.lorcana.lorcania.LorcanaCard
-import eu.codlab.lorcana.app.theme.LocalDarkTheme
-import eu.codlab.lorcana.app.theme.LocalThemeEnvironment
+import eu.codlab.compose.theme.LocalDarkTheme
+import eu.codlab.compose.theme.LocalThemeEnvironment
+import eu.codlab.compose.widgets.CustomOutlinedButton
+import eu.codlab.compose.widgets.CustomOutlinedEditText
+import eu.codlab.compose.widgets.TextNormal
+import eu.codlab.compose.widgets.TextTitle
+import eu.codlab.compose.widgets.systemBackground
+import eu.codlab.lorcana.app.theme.AppColor
 import eu.codlab.lorcana.app.theme.MyApplicationTheme
 import eu.codlab.lorcana.app.utils.rememberViewModel
 import eu.codlab.lorcana.app.views.home.LocalApp
 import eu.codlab.lorcana.app.views.home.LocalDownloader
 import eu.codlab.lorcana.app.views.session.opened.page.principal.cards.cards.views.CardItemModel
 import eu.codlab.lorcana.app.views.session.opened.page.principal.cards.cards.views.SingleCardView
-import eu.codlab.lorcana.app.views.widgets.LorcanaOutlinedButton
-import eu.codlab.lorcana.app.views.widgets.LorcanaOutlinedEditText
-import eu.codlab.lorcana.app.views.widgets.TextNormal
-import eu.codlab.lorcana.app.views.widgets.TextTitle
-import eu.codlab.lorcana.app.views.widgets.systemBackground
 import eu.codlab.lorcana.models.FoilNormal
 import eu.codlab.lorcana.resources.Resources
 import eu.codlab.moko.ext.localized
@@ -69,7 +70,7 @@ fun SingleCard(card: LorcanaCard) {
     println("having color ${env.gradientStart}")
 
     val color = if (LocalDarkTheme.current) {
-        env.lorcanaBlue
+        AppColor.LorcanaDarkBlue
     } else {
         Color.White
     }
@@ -176,15 +177,15 @@ fun MutableIntegerBox(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(16.dp)
     ) {
-        LorcanaOutlinedButton(onClick = {
+        CustomOutlinedButton(onClick = {
             // prevent negative values
-            if (actualValue - 1 < 0) return@LorcanaOutlinedButton
+            if (actualValue - 1 < 0) return@CustomOutlinedButton
             onNewValue(actualValue - 1)
         }) {
             TextNormal(text = "-")
         }
 
-        LorcanaOutlinedEditText(
+        CustomOutlinedEditText(
             modifier = Modifier.widthIn(0.dp, 120.dp),
             value = TextFieldValue("$actualValue"),
             onValueChanged = {},
@@ -192,7 +193,7 @@ fun MutableIntegerBox(
             label = { TextNormal(text = title) }
         )
 
-        LorcanaOutlinedButton(onClick = {
+        CustomOutlinedButton(onClick = {
             onNewValue(actualValue + 1)
         }) {
             TextNormal(text = "+")

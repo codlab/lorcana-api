@@ -3,6 +3,9 @@ package eu.codlab.lorcana.app.theme
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import eu.codlab.compose.theme.ColorBottomNavigations
+import eu.codlab.compose.theme.ColorTheme
+import eu.codlab.compose.theme.ThemeEnvironment
 
 private val fullBlack = Color(0xff000000)
 private val unselected = Color(0xff7a6b63)
@@ -14,25 +17,13 @@ private val colorNavigationsDark = ColorBottomNavigations(
     selected = selected
 )
 
-data class ThemeEnvironment(
-    val defaultPadding: Dp = 16.dp,
-    val navigationColors: ColorBottomNavigations = colorNavigationsDark,
-    val colors: ColorTheme = ColorTheme(
-        graySemiTransparent = AppColor.GraySemiTransparentDark
-    ),
-    val gradientStart: Color = AppColor.Primary,
-    val gradientEnd: Color = AppColor.Blue,
-    val lorcanaBlue: Color = AppColor.LorcanaDarkBlue
-)
-
 fun createEnvironmentDark(environment: ThemeEnvironment) = environment.copy(
     navigationColors = colorNavigationsDark,
     colors = ColorTheme(
         graySemiTransparent = AppColor.GraySemiTransparentLight
     ),
     gradientStart = AppColor.Primary,
-    gradientEnd = AppColor.Blue,
-    lorcanaBlue = AppColor.LorcanaDarkBlue
+    gradientEnd = AppColor.Blue
 )
 
 fun createEnvironmentLight(environment: ThemeEnvironment) = environment.copy(
@@ -45,6 +36,5 @@ fun createEnvironmentLight(environment: ThemeEnvironment) = environment.copy(
         graySemiTransparent = AppColor.GraySemiTransparentDark
     ),
     gradientStart = Color.White,
-    gradientEnd = AppColor.BlueLighter,
-    lorcanaBlue = AppColor.LorcanaLightBlue
+    gradientEnd = AppColor.BlueLighter
 )

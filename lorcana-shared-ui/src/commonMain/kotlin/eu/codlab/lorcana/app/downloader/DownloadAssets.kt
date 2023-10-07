@@ -1,10 +1,10 @@
-package eu.codlab.lorcana.downloader
+package eu.codlab.lorcana.app.downloader
 
 import com.github.codlab.lorcana.card.Card
-import com.github.codlab.lorcana.files.VirtualFile
-import com.github.codlab.lorcana.files.touch
-import com.github.codlab.lorcana.http.createClient
 import com.github.codlab.lorcana.lorcania.LorcanaCard
+import eu.codlab.files.VirtualFile
+import eu.codlab.files.touch
+import eu.codlab.http.createClient
 import io.ktor.client.call.body
 import io.ktor.client.request.get
 import io.ktor.http.HttpStatusCode

@@ -54,7 +54,7 @@ android {
     }
     packaging {
         resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+            excludes += "/META-INF/{AL2.0,LGPL2.1,DEPENDENCIES}"
         }
     }
     buildTypes {
@@ -99,6 +99,8 @@ dependencies {
     implementation(libs.moko.viewmodel.compose)
     implementation(libs.moko.resources)
     implementation(libs.moko.resources.compose)
+    implementation(libs.moko.resources.ext)
     implementation(libs.about.libraries)
     implementation(libs.kamel.image)
+    implementation(libs.widgets.compose)
 }

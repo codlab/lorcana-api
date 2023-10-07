@@ -21,14 +21,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.github.codlab.lorcana.lorcania.LorcanaCard
-import eu.codlab.lorcana.app.theme.LocalThemeEnvironment
+import eu.codlab.compose.theme.LocalThemeEnvironment
+import eu.codlab.compose.widgets.BottomSpacer
+import eu.codlab.compose.widgets.TextNormal
 import eu.codlab.lorcana.app.theme.MyApplicationTheme
 import eu.codlab.lorcana.app.views.session.opened.page.principal.cards.CardsList
 import eu.codlab.lorcana.app.views.session.opened.page.principal.cards.Decks
 import eu.codlab.lorcana.app.views.session.opened.page.principal.cards.LoreCounter
 import eu.codlab.lorcana.app.views.session.opened.page.principal.cards.Tab
-import eu.codlab.lorcana.app.views.widgets.BottomSpacer
-import eu.codlab.lorcana.app.views.widgets.TextNormal
 
 @Composable
 fun MainPageScreen(onCard: (LorcanaCard) -> Unit) {

@@ -22,10 +22,10 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import eu.codlab.compose.widgets.TransparentIconButton
 import eu.codlab.lorcana.app.theme.MyApplicationTheme
 import eu.codlab.lorcana.app.theme.WindowSize
 import eu.codlab.lorcana.app.views.home.LocalWindow
-import eu.codlab.lorcana.app.views.widgets.TransparentIconButton
 import eu.codlab.safearea.views.SafeArea
 import eu.codlab.safearea.views.SafeAreaBehavior
 import kotlinx.coroutines.launch

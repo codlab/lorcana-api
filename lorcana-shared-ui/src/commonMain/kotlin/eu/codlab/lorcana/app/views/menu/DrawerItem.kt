@@ -16,10 +16,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import eu.codlab.lorcana.app.theme.LocalDarkTheme
+import eu.codlab.compose.theme.LocalDarkTheme
+import eu.codlab.compose.widgets.TextNormal
+import eu.codlab.compose.widgets.TextSubtitle
 import eu.codlab.lorcana.app.theme.MyApplicationTheme
-import eu.codlab.lorcana.app.views.widgets.TextNormal
-import eu.codlab.lorcana.app.views.widgets.TextSubtitle
 
 @Composable
 fun DrawerSeparator(

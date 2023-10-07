@@ -70,6 +70,7 @@ kotlin {
                 implementation(project(":kotlin-preview"))
                 api(libs.safearea)
                 api(libs.collapsing.toolbar)
+                implementation(libs.widgets.compose)
                 implementation(compose.runtime)
                 implementation(compose.foundation)
                 implementation(compose.ui)
@@ -87,7 +88,6 @@ kotlin {
                 implementation(libs.about.libraries)
                 implementation(libs.kamel.image)
 
-                implementation(libs.ktor.core)
                 implementation(libs.fuzzywuzzy.multiplatform)
             }
         }
@@ -105,8 +105,6 @@ kotlin {
                 api(libs.androidx.activity.compose)
                 api(libs.insetx)
                 implementation(libs.androidx.window)
-
-                implementation(libs.ktor.okhttp)
             }
         }
         val iosX64Main by getting
@@ -115,7 +113,6 @@ kotlin {
         val iosMain by getting {
             dependencies {
                 implementation(libs.insetx)
-                implementation(libs.ktor.darwin)
             }
             dependsOn(commonMain)
             iosX64Main.dependsOn(this)
@@ -127,7 +124,6 @@ kotlin {
             dependsOn(commonMain)
             dependencies {
                 implementation(libs.insetx)
-                implementation(libs.ktor.apache5)
             }
         }
     }

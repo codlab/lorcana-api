@@ -14,7 +14,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import com.github.codlab.lorcana.lorcania.LorcanaSet
-import eu.codlab.lorcana.app.views.widgets.LorcanaIcon
+import eu.codlab.compose.widgets.VectorIcon
 
 @Composable
 fun MenuSets(
@@ -26,7 +26,7 @@ fun MenuSets(
 
     Box(modifier = modifier) {
         IconButton(onClick = { expanded = !expanded }) {
-            LorcanaIcon(
+            VectorIcon(
                 imageVector = Icons.Default.MoreVert
             )
         }

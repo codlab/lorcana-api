@@ -14,11 +14,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import eu.codlab.compose.widgets.BottomSpacer
+import eu.codlab.compose.widgets.TopSpacer
 import eu.codlab.lorcana.app.views.init.InitializeScreen
 import eu.codlab.lorcana.app.views.session.opened.page.principal.MainPageScreen
 import eu.codlab.lorcana.app.views.session.opened.page.single.SingleCard
-import eu.codlab.lorcana.app.views.widgets.BottomSpacer
-import eu.codlab.lorcana.app.views.widgets.TopSpacer
 import moe.tlaster.precompose.navigation.NavHost
 import moe.tlaster.precompose.navigation.NavOptions
 import moe.tlaster.precompose.navigation.PopUpTo
@@ -69,7 +69,7 @@ fun AppContent() {
                                 route = "/home",
                                 inclusive = false
                             ),
-                            launchSingleTop = true
+                            launchSingleTop = false
                         )
                     )
                 }

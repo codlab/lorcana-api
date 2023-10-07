@@ -15,7 +15,7 @@ class LorcanaSet(
             translations.put(it, CardMap())
         }
 
-        cards = lorcanaHolder.props.cards.values.toList()
+        cards = lorcanaHolder.cards.values.toList()
 
         cards.forEach { card ->
             languages.forEach { lang ->

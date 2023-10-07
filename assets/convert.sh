@@ -15,9 +15,9 @@ mkdir images
 for x in `ls lorcania_images | grep _small_`;
 do
 	original=$x
-	new=${x%.*}.png
+	new=${x%.*}.jpeg
 
-	convert lorcania_images/$original -geometry 150x images/$new;
+	convert lorcania_images/$original -geometry 200x images/$new;
 done
 
 popd

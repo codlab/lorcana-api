@@ -24,8 +24,6 @@ import androidx.compose.ui.graphics.ColorMatrix
 import androidx.compose.ui.text.intl.Locale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.github.codlab.lorcana.Platforms
-import com.github.codlab.lorcana.currentPlatform
 import com.github.codlab.lorcana.lorcania.LorcanaCard
 import eu.codlab.lorcana.app.theme.MyApplicationTheme
 import eu.codlab.lorcana.app.utils.rememberViewModel
@@ -84,7 +82,8 @@ fun CardItem(
             } else {
                 null
             },
-            onlyLocalResource = currentPlatform() == Platforms.IOS
+            onlyLocalResource = true // now that they are 200x
+            // before it was currentPlatform() == Platforms.IOS
         )
     }
 }

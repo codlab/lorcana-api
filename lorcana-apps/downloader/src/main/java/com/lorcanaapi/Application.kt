@@ -1,10 +1,9 @@
 package com.lorcanaapi
 
-import com.github.codlab.lorcana.card.Card
-import com.github.codlab.lorcana.files.readContent
 import com.github.codlab.lorcana.lorcania.LorcanaHolder
 import com.github.codlab.lorcana.shared.SharedRes
 import com.jcabi.manifests.Manifests
+import eu.codlab.moko.ext.safelyReadContent
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.cio.CIO
 import io.ktor.client.request.get
@@ -41,11 +40,11 @@ fun main(arg: Array<String>) {
     ).forEach {
         runBlocking {
             val setCode = it.first
-            val content = it.second.readContent()
+            val content = it.second.safelyReadContent()
             val mapped = LorcanaHolder.fromContent(content)
             println(content.length)
 
-            val cards = mapped.props.cards.values
+            val cards = mapped.cards.values
 
             cards.forEach { card ->
                 val fr = card.translation("FR")

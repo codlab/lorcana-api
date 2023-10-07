@@ -24,11 +24,11 @@ insetx = "0.1.0-alpha08"
 
 versions = "0.47.0"
 
-korio = "4.0.2"
+korio = "4.0.10"
 
 about-libraries = "10.9.0-b02"
 
-codlab-ui-libraries = "1.1.4"
+codlab-ui-libraries = "1.4.0"
 
 kamel-image = "0.7.3"
 
@@ -93,8 +93,11 @@ about-libraries = { group = "com.mikepenz", name = "aboutlibraries-core", versio
 safearea = { group = "eu.codlab", name = "kotlin-safearea", version.ref = "codlab-ui-libraries" }
 collapsing-toolbar = { group = "eu.codlab", name = "kotlin-collapsing-toolbar", version.ref = "codlab-ui-libraries" }
 moko-resources-ext = { group = "eu.codlab", name = "kotlin-moko-resources-ext", version.ref = "codlab-ui-libraries" }
-
+kamel-image-ext = { group = "eu.codlab", name = "kotlin-kamel-image-ext", version.ref = "codlab-ui-libraries" }
 kamel-image = { group = "media.kamel", name = "kamel-image", version.ref = "kamel-image" }
+widgets-compose = { module = "eu.codlab:kotlin-widgets-compose", version.ref = "codlab-ui-libraries" }
+file-access = { module = "eu.codlab:kotlin-file-access", version.ref = "codlab-ui-libraries" }
+http-client = { module = "eu.codlab:kotlin-http-client", version.ref = "codlab-ui-libraries" }
 
 fuzzywuzzy = { group = "me.xdrop", name = "fuzzywuzzy", version.ref = "fuzzywuzzy" }
 fuzzywuzzy-multiplatform = { module = "eu.codlab:fuzzywuzzy-kotlin", version.ref = "fuzzywuzzy-multiplatform" }

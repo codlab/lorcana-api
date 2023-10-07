@@ -6,8 +6,7 @@ import kotlinx.serialization.json.Json
 
 @Serializable
 data class LorcanaHolder(
-    val component: String,
-    val props: LorcanaHolderProps
+    val cards: Map<String, LorcanaCard>
 ) {
     companion object {
         private val json = Json {
@@ -20,11 +19,6 @@ data class LorcanaHolder(
         }
     }
 }
-
-@Serializable
-data class LorcanaHolderProps(
-    val cards: Map<String, LorcanaCard>
-)
 
 @Serializable
 data class LorcanaCard(
@@ -80,7 +74,7 @@ data class LorcanaCard(
     }
 
     fun getLocalUrl(mode: String, size: String, lang: String = "en"): String {
-        return "${this.getSetId()}_${mode}_${size}_${this.number}_$lang".lowercase()
+        return "${this.getSetId()}_${mode}_${size}_${this.number}_$lang.png".lowercase()
     }
 
     companion object {

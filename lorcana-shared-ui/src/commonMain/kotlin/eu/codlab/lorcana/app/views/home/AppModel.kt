@@ -7,9 +7,9 @@ import com.github.codlab.lorcana.lorcania.LorcanaSetObject
 import com.github.codlab.lorcana.shared.SharedRes
 import eu.codlab.lorcana.app.utils.StateViewModel
 import eu.codlab.lorcana.app.utils.launch
-import eu.codlab.lorcana.app.utils.safelyReadContent
 import eu.codlab.lorcana.models.FoilNormal
 import eu.codlab.lorcana.models.LorcanaController
+import eu.codlab.moko.ext.safelyReadContent
 import kotlin.time.ExperimentalTime
 
 data class AppModelState(

@@ -3,8 +3,8 @@ package eu.codlab.lorcana.app.views.session.opened.page.licenses
 import eu.codlab.lorcana.app.utils.StateViewModel
 import eu.codlab.lorcana.app.utils.launch
 import eu.codlab.lorcana.app.utils.licenses.LicenseProject
-import eu.codlab.lorcana.app.utils.safelyReadContent
 import eu.codlab.lorcana.resources.Resources
+import eu.codlab.moko.ext.safelyReadContent
 
 data class LicenseState(
     var loaded: Boolean = false,

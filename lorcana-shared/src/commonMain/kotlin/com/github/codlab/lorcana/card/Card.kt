@@ -2,7 +2,6 @@ package com.github.codlab.lorcana.card
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 
 @Serializable
@@ -85,6 +84,6 @@ data class Card(
     }
 
     fun getLocalUrl(mode: String, size: String, lang: String = "en"): String {
-        return "${this.setCode}_${mode}_${size}_${this.cardNumber}_$lang".lowercase()
+        return "${this.setCode}_${mode}_${size}_${this.cardNumber}_$lang.png".lowercase()
     }
 }

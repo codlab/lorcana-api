@@ -5,33 +5,46 @@ import com.github.codlab.lorcana.lorcania.LorcanaCard
 import dev.icerock.moko.resources.ImageResource
 import dev.icerock.moko.resources.getImageByFileName
 import eu.codlab.lorcana.resources.Resources
+import eu.codlab.moko.ext.getImageByFileNameExt
 
 fun Card.getImage(mode: String, size: String, lang: String = "en"): ImageResource {
     val attempt = getLocalUrl(mode, size, lang)
 
     @Suppress("TooGenericExceptionCaught", "SwallowedException")
     return try {
-        Resources.images.getImageByFileName(attempt) ?: Resources.images.cardBackx300
+        Resources.images.getImageByFileNameExt(attempt) ?: Resources.images.cardBackx300
     } catch (err: Throwable) {
         try {
             val en = getLocalUrl(mode, size, "en")
-            Resources.images.getImageByFileName(en) ?: Resources.images.cardBackx300
+            Resources.images.getImageByFileNameExt(en) ?: Resources.images.cardBackx300
         } catch (err: Throwable) {
             Resources.images.cardBackx300
         }
     }
 }
 
-fun LorcanaCard.getImage(mode: String, size: String, lang: String = "en"): ImageResource {
+fun LorcanaCard.getImage(
+    mode: String,
+    size: String,
+    lang: String = "en",
+    fallback: Boolean = true
+): ImageResource {
     val attempt = getLocalUrl(mode, size, lang)
+
+    println("attempt for the image is $attempt")
 
     @Suppress("TooGenericExceptionCaught", "SwallowedException")
     return try {
-        Resources.images.getImageByFileName(attempt) ?: Resources.images.cardBackx300
+        Resources.images.getImageByFileNameExt(attempt)
+            ?: if (fallback) {
+                getImage(mode, size, "en", false)
+            } else {
+                Resources.images.cardBackx300
+            }
     } catch (err: Throwable) {
         try {
             val en = getLocalUrl(mode, size, "en")
-            Resources.images.getImageByFileName(en) ?: Resources.images.cardBackx300
+            Resources.images.getImageByFileNameExt(en) ?: Resources.images.cardBackx300
         } catch (err: Throwable) {
             Resources.images.cardBackx300
         }
@@ -47,7 +60,7 @@ fun LorcanaCard.hasLocalResource(
 
     @Suppress("TooGenericExceptionCaught", "SwallowedException")
     return try {
-        null != Resources.images.getImageByFileName(attempt)
+        null != Resources.images.getImageByFileNameExt(attempt)
     } catch (exception: Throwable) {
         false
     }

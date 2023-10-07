@@ -8,12 +8,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+import eu.codlab.compose.widgets.TextNormal
+import eu.codlab.compose.widgets.TextSubtitle
+import eu.codlab.compose.widgets.systemBackground
 import eu.codlab.lorcana.app.theme.MyApplicationTheme
 import eu.codlab.lorcana.app.utils.licenses.LicenseProject
 import eu.codlab.lorcana.app.utils.licenses.LicenseSubLicense
-import eu.codlab.lorcana.app.views.widgets.TextNormal
-import eu.codlab.lorcana.app.views.widgets.TextSubtitle
-import eu.codlab.lorcana.app.views.widgets.systemBackground
 
 @Suppress("MagicNumber")
 @Composable

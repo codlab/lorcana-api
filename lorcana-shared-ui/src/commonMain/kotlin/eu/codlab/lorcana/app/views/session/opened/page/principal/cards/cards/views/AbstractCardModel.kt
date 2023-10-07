@@ -2,12 +2,12 @@ package eu.codlab.lorcana.app.views.session.opened.page.principal.cards.cards.vi
 
 import com.github.codlab.lorcana.lorcania.LorcanaCard
 import dev.icerock.moko.resources.ImageResource
+import eu.codlab.kamel.ext.stringToKamelFile
 import eu.codlab.lorcana.app.utils.StateViewModel
 import eu.codlab.lorcana.app.utils.getImage
 import eu.codlab.lorcana.app.utils.hasLocalResource
 import eu.codlab.lorcana.app.utils.launch
-import eu.codlab.lorcana.app.utils.stringToKamelFile
-import eu.codlab.lorcana.downloader.DownloadAssets
+import eu.codlab.lorcana.app.downloader.DownloadAssets
 import io.kamel.core.utils.File
 import kotlinx.coroutines.launch
 import kotlin.time.ExperimentalTime

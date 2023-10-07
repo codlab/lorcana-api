@@ -18,9 +18,9 @@ import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.TextFieldDefaults
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Switch
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -53,20 +53,20 @@ import com.germainkevin.collapsingtopbar.rememberCollapsingTopBarScrollBehavior
 import com.github.codlab.lorcana.lorcania.LorcanaCard
 import com.github.codlab.lorcana.lorcania.LorcanaSet
 import com.willowtreeapps.fuzzywuzzy.diffutils.FuzzySearch
+import eu.codlab.compose.theme.LocalDarkTheme
+import eu.codlab.compose.theme.LocalThemeEnvironment
+import eu.codlab.compose.widgets.CustomOutlinedEditText
+import eu.codlab.compose.widgets.StatusBarAndNavigation
+import eu.codlab.compose.widgets.TextNormal
+import eu.codlab.compose.widgets.TextTitle
+import eu.codlab.compose.widgets.TopSpacer
 import eu.codlab.lorcana.app.theme.AppColor
-import eu.codlab.lorcana.app.theme.LocalDarkTheme
-import eu.codlab.lorcana.app.theme.LocalThemeEnvironment
 import eu.codlab.lorcana.app.theme.LorcanaIcons
 import eu.codlab.lorcana.app.theme.MyApplicationTheme
 import eu.codlab.lorcana.app.theme.lorcanaicons.Inkpot
 import eu.codlab.lorcana.app.views.home.LocalApp
 import eu.codlab.lorcana.app.views.session.opened.page.principal.cards.cards.menu.MenuSets
 import eu.codlab.lorcana.app.views.session.opened.page.principal.cards.cards.views.CardItem
-import eu.codlab.lorcana.app.views.widgets.LorcanaOutlinedEditText
-import eu.codlab.lorcana.app.views.widgets.StatusBarAndNavigation
-import eu.codlab.lorcana.app.views.widgets.TextNormal
-import eu.codlab.lorcana.app.views.widgets.TextTitle
-import eu.codlab.lorcana.app.views.widgets.TopSpacer
 import eu.codlab.lorcana.resources.Resources
 import eu.codlab.moko.ext.localized
 
@@ -90,13 +90,8 @@ internal class CardsList(val onCard: (LorcanaCard) -> Unit) : Tab {
 
     @Composable
     override fun Content() {
-        val useCornerTop = LocalDarkTheme.current
-
         MyApplicationTheme(darkTheme = true) {
-            ShowCardList(
-                onCard = onCard,
-                useCornerTop = useCornerTop
-            )
+            ShowCardList(onCard = onCard)
         }
     }
 }
@@ -104,8 +99,7 @@ internal class CardsList(val onCard: (LorcanaCard) -> Unit) : Tab {
 @Suppress("LongMethod")
 @Composable
 fun ShowCardList(
-    onCard: (LorcanaCard) -> Unit,
-    useCornerTop: Boolean
+    onCard: (LorcanaCard) -> Unit
 ) {
     StatusBarAndNavigation()
     val states by LocalApp.current.states.collectAsState()
@@ -113,8 +107,7 @@ fun ShowCardList(
     val showCollection = remember { mutableStateOf(false) }
 
     var set by remember { mutableStateOf(states.cardSets.firstOrNull()) }
-
-    var cards = set?.cards() ?: emptyList()
+    var cards by remember { mutableStateOf(set?.cards() ?: emptyList()) }
 
     println("set $set")
 
@@ -141,21 +134,8 @@ fun ShowCardList(
         5.dp + (20.dp.value * currentProgress).dp
     }
 
-    val modifier = if (useCornerTop) {
-        Modifier
-            .clip(
-                shape = RoundedCornerShape(
-                    topStart = cornerDp,
-                    topEnd = cornerDp
-                )
-            )
-            .fillMaxSize()
-    } else {
-        Modifier.fillMaxSize()
-    }
-
     Column(
-        modifier = modifier
+        modifier = Modifier.fillMaxSize()
             .background(color = AppColor.LorcanaDarkBlue)
             .nestedScroll(scrollBehavior.nestedScrollConnection)
     ) {
@@ -315,10 +295,10 @@ fun ShowSearch(
 
     val keyboardController = LocalSoftwareKeyboardController.current
 
-    LorcanaOutlinedEditText(
+    CustomOutlinedEditText(
         modifier = modifier,
-        colors = TextFieldDefaults.outlinedTextFieldColors(
-            textColor = newColor
+        colors = OutlinedTextFieldDefaults.colors(
+            focusedTextColor = newColor
         ),
         label = {
             TextNormal(

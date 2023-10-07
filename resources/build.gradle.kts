@@ -37,7 +37,9 @@ kotlin {
             dependencies {
                 api(libs.kotlinx.coroutines)
                 api(libs.moko.resources)
+                api(libs.moko.resources.ext)
                 implementation(libs.kamel.image)
+                api(libs.kamel.image.ext)
             }
         }
         val commonTest by getting {

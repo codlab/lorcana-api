@@ -9,6 +9,16 @@ plugins {
 group = "com.github.codlab.lorcana.app"
 version = "1.0"
 
+/*tasks.jar {
+    manifest.attributes["Main-Class"] = "MainApplicationKt"
+    val dependencies = configurations
+        .runtimeClasspath
+        .get()
+        .map(::zipTree) // OR .map { zipTree(it) }
+    from(dependencies)
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}*/
+
 repositories {
     mavenCentral()
     maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
@@ -19,14 +29,16 @@ tasks.register("buildAndNotarizeDmg") {
     dependsOn("packageReleaseDmg", "notarizeDmg")
 }
 
-java {
-    sourceCompatibility = JavaVersion.VERSION_11
-    targetCompatibility = JavaVersion.VERSION_11
-}
+tasks {
+    withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+        kotlinOptions {
+            jvmTarget = libs.versions.java.get()
+        }
+    }
 
-tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
-    kotlinOptions {
-        jvmTarget = libs.versions.java.get()
+    withType<JavaCompile> {
+        sourceCompatibility = libs.versions.java.get()
+        targetCompatibility = libs.versions.java.get()
     }
 }
 
@@ -54,10 +66,6 @@ compose.desktop {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
             packageName = "com.github.codlab.lorcana.app"
             packageVersion = "1.0.0"
-            /*windows {
-                iconFile.set(project.file("icon.ico"))
-            }
-            */
             linux {
                 iconFile.set(project.file("icon.png"))
             }

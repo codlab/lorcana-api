@@ -24,7 +24,7 @@ import eu.codlab.lorcana.app.theme.AppColor
 import eu.codlab.lorcana.app.theme.MyApplicationTheme
 import eu.codlab.lorcana.app.theme.WindowSize
 import eu.codlab.lorcana.app.utils.rememberViewModel
-import eu.codlab.lorcana.downloader.DownloadAssets
+import eu.codlab.lorcana.app.downloader.DownloadAssets
 
 val LocalWindow = compositionLocalOf { WindowSize.COMPACT }
 val LocalApp = compositionLocalOf { AppModel() }

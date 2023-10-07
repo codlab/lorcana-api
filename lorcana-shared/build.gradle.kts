@@ -36,15 +36,12 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 api(libs.moko.resources)
+                api(libs.moko.resources.ext)
                 api(libs.kotlinx.serialization.json)
-                api(libs.kotlinx.coroutines)
                 api(project(":models"))
 
-                api(libs.ktor.core)
-                api(libs.ktor.logging)
-                api(libs.ktor.serialization)
-                api(libs.ktor.content.negotiation)
-                api(libs.korio)
+                api(libs.file.access)
+                api(libs.http.client)
             }
         }
         val commonTest by getting {
@@ -55,53 +52,38 @@ kotlin {
         }
 
         val androidMain by getting {
-            dependencies {
-                dependsOn(commonMain)
+            dependsOn(commonMain)
 
+            dependencies {
                 api("androidx.core:core-ktx:1.9.0")
                 api(libs.androidx.ui.tooling)
                 api(libs.androidx.appcompat)
                 api(libs.androidx.activity.compose)
                 api(libs.insetx)
 
-                api(libs.ktor.okhttp)
                 api(libs.kotlinx.coroutines.android)
-
-                api(libs.korio.android)
             }
         }
         val iosX64Main by getting
         val iosArm64Main by getting
         val iosSimulatorArm64Main by getting
         val iosMain by getting {
-            dependsOn(commonMain)
             iosX64Main.dependsOn(this)
             iosArm64Main.dependsOn(this)
             iosSimulatorArm64Main.dependsOn(this)
-
-            dependencies {
-                implementation(libs.ktor.darwin)
-            }
         }
 
-        // part for macos
-        val nativeMain by getting {
-            dependsOn(commonMain)
-        }
+        val nativeMain by getting
+        val jvmMain by getting
+        val jsMain by getting
 
-        val jvmMain by getting {
-            dependsOn(commonMain)
-            dependencies {
-                api(libs.korio.jvm)
-                api(libs.ktor.apache5)
-            }
-        }
-
-        val jsMain by getting {
-            dependsOn(commonMain)
-            dependencies {
-                api(libs.korio.js)
-            }
+        listOf(
+            nativeMain,
+            jvmMain,
+            jsMain,
+            iosMain
+        ).forEach {
+            it.dependsOn(commonMain)
         }
     }
 }

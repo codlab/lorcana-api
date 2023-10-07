@@ -19,10 +19,10 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import eu.codlab.compose.widgets.StatusBarAndNavigation
 import eu.codlab.lorcana.app.theme.AppColor
 import eu.codlab.lorcana.app.theme.MyApplicationTheme
 import eu.codlab.lorcana.app.views.home.AppModel
-import eu.codlab.lorcana.app.views.widgets.StatusBarAndNavigation
 
 @Composable
 fun InitializeScreen(
