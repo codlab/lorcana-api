@@ -9,7 +9,9 @@ plugins {
 group = "com.github.codlab.lorcana.app"
 version = "1.0"
 
-/*tasks.jar {
+/*
+// optional task to have locally fatjar
+tasks.jar {
     manifest.attributes["Main-Class"] = "MainApplicationKt"
     val dependencies = configurations
         .runtimeClasspath
@@ -17,7 +19,8 @@ version = "1.0"
         .map(::zipTree)
     from(dependencies)
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-}*/
+}
+*/
 
 repositories {
     mavenCentral()
