@@ -60,7 +60,7 @@ data class LorcanaCard(
     }
 
     fun translation(language: String): LorcanaCardTranslation? {
-        return languages[language.uppercase()]
+        return languages[language.lowercase()]
     }
 
     fun getRemoteUrl(mode: String, size: String, lang: String = "en"): String {

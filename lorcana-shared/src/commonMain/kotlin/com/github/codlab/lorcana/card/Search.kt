@@ -18,7 +18,7 @@ class Search {
         found += cards.filter {
             val translation = it.translation(language) ?: return@filter false
 
-            "${translation.name} ${translation.title}"
+            "${translation.name.lowercase()} ${translation.title.lowercase()}"
                 .lowercase().contains(query.lowercase())
         }
 
