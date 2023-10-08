@@ -14,4 +14,7 @@
     <!-- single card -->
     <string name="foil">Foil</string>
     <string name="normal">Normal</string>
+
+    <!-- invalid card -->
+    <string name="invalid_card">Invalid card</string>
 </resources>

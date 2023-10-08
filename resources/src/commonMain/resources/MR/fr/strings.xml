@@ -14,4 +14,7 @@
     <!-- single card -->
     <string name="foil">Brillante</string>
     <string name="normal">Standard</string>
+
+    <!-- invalid card -->
+    <string name="invalid_card">Carte invalide</string>
 </resources>
