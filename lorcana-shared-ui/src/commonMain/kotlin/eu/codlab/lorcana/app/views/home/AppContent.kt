@@ -18,6 +18,7 @@ import eu.codlab.compose.widgets.BottomSpacer
 import eu.codlab.compose.widgets.TopSpacer
 import eu.codlab.lorcana.app.views.init.InitializeScreen
 import eu.codlab.lorcana.app.views.session.opened.page.principal.MainPageScreen
+import eu.codlab.lorcana.app.views.session.opened.page.single.InvalidCard
 import eu.codlab.lorcana.app.views.session.opened.page.single.SingleCard
 import moe.tlaster.precompose.navigation.NavHost
 import moe.tlaster.precompose.navigation.NavOptions
@@ -98,7 +99,11 @@ fun AppContent() {
                 Arrangement.spacedBy(5.dp)
             ) {
                 TopSpacer()
-                SingleCard(card!!)
+                if (null != card) {
+                    SingleCard(card)
+                } else {
+                    InvalidCard()
+                }
                 BottomSpacer()
             }
         }
