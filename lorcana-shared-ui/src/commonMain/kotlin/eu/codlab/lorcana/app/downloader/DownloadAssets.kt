@@ -1,6 +1,8 @@
 package eu.codlab.lorcana.app.downloader
 
+import com.github.codlab.lorcana.Platforms
 import com.github.codlab.lorcana.card.LorcanaCard
+import com.github.codlab.lorcana.currentPlatform
 import eu.codlab.files.VirtualFile
 import eu.codlab.files.touch
 import eu.codlab.http.createClient
@@ -73,6 +75,11 @@ class DownloadAssets {
         mode: String = "normal",
         size: String = "large"
     ) {
+        if (currentPlatform() == Platforms.JS) {
+            // skipped
+            return
+        }
+
         val remote = card.getRemoteUrl(
             mode = mode,
             size = size,

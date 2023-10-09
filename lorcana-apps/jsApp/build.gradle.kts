@@ -2,6 +2,7 @@
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.jetbrains.compose)
+    alias(libs.plugins.moko.resources.generator)
 }
 
 repositories {
@@ -16,9 +17,23 @@ kotlin {
         binaries.executable()
     }
     sourceSets {
-        val jsMain by getting  {
+        val commonMain by getting {
             dependencies {
-                implementation(project(":lorcana-shared-ui"))
+                api(project(":lorcana-shared-ui"))
+                api(libs.look.and.feel)
+                api(compose.runtime)
+                api(compose.ui)
+                api(compose.foundation)
+                api(libs.moko.resources)
+            }
+        }
+
+        val jsMain by getting {
+            dependsOn(commonMain)
+            dependencies {
+                api(compose.html.core)
+                implementation("app.cash.sqldelight:web-worker-driver:2.0.0")
+                implementation(devNpm("copy-webpack-plugin", "9.1.0"))
             }
         }
     }
@@ -26,4 +41,11 @@ kotlin {
 
 compose.experimental {
     web.application {}
+}
+
+multiplatformResources {
+    multiplatformResourcesPackage = "eu.codlab.lorcana.js"
+    multiplatformResourcesClassName = "Resources" // optional, default MR
+    multiplatformResourcesVisibility =
+        dev.icerock.gradle.MRVisibility.Public
 }
