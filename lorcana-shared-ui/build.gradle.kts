@@ -67,7 +67,6 @@ kotlin {
             dependencies {
                 implementation(project(":lorcana-shared"))
                 implementation(project(":resources"))
-                implementation(project(":kotlin-preview"))
                 api(libs.safearea)
                 api(libs.collapsing.toolbar)
                 implementation(libs.widgets.compose)

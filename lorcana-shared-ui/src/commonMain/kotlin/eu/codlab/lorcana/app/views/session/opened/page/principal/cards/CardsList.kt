@@ -14,7 +14,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
@@ -64,6 +63,7 @@ import eu.codlab.lorcana.app.theme.LorcanaIcons
 import eu.codlab.lorcana.app.theme.MyApplicationTheme
 import eu.codlab.lorcana.app.theme.lorcanaicons.Inkpot
 import eu.codlab.lorcana.app.views.home.LocalApp
+import eu.codlab.lorcana.app.views.home.LocalCardList
 import eu.codlab.lorcana.app.views.session.opened.page.principal.cards.cards.menu.MenuSets
 import eu.codlab.lorcana.app.views.session.opened.page.principal.cards.cards.views.CardItem
 import eu.codlab.lorcana.resources.Resources
@@ -119,7 +119,7 @@ fun ShowCardList(
     val minHeight = 112.dp
     val maxHeight = 200.dp
 
-    val lazyGridState = rememberLazyGridState()
+    val lazyGridState = LocalCardList.current //rememberLazyGridState()
     val scrollBehavior = rememberCollapsingTopBarScrollBehavior(
         isAlwaysCollapsed = false,
         availableYScaleFactor = 5,
@@ -134,7 +134,8 @@ fun ShowCardList(
     }
 
     Column(
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier
+            .fillMaxSize()
             .background(color = AppColor.LorcanaDarkBlue)
             .nestedScroll(scrollBehavior.nestedScrollConnection)
     ) {

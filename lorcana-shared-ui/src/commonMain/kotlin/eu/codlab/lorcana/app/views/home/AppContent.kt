@@ -5,9 +5,15 @@ package eu.codlab.lorcana.app.views.home
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.lazy.grid.LazyGridState
+import androidx.compose.foundation.lazy.grid.rememberLazyGridState
+import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.FixedThreshold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -27,6 +33,10 @@ import moe.tlaster.precompose.navigation.SwipeProperties
 import moe.tlaster.precompose.navigation.rememberNavigator
 import moe.tlaster.precompose.navigation.transition.NavTransition
 
+
+val LocalCardList = compositionLocalOf { LazyGridState() }
+
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 @Suppress("LongMethod")
 fun AppContent() {
@@ -36,75 +46,84 @@ fun AppContent() {
 
     val navigator = rememberNavigator()
 
-    NavHost(
-        // Assign the navigator to the NavHost
-        navigator = navigator,
-        // Navigation transition for the scenes in this NavHost, this is optional
-        navTransition = NavTransition(),
-        // The start destination
-        initialRoute = "/home"
+    val lazyGridLocalCardListState = rememberLazyGridState()
+
+    CompositionLocalProvider(
+        LocalCardList provides lazyGridLocalCardListState
     ) {
-        scene(
-            // Scene's route path
-            route = "/home",
-            // Navigation transition for this scene, this is optional
-            navTransition = NavTransition()
+        NavHost(
+            // Assign the navigator to the NavHost
+            navigator = navigator,
+            // Navigation transition for the scenes in this NavHost, this is optional
+            navTransition = NavTransition(),
+            // The start destination
+            initialRoute = "/home"
         ) {
-            val currentState by model.states.collectAsState()
-
-            if (!currentState.initialized) {
-                InitializeScreen(
-                    LocalApp.current,
-                    Modifier.fillMaxSize()
-                )
-            } else {
-                SideEffect {
-                    println("switch to main")
-                    currentPage = Pages.Main
-                }
-                MainPageScreen {
-                    navigator.navigate(
-                        route = "/show/card/${it.setCode}/${it.number}",
-                        options = NavOptions(
-                            popUpTo = PopUpTo(
-                                route = "/home",
-                                inclusive = false
-                            ),
-                            launchSingleTop = false
-                        )
-                    )
-                }
-            }
-        }
-
-        scene(
-            // Scene's route path
-            route = "/show/card/{setId}/{cardId}",
-            swipeProperties = SwipeProperties()
-        ) { backStackEntry ->
-            SideEffect {
-                println("switch to single")
-                currentPage = Pages.SingleCards
-            }
-
-            println(backStackEntry.path)
-            val cardId = backStackEntry.pathMap["cardId"] ?: return@scene
-            val setId = backStackEntry.pathMap["setId"] ?: return@scene
-
-            val set = state.cardSets.find { it.code() == setId } ?: return@scene
-            val card = set.cards().find { it.number == cardId.toInt() }
-
-            Column(
-                modifier = Modifier.fillMaxSize(),
-                Arrangement.spacedBy(5.dp)
+            scene(
+                // Scene's route path
+                route = "/home",
+                // Navigation transition for this scene, this is optional
+                navTransition = NavTransition()
             ) {
-                TopSpacer()
-                if (null != card) {
-                    SingleCard(card)
+                val currentState by model.states.collectAsState()
+
+                if (!currentState.initialized) {
+                    InitializeScreen(
+                        LocalApp.current,
+                        Modifier.fillMaxSize()
+                    )
                 } else {
-                    InvalidCard()
+                    SideEffect {
+                        println("switch to main")
+                        currentPage = Pages.Main
+                    }
+                    MainPageScreen {
+                        navigator.navigate(
+                            route = "/show/card/${it.setCode}/${it.number}",
+                            options = NavOptions(
+                                popUpTo = PopUpTo(
+                                    route = "/home",
+                                    inclusive = false
+                                ),
+                                launchSingleTop = false
+                            )
+                        )
+                    }
                 }
-                BottomSpacer()
+            }
+
+            scene(
+                // Scene's route path
+                route = "/show/card/{setId}/{cardId}",
+                swipeProperties = SwipeProperties(
+                    spaceToSwipe = 50.dp,
+                    swipeThreshold = FixedThreshold(10.dp)
+                )
+            ) { backStackEntry ->
+                SideEffect {
+                    println("switch to single")
+                    currentPage = Pages.SingleCards
+                }
+
+                println(backStackEntry.path)
+                val cardId = backStackEntry.pathMap["cardId"] ?: return@scene
+                val setId = backStackEntry.pathMap["setId"] ?: return@scene
+
+                val set = state.cardSets.find { it.code() == setId } ?: return@scene
+                val card = set.cards().find { it.number == cardId.toInt() }
+
+                Column(
+                    modifier = Modifier.fillMaxSize(),
+                    Arrangement.spacedBy(5.dp)
+                ) {
+                    TopSpacer()
+                    if (null != card) {
+                        SingleCard(card)
+                    } else {
+                        InvalidCard()
+                    }
+                    BottomSpacer()
+                }
             }
         }
     }
